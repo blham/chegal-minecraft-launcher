@@ -56,12 +56,16 @@ func appBrowsers() []string {
 
 // 런처 창 열기 (이미 열려 있으면 아무것도 안 함)
 func openWindow(url string) {
+	// 1.1.1 "열려 있다"고 알고 있어도 화면이 상태를 안 물은 지 6초가 넘었으면 실제로는 안 보이는 것 → 새로 띄움
+	pollMu.Lock()
+	alive := time.Since(lastPoll) < 6*time.Second
+	pollMu.Unlock()
 	winMu.Lock()
-	if winOpen {
-		winMu.Unlock()
+	known := winOpen || usedApp
+	winMu.Unlock()
+	if known && alive {
 		return
 	}
-	winMu.Unlock()
 	for _, b := range appBrowsers() {
 		cmd := exec.Command(b, "--app="+url, "--window-size=1180,800", "--user-data-dir="+filepath.Join(dataDir, "window"),
 			"--no-first-run", "--no-default-browser-check", "--disable-features=Translate")

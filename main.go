@@ -23,7 +23,7 @@ import (
 
 // 빌드할 때 -ldflags "-X main.defaultHost=... -X main.defaultClientID=..." 로 바꿀 수 있음
 var (
-	LauncherVersion  = "1.1.0"
+	LauncherVersion  = "1.1.1"
 	defaultHost      = "210.100.163.165"
 	defaultGamePort  = "25565"
 	defaultFilesPort = "8163"
@@ -151,7 +151,12 @@ func main() {
 		dataDir = d
 	}
 	_ = os.MkdirAll(filepath.Join(dataDir, "logs"), 0o755)
-	lf, err := os.OpenFile(filepath.Join(dataDir, "logs", "launcher.log"), os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0o644)
+	// 1.1.1 이어 쓰기 (두 번째로 켠 런처가 첫 런처 기록을 지우지 않게), 2MB 넘으면 새로
+	lp := filepath.Join(dataDir, "logs", "launcher.log")
+	if st, err := os.Stat(lp); err == nil && st.Size() > 2<<20 {
+		_ = os.Rename(lp, lp+".old")
+	}
+	lf, err := os.OpenFile(lp, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0o644)
 	if err == nil {
 		logger = log.New(lf, "", log.LstdFlags)
 	} else {
