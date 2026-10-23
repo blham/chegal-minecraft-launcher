@@ -8,7 +8,7 @@
 <style>
 :root{--bg:#11151b;--panel:#1b222c;--panel2:#212a35;--line:#2e3946;--ink:#ece6d6;--mute:#97a2ae;--red:#c2452f;--red2:#9a3322;--gold:#d9b25f;--green:#5fb36b;--blurple:#5865f2}
 *{box-sizing:border-box}
-html{background:var(--bg)}
+html{background:var(--bg);color-scheme:dark}
 body{margin:0;min-height:100vh;color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","Noto Sans CJK KR",system-ui,sans-serif;
   background:radial-gradient(1100px 520px at 90% -10%,rgba(194,69,47,.17),transparent 60%),radial-gradient(800px 500px at -10% 110%,rgba(79,134,198,.12),transparent 60%),var(--bg);background-attachment:fixed}
 .app{display:grid;grid-template-columns:340px 1fr;grid-template-rows:auto 1fr;gap:16px;padding:18px;height:100vh}
@@ -48,8 +48,25 @@ select,input[type=text]{font:inherit;background:#0e1217;color:var(--ink);border:
 .notice .d{color:var(--mute);font-size:12px}.notice h3{margin:3px 0 6px;font-size:16px}.notice p{margin:0;line-height:1.65;font-size:14px;white-space:pre-wrap;color:#d8d2c3}
 .empty{color:var(--mute);font-size:14px;padding:30px;text-align:center}
 /* 지도 */
-#mapPane{padding:0;position:relative;overflow:hidden;background:#244a9a;cursor:grab}
-#mapPane.drag{cursor:grabbing}
+#mapPane{padding:0;display:grid;grid-template-columns:220px 1fr 250px;overflow:hidden}
+#mapPane[hidden]{display:none}
+#mapBox{position:relative;overflow:hidden;background:#244a9a;cursor:grab}
+#mapBox.drag{cursor:grabbing}
+.side{overflow:auto;padding:14px;background:var(--panel2);border-right:1px solid var(--line)}
+.side:last-child{border-right:0;border-left:1px solid var(--line)}
+.side.right{display:flex;flex-direction:column;overflow:hidden}.side .scroll{flex:1;min-height:0;overflow:auto}
+.side h4{margin:0 0 10px;font-size:13px;color:var(--mute);font-weight:600;letter-spacing:.5px}
+.nat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 11px;margin-bottom:8px}
+.nat .t{display:flex;align-items:center;gap:8px;font-weight:700}.nat .t b{width:11px;height:11px;transform:rotate(45deg);border:1px solid #fff}
+.nat .r{color:var(--mute);font-size:12px;margin-top:5px;display:flex;gap:10px}
+.nat .rank{margin-left:auto;color:var(--gold);font-size:12px}
+.ci{display:flex;flex-direction:column;gap:3px;padding:5px 8px;border-radius:8px;cursor:pointer;margin-bottom:1px}
+.ci:hover{background:#2c3743}
+.ci .t{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}.ci .t b{width:9px;height:9px;transform:rotate(45deg);border:1px solid #fff;flex:none}
+.ci .t small{margin-left:auto;color:var(--mute);font-weight:400;font-size:11.5px}
+.hp{height:5px;background:#0e1217;border-radius:9px;overflow:hidden}.hp i{display:block;height:100%;background:var(--green)}
+.ev{font-size:12.5px;line-height:1.5;padding:7px 0;border-bottom:1px dashed var(--line)}
+.ev .w{color:var(--mute);font-size:11px}.ev.capture .x{color:var(--gold)}.ev.attack .x{color:#ff8a72}
 #world{position:absolute;left:0;top:0;transform-origin:0 0}
 #world img{display:block;image-rendering:pixelated;user-select:none;-webkit-user-drag:none}
 .core{position:absolute;transform:translate(-50%,-50%);pointer-events:auto}
@@ -110,10 +127,13 @@ footer{position:fixed;left:18px;bottom:8px;color:#5f6a76;font-size:11px}
     </div>
     <div class="pane" id="notice"></div>
     <div class="pane" id="mapPane" hidden>
-      <div id="world"><img id="mapimg" alt=""><div id="marks"></div></div>
-      <div class="legend" id="legend"></div>
-      <div class="mapbtns"><button id="zin">＋</button><button id="zout">－</button><button id="zfit">전체</button></div>
-      <div id="tip"></div>
+      <aside class="side" id="natPanel"><h4>국가 현황</h4><div id="nat"></div></aside>
+      <div id="mapBox">
+        <div id="world"><img id="mapimg" alt=""><div id="marks"></div></div>
+        <div class="mapbtns"><button id="zin">＋</button><button id="zout">－</button><button id="zfit">전체</button></div>
+        <div id="tip"></div>
+      </div>
+      <aside class="side right"><h4>코어</h4><div id="coreList" class="scroll"></div><h4 style="margin-top:12px">전쟁 소식</h4><div id="feed" class="scroll"></div></aside>
     </div>
     <div class="pane" id="players" hidden></div>
   </div>
@@ -175,18 +195,18 @@ async function infoTick(){
 let view={x:0,y:0,k:1}, fitted=false;
 function apply(){$("world").style.transform=`translate(${view.x}px,${view.y}px) scale(${view.k})`;document.querySelectorAll(".core").forEach(m=>m.style.transform=`translate(-50%,-50%) scale(${1/view.k})`)}
 function fitMap(force){
-  const img=$("mapimg"), pane=$("mapPane"); if(!img.naturalWidth||pane.hidden) return; if(fitted&&!force) return;
+  const img=$("mapimg"), pane=$("mapBox"); if(!img.naturalWidth||$("mapPane").hidden) return; if(fitted&&!force) return;
   const k=Math.min(pane.clientWidth/img.naturalWidth,pane.clientHeight/img.naturalHeight);
   view={k,x:(pane.clientWidth-img.naturalWidth*k)/2,y:(pane.clientHeight-img.naturalHeight*k)/2}; fitted=true; apply();
 }
 $("mapimg").onload=()=>{fitted=false;fitMap(true);drawMarks()};
 function zoomAt(f,cx,cy){const nk=Math.max(0.15,Math.min(8,view.k*f));view.x=cx-(cx-view.x)*nk/view.k;view.y=cy-(cy-view.y)*nk/view.k;view.k=nk;apply()}
-$("mapPane").addEventListener("wheel",e=>{e.preventDefault();const r=$("mapPane").getBoundingClientRect();zoomAt(e.deltaY<0?1.2:1/1.2,e.clientX-r.left,e.clientY-r.top)},{passive:false});
+$("mapBox").addEventListener("wheel",e=>{e.preventDefault();const r=$("mapBox").getBoundingClientRect();zoomAt(e.deltaY<0?1.2:1/1.2,e.clientX-r.left,e.clientY-r.top)},{passive:false});
 let drag=null;
-$("mapPane").addEventListener("pointerdown",e=>{if(e.target.closest(".mapbtns,.legend"))return;drag={x:e.clientX,y:e.clientY,vx:view.x,vy:view.y};$("mapPane").classList.add("drag");$("mapPane").setPointerCapture(e.pointerId)});
-$("mapPane").addEventListener("pointermove",e=>{if(!drag)return;view.x=drag.vx+e.clientX-drag.x;view.y=drag.vy+e.clientY-drag.y;apply()});
-$("mapPane").addEventListener("pointerup",()=>{drag=null;$("mapPane").classList.remove("drag")});
-const mid=()=>{const p=$("mapPane");return[p.clientWidth/2,p.clientHeight/2]};
+$("mapBox").addEventListener("pointerdown",e=>{if(e.target.closest(".mapbtns"))return;drag={x:e.clientX,y:e.clientY,vx:view.x,vy:view.y};$("mapBox").classList.add("drag");$("mapBox").setPointerCapture(e.pointerId)});
+$("mapBox").addEventListener("pointermove",e=>{if(!drag)return;view.x=drag.vx+e.clientX-drag.x;view.y=drag.vy+e.clientY-drag.y;apply()});
+$("mapBox").addEventListener("pointerup",()=>{drag=null;$("mapBox").classList.remove("drag")});
+const mid=()=>{const p=$("mapBox");return[p.clientWidth/2,p.clientHeight/2]};
 $("zin").onclick=()=>zoomAt(1.5,...mid()); $("zout").onclick=()=>zoomAt(1/1.5,...mid()); $("zfit").onclick=()=>fitMap(true);
 window.addEventListener("resize",()=>fitMap(true));
 function drawMarks(col){
@@ -197,12 +217,28 @@ function drawMarks(col){
     return `<div class="core" data-i="${i}" style="left:${x}px;top:${y}px"><i style="background:${cl}"></i><span>${esc(c.name)}</span></div>`}).join("");
   document.querySelectorAll(".core").forEach(m=>{
     m.onpointerenter=e=>{const c=info.cores[+m.dataset.i];$("tip").style.display="block";$("tip").innerHTML=`<b>${esc(c.name)}</b><br>주인: ${esc(c.owner||"없음")}<br>체력: ${c.hp} / ${c.maxHp}<br>좌표: ${c.x}, ${c.z}`};
-    m.onpointermove=e=>{const r=$("mapPane").getBoundingClientRect();$("tip").style.left=(e.clientX-r.left+14)+"px";$("tip").style.top=(e.clientY-r.top+14)+"px"};
+    m.onpointermove=e=>{const r=$("mapBox").getBoundingClientRect();$("tip").style.left=(e.clientX-r.left+14)+"px";$("tip").style.top=(e.clientY-r.top+14)+"px"};
     m.onpointerleave=()=>$("tip").style.display="none";
   });
-  const owners={}; (info.cores||[]).forEach(c=>{const k=c.owner||"";owners[k]=(owners[k]||0)+1});
-  $("legend").innerHTML=`<div style="color:var(--mute);margin-bottom:2px">코어 ${(info.cores||[]).length}곳</div>`+Object.keys(owners).sort().map(k=>`<div><b style="background:${k?(col[k]||"#ccc"):"#8a94a0"}"></b>${esc(k||"주인 없음")} · ${owners[k]}</div>`).join("");
+  drawSides(col);
   apply();
+}
+// ---------------- 양옆: 국가 현황 · 코어 목록 · 전쟁 소식
+function ago(t){const m=Math.floor((Date.now()-t)/60000);return m<1?"방금":m<60?m+"분 전":m<1440?Math.floor(m/60)+"시간 전":Math.floor(m/1440)+"일 전"}
+function focusCore(i){const c=info.cores[i],b=info.bounds,img=$("mapimg");if(!c||!img.naturalWidth)return;const p=$("mapBox"),k=Math.max(view.k,1.2);
+  const x=(c.x-b.minX)/b.width*img.naturalWidth,y=(c.z-b.minZ)/b.height*img.naturalHeight;view={k,x:p.clientWidth/2-x*k,y:p.clientHeight/2-y*k};apply();
+  const m=document.querySelector(`.core[data-i="${i}"] i`);if(m){m.animate([{transform:"rotate(45deg) scale(1)"},{transform:"rotate(45deg) scale(2.2)"},{transform:"rotate(45deg) scale(1)"}],{duration:700,iterations:2})}}
+function drawSides(col){
+  const cores=info.cores||[], ps=info.players||[];
+  const nat=(info.nations||[]).map(n=>({n:n.name,c:n.color,cores:cores.filter(x=>x.owner===n.name).length,on:ps.filter(p=>p.nation===n.name).length}));
+  nat.sort((a,b)=>b.cores-a.cores||b.on-a.on);
+  const free=cores.filter(x=>!x.owner).length;
+  $("nat").innerHTML=(nat.length?nat.map((n,i)=>`<div class="nat"><div class="t"><b style="background:${n.c}"></b>${esc(n.n)}<span class="rank">${i+1}위</span></div><div class="r"><span>코어 ${n.cores}</span><span>접속 ${n.on}</span></div></div>`).join(""):`<div class="note">아직 국가가 없어요</div>`)
+    +`<div class="nat"><div class="t"><b style="background:#8a94a0"></b>주인 없음</div><div class="r"><span>코어 ${free}</span></div></div>`;
+  $("coreList").innerHTML=cores.map((c,i)=>({c,i})).sort((a,b)=>(a.c.owner||"~").localeCompare(b.c.owner||"~")).map(({c,i})=>{const cl=c.owner?(col[c.owner]||"#ccc"):"#8a94a0",pct=c.maxHp?Math.round(c.hp*100/c.maxHp):0;
+    return `<div class="ci" onclick="focusCore(${i})"><div class="t"><b style="background:${cl}"></b>${esc(c.name)}<small>${esc(c.owner||"주인 없음")}</small></div><div class="hp"><i style="width:${pct}%;background:${pct<35?"#e0533b":pct<70?"#d9b25f":"#5fb36b"}"></i></div></div>`}).join("");
+  const ev=info.events||[];
+  $("feed").innerHTML=ev.length?ev.slice(0,25).map(e=>`<div class="ev ${esc(e.kind)}"><div class="w">${ago(e.t)}</div><div class="x">${esc(e.text)}</div></div>`).join(""):`<div class="note">아직 소식이 없어요. 코어를 점령하거나 공격하면 여기에 떠요.</div>`;
 }
 // ---------------- 버튼
 $("play").onclick=async()=>{$("play").disabled=true;await post("/api/play");tick()};
