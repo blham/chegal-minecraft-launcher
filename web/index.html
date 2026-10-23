@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Korean War 런처</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23b8432f'/%3E%3Cpath d='M4 12V4h2v3l3-3h2.5l-3.4 3.4L12 12H9.6L7 9.2 6 10.2V12z' fill='%23f3e7c9'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#12161c; --bg2:#1a2029; --card:#1f2731; --line:#2e3946; --ink:#ece6d6; --mute:#9aa5b1;
+  --red:#c2452f; --red2:#9e3423; --gold:#d9b25f; --green:#5fb36b; --blue:#4f86c6;
+}
+*{box-sizing:border-box}
+html{background:#12161c}
+html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","Noto Sans CJK KR",system-ui,sans-serif;
+  background-image:
+    radial-gradient(1200px 600px at 85% -10%, rgba(194,69,47,.18), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(79,134,198,.14), transparent 60%),
+    repeating-radial-gradient(circle at 70% 30%, rgba(255,255,255,.025) 0 1px, transparent 1px 22px);
+  background-attachment:fixed;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:40px 16px}
+.wrap{width:100%;max-width:760px}
+header{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.mark{width:56px;height:56px;border-radius:12px;background:linear-gradient(145deg,var(--red),var(--red2));display:grid;place-items:center;
+  box-shadow:0 6px 18px rgba(194,69,47,.35), inset 0 1px 0 rgba(255,255,255,.2);font-weight:900;font-size:26px;color:#f3e7c9;letter-spacing:-1px}
+h1{margin:0;font-size:26px;letter-spacing:.5px}
+h1 small{display:block;font-size:13px;font-weight:500;color:var(--mute);letter-spacing:0;margin-top:3px}
+.pill{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--line);padding:8px 12px;border-radius:999px;font-size:13px;white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;background:#666}
+.dot.on{background:var(--green);box-shadow:0 0 10px var(--green)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:16px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.head{width:52px;height:52px;border-radius:10px;background:linear-gradient(145deg,#5b6b7c,#3a4654);display:grid;place-items:center;font-size:22px;font-weight:800;overflow:hidden}
+.head img{width:100%;height:100%;image-rendering:pixelated}
+.who b{font-size:18px}
+.who div{color:var(--mute);font-size:13px;margin-top:2px}
+button{font:inherit;border:0;border-radius:10px;padding:11px 18px;cursor:pointer;color:var(--ink);background:#33404e;transition:transform .05s, filter .15s}
+button:hover{filter:brightness(1.12)} button:active{transform:translateY(1px)}
+button:disabled{opacity:.45;cursor:default;filter:none}
+.ms{background:#2f6fb5}
+.ghost{background:transparent;border:1px solid var(--line);color:var(--mute)}
+.play{width:100%;padding:20px;font-size:22px;font-weight:800;letter-spacing:1px;background:linear-gradient(180deg,var(--red),var(--red2));
+  box-shadow:0 8px 22px rgba(194,69,47,.35), inset 0 1px 0 rgba(255,255,255,.18)}
+.bar{height:10px;background:#11161c;border-radius:999px;overflow:hidden;margin-top:14px;border:1px solid var(--line)}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),#f0d48c);transition:width .25s}
+.stat{margin-top:10px;color:var(--mute);font-size:14px;min-height:20px}
+.err{margin-top:14px;background:rgba(194,69,47,.12);border:1px solid rgba(194,69,47,.5);border-radius:10px;padding:12px 14px;font-size:14px;line-height:1.5}
+pre{white-space:pre-wrap;word-break:break-all;background:#0c1015;border-radius:8px;padding:10px;font-size:11.5px;max-height:220px;overflow:auto;color:#c9c2b0}
+.motd{color:var(--mute);font-size:13px;margin-top:10px}
+details summary{cursor:pointer;color:var(--mute);font-size:14px;list-style:none}
+details summary::before{content:"▸ ";} details[open] summary::before{content:"▾ ";}
+.grid{display:grid;grid-template-columns:140px 1fr;gap:12px 14px;align-items:center;margin-top:16px;font-size:14px}
+select,input[type=text]{font:inherit;background:#11161c;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+.note{font-size:13px;color:var(--mute);line-height:1.6}
+.warn{border-color:rgba(217,178,95,.5);background:rgba(217,178,95,.08)}
+footer{color:#6b7682;font-size:12px;text-align:center;margin-top:8px}
+@media (max-width:560px){.pill{margin-left:0} header{flex-wrap:wrap} .grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="mark">KW</div>
+    <h1>Korean War<small id="addr">서버 주소 확인 중</small></h1>
+    <div class="pill"><span class="dot" id="dot"></span><span id="srv">서버 확인 중</span></div>
+  </header>
+
+  <div class="card warn" id="noapp" hidden>
+    <div class="note"><b>로그인 앱이 아직 설정되지 않았어요.</b><br>서버장이 서버의 <code>plugins/KoreanWar/config.yml</code> 에서 <code>launcher.client-id</code> 를 채우면 로그인할 수 있어요.</div>
+  </div>
+
+  <div class="card">
+    <div class="row" id="acc"></div>
+    <div class="err" id="autherr" hidden></div>
+  </div>
+
+  <div class="card">
+    <button class="play" id="play" disabled>게임 시작</button>
+    <div class="bar"><i id="barv"></i></div>
+    <div class="stat" id="stat">&nbsp;</div>
+    <div class="err" id="err" hidden></div>
+    <div class="motd" id="motd"></div>
+  </div>
+
+  <div class="card">
+    <details>
+      <summary>설정</summary>
+      <div class="grid">
+        <label for="mem">게임 메모리</label>
+        <select id="mem">
+          <option value="2048">2 GB</option><option value="3072">3 GB</option><option value="4096">4 GB (권장)</option>
+          <option value="6144">6 GB</option><option value="8192">8 GB</option>
+        </select>
+        <label for="host">서버 주소</label>
+        <input type="text" id="host" spellcheck="false">
+        <label for="auto">켜면 바로 접속</label>
+        <select id="auto"><option value="1">예</option><option value="0">아니요 (첫 화면에서 시작)</option></select>
+        <span></span>
+        <div class="row"><button id="save">저장</button><button class="ghost" id="folder">게임 폴더 열기</button><button class="ghost" id="quit">런처 끄기</button></div>
+      </div>
+    </details>
+  </div>
+  <footer id="foot"></footer>
+</div>
+<script>
+const TOKEN = "__TOKEN__";
+const $ = id => document.getElementById(id);
+async function post(path, body){
+  const r = await fetch(path,{method:"POST",headers:{"X-KW-Token":TOKEN,"Content-Type":"application/json"},body:JSON.stringify(body||{})});
+  return r.json();
+}
+let filled = false;
+function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+async function tick(){
+  let s;
+  try { s = await (await fetch("/api/state",{cache:"no-store"})).json(); }
+  catch(e){ $("stat").textContent = "런처가 꺼져 있어요. 다시 실행해 주세요."; $("play").disabled = true; return; }
+  $("addr").textContent = s.address;
+  const sv = s.server || {};
+  $("dot").className = "dot" + (sv.online ? " on" : "");
+  $("srv").textContent = sv.online ? `접속 ${sv.players}/${sv.max} · ${sv.ping}ms` : "서버 꺼짐";
+  $("motd").textContent = sv.online && sv.motd ? sv.motd + (sv.names && sv.names.length ? "  ·  " + sv.names.join(", ") : "") : "";
+  $("noapp").hidden = s.hasClientId;
+  // 계정
+  const a = s.account;
+  $("acc").innerHTML = a
+    ? `<div class="head"><img alt="" src="https://mc-heads.net/avatar/${esc(a.uuid)}/52" onerror="this.remove()"></div>
+       <div class="who"><b>${esc(a.name)}</b><div>마이크로소프트 계정으로 로그인됨</div></div>
+       <button class="ghost" id="logout" style="margin-left:auto">로그아웃</button>`
+    : `<div class="head">?</div><div class="who"><b>로그인이 필요해요</b><div>마인크래프트 자바 에디션을 산 마이크로소프트 계정</div></div>
+       <button class="ms" id="login" style="margin-left:auto" ${s.hasClientId ? "" : "disabled"}>마이크로소프트로 로그인</button>`;
+  if (a) $("logout").onclick = async () => { await post("/api/logout"); tick(); };
+  else $("login").onclick = async () => { const r = await post("/api/login"); if (r.url) location.href = r.url; else if (r.error) { $("autherr").hidden=false; $("autherr").textContent=r.error; } };
+  $("autherr").hidden = !s.authError; if (s.authError) $("autherr").textContent = s.authError;
+  // 진행
+  const st = s.status || {};
+  const busy = st.phase === "prepare";
+  $("play").disabled = !a || busy || s.running;
+  $("play").textContent = s.running ? "게임 실행 중" : busy ? "준비 중…" : "게임 시작";
+  const pct = st.total > 0 ? Math.min(100, Math.round(st.done * 100 / st.total)) : (busy ? 8 : (s.running ? 100 : 0));
+  $("barv").style.width = pct + "%";
+  $("stat").textContent = (st.text || "") + (st.total > 0 && busy ? `  (${st.done}/${st.total})` : "");
+  $("err").hidden = !st.error;
+  if (st.error) $("err").innerHTML = esc(st.error) + (st.logTail ? `<pre>${esc(st.logTail)}</pre>` : "");
+  if (!filled) {
+    filled = true;
+    $("mem").value = String(s.config.memoryMB);
+    if (!$("mem").value) { const o = document.createElement("option"); o.value = s.config.memoryMB; o.textContent = (s.config.memoryMB/1024)+" GB"; $("mem").append(o); $("mem").value = String(s.config.memoryMB); }
+    $("host").value = s.config.host;
+    $("auto").value = s.config.autoJoin ? "1" : "0";
+  }
+  $("foot").textContent = `런처 ${s.version}` + (s.newerLauncher ? ` · 새 런처 ${s.newerLauncher} 이 있어요 (서버장에게 받아 주세요)` : "") + " · 게임을 켠 뒤엔 이 창을 닫아도 돼요";
+}
+$("play").onclick = async () => { $("play").disabled = true; await post("/api/play"); tick(); };
+$("save").onclick = async () => { await post("/api/config",{memoryMB:+$("mem").value, host:$("host").value, autoJoin:$("auto").value==="1"}); filled=false; tick(); };
+$("folder").onclick = () => post("/api/openfolder");
+$("quit").onclick = async () => { await post("/api/quit"); document.body.innerHTML = '<div class="wrap"><div class="card">런처를 껐어요. 이 창은 닫아도 돼요.</div></div>'; };
+tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
