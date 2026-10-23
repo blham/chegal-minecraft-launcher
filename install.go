@@ -709,7 +709,7 @@ func ensureJava(component string) (string, error) {
 	return j, nil
 }
 
-// ---------------------------------------------------------------- 보조 모드 (서버의 plugins/KoreanWar/mod)
+// ---------------------------------------------------------------- 보조 모드 (서버의 plugins/KoreaWar/mod)
 func gameDir() string { return dirs("game") }
 
 func syncMods(man *Manifest) error {
@@ -759,7 +759,7 @@ func writeGameDefaults() {
 	}
 	sd := filepath.Join(gd, "servers.dat")
 	if _, err := os.Stat(sd); err != nil {
-		_ = os.WriteFile(sd, serversDat("KoreanWar", serverAddr()), 0o644)
+		_ = os.WriteFile(sd, serversDat("KoreaWar", serverAddr()), 0o644)
 	}
 }
 

@@ -120,7 +120,7 @@ func launchGame(p *Prepared) error {
 		"user_type":         "msa",
 		"version_type":      "release",
 		"natives_directory": p.Natives,
-		"launcher_name":     "KoreanWarLauncher",
+		"launcher_name":     "KoreaWarLauncher",
 		"launcher_version":  LauncherVersion,
 		"classpath":         strings.Join(p.Classpath, sep),
 		"classpath_separator": sep,

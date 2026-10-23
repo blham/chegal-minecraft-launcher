@@ -1,6 +1,6 @@
-# Chegal Minecraft Launcher (KoreanWar Launcher)
+# Chegal Minecraft Launcher (KoreaWar Launcher)
 
-A small, free, open-source **Minecraft: Java Edition** launcher for one private community server (*Korean War*, a nation-war server on a Korean-peninsula map).
+A small, free, open-source **Minecraft: Java Edition** launcher for one private community server (*Korea War*, a nation-war server on a Korean-peninsula map).
 Not affiliated with Mojang or Microsoft. No ads, no payments, no data collection.
 
 ![screenshot](docs/screenshot.png)
@@ -32,7 +32,7 @@ The UI is a local web page served on `127.0.0.1:25585` and opened in the default
 ---
 
 ## 한국어
-Korean War 서버 전용 마인크래프트 자바 에디션 런처예요. 마이크로소프트 계정으로 로그인 → 공식 게임 파일·Fabric·보조 모드를 받고 업데이트 → 서버로 바로 접속해요.
+Korea War 서버 전용 마인크래프트 자바 에디션 런처예요. 마이크로소프트 계정으로 로그인 → 공식 게임 파일·Fabric·보조 모드를 받고 업데이트 → 서버로 바로 접속해요.
 게임을 산 계정만 쓸 수 있고, 로그인 정보는 내 컴퓨터에만 저장돼요. 무료·광고 없음·오픈 소스 (MIT).
 
 ## License

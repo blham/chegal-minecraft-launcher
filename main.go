@@ -1,4 +1,4 @@
-// KoreanWar 전용 런처: 마이크로소프트 로그인 -> 마인크래프트 26.3 + Fabric + 보조 모드를 받아(업데이트) -> 서버로 바로 접속해 켬.
+// KoreaWar 전용 런처: 마이크로소프트 로그인 -> 마인크래프트 26.3 + Fabric + 보조 모드를 받아(업데이트) -> 서버로 바로 접속해 켬.
 // 화면은 기본 웹 브라우저에 띄움 (http://localhost:25585). 표준 라이브러리만 씀 (윈도우·맥·리눅스 한 소스).
 package main
 
@@ -23,7 +23,7 @@ import (
 
 // 빌드할 때 -ldflags "-X main.defaultHost=... -X main.defaultClientID=..." 로 바꿀 수 있음
 var (
-	LauncherVersion  = "1.0.0"
+	LauncherVersion  = "1.0.1"
 	defaultHost      = "210.100.163.165"
 	defaultGamePort  = "25565"
 	defaultFilesPort = "8163"
@@ -61,16 +61,16 @@ func defaultDataDir() string {
 	switch runtime.GOOS {
 	case "windows":
 		if a := os.Getenv("APPDATA"); a != "" {
-			return filepath.Join(a, "KoreanWarLauncher")
+			return filepath.Join(a, "KoreaWarLauncher")
 		}
-		return filepath.Join(home, "AppData", "Roaming", "KoreanWarLauncher")
+		return filepath.Join(home, "AppData", "Roaming", "KoreaWarLauncher")
 	case "darwin":
-		return filepath.Join(home, "Library", "Application Support", "KoreanWarLauncher")
+		return filepath.Join(home, "Library", "Application Support", "KoreaWarLauncher")
 	default:
 		if x := os.Getenv("XDG_DATA_HOME"); x != "" {
-			return filepath.Join(x, "koreanwar-launcher")
+			return filepath.Join(x, "koreawar-launcher")
 		}
-		return filepath.Join(home, ".local", "share", "koreanwar-launcher")
+		return filepath.Join(home, ".local", "share", "koreawar-launcher")
 	}
 }
 
@@ -137,7 +137,7 @@ func main() {
 	} else {
 		logger = log.New(os.Stderr, "", log.LstdFlags)
 	}
-	logger.Printf("KoreanWar 런처 %s (%s/%s) 자료 폴더 %s", LauncherVersion, runtime.GOOS, runtime.GOARCH, dataDir)
+	logger.Printf("KoreaWar 런처 %s (%s/%s) 자료 폴더 %s", LauncherVersion, runtime.GOOS, runtime.GOARCH, dataDir)
 	loadConfig()
 	loadAccount()
 	if devOffline != "" {
