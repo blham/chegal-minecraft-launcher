@@ -195,8 +195,17 @@ func registerAPI(mux *http.ServeMux) {
 			}
 			fl = m.FabricLoader
 		}
-		writeJSON(w, map[string]any{"optional": out, "required": req, "manual": manual, "minecraft": mc, "fabricLoader": fl, "running": gameRunning()})
+		writeJSON(w, map[string]any{"optional": out, "required": req, "manual": manual, "minecraft": mc, "fabricLoader": fl, "running": gameRunning(), "modVer": currentModVer(m), "exported": getCfg().Exported})
 	})
+	mux.HandleFunc("/api/exportmods", guard(func(w http.ResponseWriter, r *http.Request) {
+		p, err := exportMods()
+		if err != nil {
+			writeJSON(w, map[string]string{"error": err.Error()})
+			return
+		}
+		openBrowser(filepath.Dir(p))
+		writeJSON(w, map[string]string{"path": p})
+	}))
 	mux.HandleFunc("/api/openmods", guard(func(w http.ResponseWriter, r *http.Request) {
 		d := filepath.Join(gameDir(), "mods")
 		_ = os.MkdirAll(d, 0o755)

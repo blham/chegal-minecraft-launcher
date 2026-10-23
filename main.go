@@ -23,7 +23,7 @@ import (
 
 // 빌드할 때 -ldflags "-X main.defaultHost=... -X main.defaultClientID=..." 로 바꿀 수 있음
 var (
-	LauncherVersion  = "1.0.8"
+	LauncherVersion  = "1.0.9"
 	defaultHost      = "210.100.163.165"
 	defaultGamePort  = "25565"
 	defaultFilesPort = "8163"
@@ -52,7 +52,8 @@ type Config struct {
 	MemoryMB  int             `json:"memoryMB"`
 	ClientID  string          `json:"clientId,omitempty"` // 비우면 서버가 알려 준 것
 	AutoJoin  bool            `json:"autoJoin"`
-	Mods      map[string]bool `json:"mods,omitempty"` // 편의성 모드 켬/끔 (모드 id)
+	Mods      map[string]bool `json:"mods,omitempty"`     // 편의성 모드 켬/끔 (모드 id)
+	Exported  string          `json:"exported,omitempty"` // 다른 런처용으로 마지막에 받아 간 보조 모드 버전
 }
 
 var (
