@@ -23,7 +23,7 @@ import (
 
 // 빌드할 때 -ldflags "-X main.defaultHost=... -X main.defaultClientID=..." 로 바꿀 수 있음
 var (
-	LauncherVersion  = "1.2.3"
+	LauncherVersion  = "1.2.4"
 	defaultHost      = "" // 빌드할 때 -ldflags "-X main.defaultHost=서버주소" 로 넣음 (소스에 IP 를 안 남기려고)
 	defaultGamePort  = "25565"
 	defaultFilesPort = "8163"
@@ -237,7 +237,15 @@ func main() {
 	} else {
 		openWindow(ui)
 	}
-	go checkUpdate()
+	go func() { // 1.2.4 켤 때 한 번 + 켜 둔 동안 10분마다 (서버가 새 런처를 올리면 게임 중이 아닐 때 바로 바뀜)
+		checkUpdate()
+		for {
+			time.Sleep(10 * time.Minute)
+			if !gameRunning() && !busy() {
+				checkUpdate()
+			}
+		}
+	}()
 
 	// 창(브라우저 탭)을 닫고 게임도 안 켜져 있으면 잠시 뒤 스스로 끝남
 	for {

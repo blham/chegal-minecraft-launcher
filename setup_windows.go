@@ -10,6 +10,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"io"
+	"net"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -142,6 +143,7 @@ func maybeInstall(args []string) bool {
 	}
 	writeShortcuts(target)
 	logger.Printf("설치함: %s", target)
+	stopRunningLauncher()
 	c := exec.Command(target, "--installed")
 	c.Dir = installDir()
 	detach(c)
@@ -175,3 +177,25 @@ Remove-Item -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Kor
 
 // 설치된 런처가 새 버전으로 바뀐 뒤: 제거 항목의 버전 갱신
 func afterUpdate() { registerUninstall(selfExe()) }
+
+// 1.2.4 예전 런처가 켜져 있으면(게임 중이 아니면) 끄고 포트가 빌 때까지 기다림 → 새로 설치한 런처가 제대로 켜지게
+func stopRunningLauncher() {
+	addr := fmt.Sprintf("127.0.0.1:%d", uiPort)
+	if c, err := net.DialTimeout("tcp", addr, 500*time.Millisecond); err != nil {
+		return
+	} else {
+		c.Close()
+	}
+	logger.Printf("켜져 있는 예전 런처를 끔")
+	if r, err := httpc.Post("http://"+addr+"/api/quit-uninstall", "text/plain", nil); err == nil {
+		r.Body.Close()
+	}
+	for i := 0; i < 25; i++ {
+		time.Sleep(200 * time.Millisecond)
+		c, err := net.DialTimeout("tcp", addr, 300*time.Millisecond)
+		if err != nil {
+			return
+		}
+		c.Close()
+	}
+}
