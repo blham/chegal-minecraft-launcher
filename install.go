@@ -223,12 +223,35 @@ type ModFile struct {
 	Sha1 string `json:"sha1"`
 	Size int64  `json:"size"`
 }
+
+// 편의성 모드 (서버 plugins/KoreaWar/mod/optional): 사람마다 런처 "모드" 화면에서 켜고 끔
+type OptMod struct {
+	File        string `json:"file"`
+	Sha1        string `json:"sha1"`
+	Size        int64  `json:"size"`
+	ID          string `json:"id"`
+	Name        string `json:"name"`
+	Version     string `json:"version"`
+	Description string `json:"description"`
+	Icon        string `json:"icon,omitempty"`
+	On          bool   `json:"on"` // 서버가 정한 처음 값
+}
+
+func optEnabled(m OptMod) bool {
+	c := getCfg()
+	if v, ok := c.Mods[m.ID]; ok {
+		return v
+	}
+	return m.On
+}
+
 type Manifest struct {
 	Minecraft     string            `json:"minecraft"`
 	FabricLoader  string            `json:"fabricLoader"`
 	ClientID      string            `json:"clientId"`
 	Server        string            `json:"server"`
 	Mods          []ModFile         `json:"mods"`
+	Optional      []OptMod          `json:"optional"`
 	Launcher      string            `json:"launcher"`
 	LauncherFiles map[string]string `json:"launcherFiles"`
 }
@@ -723,6 +746,13 @@ func syncMods(man *Manifest) error {
 		}
 		want[m.File] = true
 		tasks = append(tasks, dlTask{URL: filesBase() + "/mod/" + m.File, Path: filepath.Join(modsDir, m.File), Sha1: m.Sha1, Size: m.Size})
+	}
+	for _, m := range man.Optional {
+		if m.File == "" || strings.ContainsAny(m.File, `/\`) || want[m.File] || !optEnabled(m) {
+			continue
+		}
+		want[m.File] = true
+		tasks = append(tasks, dlTask{URL: filesBase() + "/mod/optional/" + m.File, Path: filepath.Join(modsDir, m.File), Sha1: m.Sha1, Size: m.Size})
 	}
 	if err := downloadAll("보조 모드 업데이트 중", tasks, 4); err != nil {
 		return fmt.Errorf("보조 모드를 받지 못했어요: %v", err)

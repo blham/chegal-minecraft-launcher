@@ -6,11 +6,12 @@
 <title>Korea War</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23a8321f'/%3E%3Cpath d='M4 12V4h2v3l3-3h2.5l-3.4 3.4L12 12H9.6L7 9.2 6 10.2V12z' fill='%23f1e6cc'/%3E%3C/svg%3E">
 <style>
+@font-face{font-family:"Pretendard";src:url(/PretendardVariable.woff2) format("woff2");font-weight:45 920;font-display:block}
 :root{--ink:#f2ede2;--mute:rgba(242,237,226,.62);--dim:rgba(242,237,226,.38);--line:rgba(242,237,226,.16);--red:#c4402a;--gold:#e2b45a;--green:#7bd389;--shade:rgba(8,9,12,.78)}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html,body{height:100%;margin:0;overflow:hidden;background:#0b0c10;color-scheme:dark}
-body{color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","Noto Sans CJK KR",system-ui,sans-serif;font-size:14px;user-select:none}
+body{-webkit-font-smoothing:antialiased;letter-spacing:-.1px;color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","Noto Sans CJK KR",system-ui,sans-serif;font-size:14px;user-select:none}
 #bg{position:fixed;inset:-20px;background:#1b1410 url(/api/bg) center/cover no-repeat;animation:drift 60s ease-in-out infinite alternate;transition:filter .35s}
 body.ov-open #bg{filter:blur(6px) brightness(.55)}
 @keyframes drift{from{transform:scale(1.03) translateX(-8px)}to{transform:scale(1.08) translateX(8px)}}
@@ -21,7 +22,7 @@ button:disabled{cursor:default}
 
 /* 왼쪽 위: 로고 */
 #logo{position:fixed;left:44px;top:34px}
-#logo .w{font-family:"Arial Black","Segoe UI Black","Noto Sans KR",sans-serif;font-weight:900;font-size:46px;line-height:.92;letter-spacing:-1px;text-transform:uppercase}
+#logo .w{font-weight:850;font-size:46px;line-height:.98;letter-spacing:-.5px;text-transform:uppercase}
 #logo .w em{font-style:normal;color:var(--red)}
 #logo .s{margin-top:10px;font-size:12px;letter-spacing:3px;color:var(--mute)}
 #logo .s b{display:inline-block;width:7px;height:7px;border-radius:50%;background:#777;margin-right:8px;vertical-align:1px}
@@ -56,7 +57,7 @@ button:disabled{cursor:default}
 #launch{position:fixed;left:44px;bottom:40px;width:min(440px,calc(100vw - 180px))}
 #stats{display:flex;gap:26px;margin-bottom:14px;font-size:11px;letter-spacing:2px;color:var(--mute)}
 #stats b{display:block;font-size:20px;letter-spacing:0;color:var(--ink);font-weight:800;margin-top:2px}
-#play{display:flex;align-items:center;gap:14px;font-family:"Arial Black","Segoe UI Black","Noto Sans KR",sans-serif;font-weight:900;font-size:40px;letter-spacing:1px;transition:color .15s,gap .2s}
+#play{display:flex;align-items:center;gap:14px;font-weight:750;font-size:40px;letter-spacing:-.5px;transition:color .15s,gap .2s}
 #play svg{width:26px;height:26px;fill:currentColor;transition:transform .2s}
 #play:hover:not(:disabled){color:var(--gold);gap:20px}
 #play:disabled{color:var(--dim)}
@@ -82,7 +83,7 @@ button:disabled{cursor:default}
 .ov.on{opacity:1;pointer-events:auto;transform:none!important}
 #ov-news{transform:translateY(30px)}
 .ov:not(#ov-news){transform:translateX(30px)}
-.ov h2{margin:0 0 4px;font-family:"Arial Black","Segoe UI Black","Noto Sans KR",sans-serif;font-size:28px;font-weight:900;letter-spacing:1px}
+.ov h2{margin:0 0 4px;font-size:28px;font-weight:750;letter-spacing:-.3px}
 .ov .sub{color:var(--mute);font-size:12px;letter-spacing:2px;margin-bottom:22px}
 .ov .x{position:absolute;right:96px;top:36px;font-size:12px;letter-spacing:2px;color:var(--mute)}
 .ov .x:hover{color:var(--ink)}
@@ -103,7 +104,25 @@ button:disabled{cursor:default}
 
 /* 지도 */
 #ov-map{padding-right:84px}
-.mapwrap{flex:1;min-height:0;display:grid;grid-template-columns:200px 1fr 240px;gap:0;border:1px solid var(--line)}
+.mapwrap{flex:1;min-height:0;display:grid;grid-template-columns:minmax(230px,1fr) auto minmax(270px,1fr);border:1px solid var(--line)}
+#mapBox{width:420px}
+.side.left{display:flex;flex-direction:column;overflow:hidden}
+.share{height:3px;background:var(--line);margin:7px 0 0 19px}.share i{display:block;height:100%}
+.mini{display:flex;align-items:center;gap:9px;padding:6px 0;font-size:13px}.mini img{width:20px;height:20px;image-rendering:pixelated}.mini small{margin-left:auto;font-size:11px}
+.big2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-bottom:16px}.big2>div{background:rgba(8,9,12,.6);padding:10px 12px;font-size:11px;letter-spacing:1px;color:var(--mute)}.big2 b{display:block;font-size:22px;color:var(--ink);letter-spacing:0;font-weight:750;margin-top:2px}
+/* 모드 */
+.mods{max-width:760px}
+.req{display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(8,9,12,.5);margin-bottom:22px;font-size:13px;color:var(--mute)}
+.req b{color:var(--ink)}
+.mod{display:grid;grid-template-columns:48px 1fr auto;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.mod .ic{width:48px;height:48px;image-rendering:pixelated;background:rgba(242,237,226,.08);display:grid;place-items:center;color:var(--dim);font-weight:750;font-size:18px;overflow:hidden}
+.mod .ic img{width:48px;height:48px;image-rendering:pixelated}
+.mod h5{margin:0;font-size:15.5px;font-weight:650}.mod h5 small{font-weight:400;color:var(--dim);font-size:11.5px;margin-left:8px}
+.mod p{margin:4px 0 0;font-size:12.5px;color:var(--mute);line-height:1.55}
+.sw{position:relative;width:46px;height:26px;border-radius:13px;background:rgba(242,237,226,.18);transition:background .2s;flex:none}
+.sw:after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:var(--ink);transition:transform .2s}
+.sw.on{background:var(--gold)}.sw.on:after{transform:translateX(20px);background:#1a1408}
+#modNote{font-size:12px;color:var(--dim);margin-top:16px}
 #mapBox{position:relative;overflow:hidden;background:#1d3f86;cursor:grab}
 #mapBox.drag{cursor:grabbing}
 .side{overflow:auto;padding:16px;background:rgba(8,9,12,.55)}
@@ -163,6 +182,7 @@ option{background:#16181d}
   <div class="sep"></div>
   <button class="ri" id="disc" hidden><svg viewBox="0 0 71 55"><path d="M60 4.6A58 58 0 0 0 45.6.2l-1.8 3.7a54 54 0 0 0-16.2 0L25.8.2A58 58 0 0 0 11.3 4.6 59.6 59.6 0 0 0 .9 44.8 58.3 58.3 0 0 0 18.6 53.8l3.8-5.2a38 38 0 0 1-6-2.9l1.5-1.1a41.6 41.6 0 0 0 35.4 0l1.5 1.1a38 38 0 0 1-6 2.9l3.8 5.2a58 58 0 0 0 17.8-9A59.4 59.4 0 0 0 60 4.6ZM23.7 36.7c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2 6.4 3.3 6.4 7.2-2.8 7.2-6.4 7.2Zm23.6 0c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2 6.4 3.3 6.4 7.2-2.8 7.2-6.4 7.2Z"/></svg><span>디스코드</span></button>
   <button class="ri" id="folder"><svg viewBox="0 0 24 24"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8zm10 14H4V8h16z"/></svg><span>게임 폴더</span></button>
+  <button class="ri" data-ov="mods"><svg viewBox="0 0 24 24"><path d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4a2 2 0 0 0-2 2v3.8h1.5a2.7 2.7 0 0 1 0 5.4H2V20a2 2 0 0 0 2 2h3.8v-1.5a2.7 2.7 0 0 1 5.4 0V22H17a2 2 0 0 0 2-2v-4h1.5a2.5 2.5 0 0 0 0-5"/></svg><span>모드</span></button>
   <button class="ri" data-ov="settings"><svg viewBox="0 0 24 24"><path d="M19.4 13a7.6 7.6 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7 7 0 0 0-1.7-1L15 3h-4l-.4 2.9a7 7 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.6 7.6 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7 7 0 0 0 1.7 1L11 21h4l.4-2.9a7 7 0 0 0 1.7-1l2.5 1 2-3.5zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7"/></svg><span>설정</span></button>
 </nav>
 
@@ -189,7 +209,7 @@ option{background:#16181d}
 <section class="ov" id="ov-map">
   <h2 class="t">지도</h2><div class="sub">끌어서 옮기고 휠로 확대 · 코어를 누르면 그 자리로</div><button class="x" data-close>닫기 ✕</button>
   <div class="mapwrap">
-    <aside class="side"><h4>국가 현황</h4><div id="nat"></div></aside>
+    <aside class="side left"><div class="big2"><div>점령된 코어<b id="mTaken">-</b></div><div>지금 접속<b id="mOn">-</b></div></div><h4>국가 현황</h4><div id="nat"></div><h4 style="margin-top:18px">접속 중</h4><div id="natPl" class="scroll"></div></aside>
     <div id="mapBox">
       <div id="world"><img id="mapimg" alt=""><div id="marks"></div></div>
       <div class="mapbtns"><button id="zin">＋</button><button id="zout">－</button><button id="zfit">전체</button></div>
@@ -202,6 +222,11 @@ option{background:#16181d}
 <section class="ov" id="ov-players">
   <h2 class="t">접속자</h2><div class="sub" id="plSub">&nbsp;</div><button class="x" data-close>닫기 ✕</button>
   <div class="body" id="players"></div>
+</section>
+<!-- 모드 -->
+<section class="ov" id="ov-mods">
+  <h2 class="t">모드</h2><div class="sub">편의성 모드는 원하는 것만 켜서 쓰세요</div><button class="x" data-close>닫기 ✕</button>
+  <div class="body"><div class="mods"><div class="req" id="modReq"></div><div id="modList"></div><div id="modNote">바꾼 것은 다음에 게임을 켤 때 적용돼요. 직접 mods 폴더에 넣은 모드는 건드리지 않아요.</div></div></div>
 </section>
 <!-- 설정 -->
 <section class="ov" id="ov-settings">
@@ -226,7 +251,8 @@ function openOv(n){
   document.querySelectorAll(".ri[data-ov]").forEach(r=>r.classList.toggle("on",r.dataset.ov===n));
   document.body.classList.toggle("ov-open",!!n); cur=n;
   ["launch","newsBtn","logo","acct"].forEach(id=>$(id).style.visibility=n?"hidden":"");
-  if(n==="map") setTimeout(()=>fitMap(false),30);
+  if(n==="map") setTimeout(()=>{sizeMap();fitMap(false)},30);
+  if(n==="mods") loadMods();
   if(n==="news"){ try{localStorage.setItem("kwSeen",String(noticeKey()))}catch(e){} $("ncnt").hidden=true; badge(); }
 }
 document.querySelectorAll("[data-ov]").forEach(b=>b.onclick=()=>openOv(b.dataset.ov));
@@ -280,12 +306,16 @@ async function infoTick(){
 // ---------------- 지도 (끌어서 옮기기, 휠로 확대)
 let view={x:0,y:0,k:1}, fitted=false;
 function apply(){$("world").style.transform=`translate(${view.x}px,${view.y}px) scale(${view.k})`;document.querySelectorAll(".core").forEach(m=>m.style.transform=`translate(-50%,-50%) scale(${1/view.k})`)}
+// 지도 칸 너비 = 높이 × 지도 비율 (양옆 칸이 나머지를 채움)
+function sizeMap(){const box=$("mapBox"),wrap=box.parentElement,img=$("mapimg"),b=info&&info.bounds;
+  const r=img.naturalWidth?img.naturalWidth/img.naturalHeight:(b?b.width/b.height:.4);
+  box.style.width=Math.max(260,Math.min(box.clientHeight*r,wrap.clientWidth-520))+"px"}
 function fitMap(force){
   const img=$("mapimg"), pane=$("mapBox"); if(!img.naturalWidth||cur!=="map") return; if(fitted&&!force) return;
   const k=Math.min(pane.clientWidth/img.naturalWidth,pane.clientHeight/img.naturalHeight);
   view={k,x:(pane.clientWidth-img.naturalWidth*k)/2,y:(pane.clientHeight-img.naturalHeight*k)/2}; fitted=true; apply();
 }
-$("mapimg").onload=()=>{fitted=false;fitMap(true);drawMarks()};
+$("mapimg").onload=()=>{sizeMap();fitted=false;fitMap(true);drawMarks()};
 function zoomAt(f,cx,cy){const nk=Math.max(0.15,Math.min(8,view.k*f));view.x=cx-(cx-view.x)*nk/view.k;view.y=cy-(cy-view.y)*nk/view.k;view.k=nk;apply()}
 $("mapBox").addEventListener("wheel",e=>{e.preventDefault();const r=$("mapBox").getBoundingClientRect();zoomAt(e.deltaY<0?1.2:1/1.2,e.clientX-r.left,e.clientY-r.top)},{passive:false});
 let drag=null;
@@ -294,7 +324,7 @@ $("mapBox").addEventListener("pointermove",e=>{if(!drag)return;view.x=drag.vx+e.
 $("mapBox").addEventListener("pointerup",()=>{drag=null;$("mapBox").classList.remove("drag")});
 const mid=()=>{const p=$("mapBox");return[p.clientWidth/2,p.clientHeight/2]};
 $("zin").onclick=()=>zoomAt(1.5,...mid()); $("zout").onclick=()=>zoomAt(1/1.5,...mid()); $("zfit").onclick=()=>fitMap(true);
-addEventListener("resize",()=>fitMap(true));
+addEventListener("resize",()=>{sizeMap();fitMap(true)});
 function drawMarks(col){
   if(!info||!info.bounds) return; const img=$("mapimg");
   col=col||{}; (info.nations||[]).forEach(n=>col[n.name]=n.color);
@@ -319,13 +349,30 @@ function drawSides(col){
   const nat=(info.nations||[]).map(n=>({n:n.name,c:n.color,cores:cores.filter(x=>x.owner===n.name).length,on:ps.filter(p=>p.nation===n.name).length}));
   nat.sort((a,b)=>b.cores-a.cores||b.on-a.on);
   const free=cores.filter(x=>!x.owner).length;
-  $("nat").innerHTML=(nat.length?nat.map((n,i)=>`<div class="nat"><div class="tt"><b style="background:${n.c}"></b>${esc(n.n)}<span class="rank">${i+1}위</span></div><div class="r"><span>코어 ${n.cores}</span><span>접속 ${n.on}</span></div></div>`).join(""):`<div class="empty">아직 국가가 없어요</div>`)
+  $("nat").innerHTML=(nat.length?nat.map((n,i)=>`<div class="nat"><div class="tt"><b style="background:${n.c}"></b>${esc(n.n)}<span class="rank">${i+1}위</span></div><div class="r"><span>코어 ${n.cores}</span><span>접속 ${n.on}</span></div><div class="share"><i style="width:${cores.length?Math.round(n.cores*100/cores.length):0}%;background:${n.c}"></i></div></div>`).join(""):`<div class="empty">아직 국가가 없어요</div>`)
     +`<div class="nat"><div class="tt"><b style="background:#8a8a8a"></b>주인 없음</div><div class="r"><span>코어 ${free}</span></div></div>`;
   $("coreList").innerHTML=cores.map((c,i)=>({c,i})).sort((a,b)=>(a.c.owner||"~").localeCompare(b.c.owner||"~")).map(({c,i})=>{const cl=c.owner?(col[c.owner]||"#ccc"):"#8a8a8a",pct=c.maxHp?Math.round(c.hp*100/c.maxHp):0;
     return `<div class="ci" onclick="focusCore(${i})"><div class="tt"><b style="background:${cl}"></b>${esc(c.name)}<small>${esc(c.owner||"주인 없음")}</small></div><div class="hp"><i style="width:${pct}%;background:${pct<35?"#e0533b":pct<70?"#e2b45a":"#7bd389"}"></i></div></div>`}).join("");
+  $("mTaken").innerHTML=`${cores.length-free}<span style="font-size:13px;color:var(--mute);font-weight:400"> / ${cores.length}</span>`; $("mOn").textContent=ps.length;
+  $("natPl").innerHTML=ps.length?ps.map(p=>`<div class="mini"><img alt="" src="https://mc-heads.net/avatar/${encodeURIComponent(p.name)}/20" onerror="this.style.visibility='hidden'">${esc(p.name)}<small style="color:${p.nation?col[p.nation]||"#ccc":"var(--dim)"}">${esc(p.nation||"방랑자")}</small></div>`).join(""):`<div class="empty">지금은 아무도 없어요</div>`;
   const ev=info.events||[];
   const fe=n=>ev.length?ev.slice(0,n).map(e=>`<div class="ev ${esc(e.kind)}"><div class="w">${ago(e.t)}</div><div class="x">${esc(e.text)}</div></div>`).join(""):`<div class="empty">아직 소식이 없어요. 코어를 점령하거나 공격하면 여기에 떠요.</div>`;
   $("feed").innerHTML=fe(25); $("feed2").innerHTML=fe(40);
+}
+// ---------------- 모드
+let mods=null;
+async function loadMods(){
+  let d; try{d=await(await fetch("/api/mods",{cache:"no-store"})).json()}catch(e){return}
+  mods=d; drawMods();
+}
+function drawMods(){
+  const d=mods, req=d.required||[], op=d.optional||[];
+  $("modReq").innerHTML=`<b>서버 필수 모드 ${req.length}개</b><span>항상 켜져 있고 자동으로 업데이트돼요</span>`;
+  $("modList").innerHTML=op.length?op.map((m,i)=>`<div class="mod"><div class="ic">${m.icon?`<img alt="" src="${esc(m.icon)}">`:esc((m.name||"?")[0])}</div><div><h5>${esc(m.name)}<small>${esc(m.version)}</small></h5><p>${esc(m.description||"설명이 없어요")}</p></div><button class="sw${m.enabled?" on":""}" data-i="${i}" aria-label="${esc(m.name)} 켜기"></button></div>`).join("")
+    :`<div class="empty">아직 서버에 편의성 모드가 없어요.</div>`;
+  $("modNote").textContent=d.running?"게임이 켜져 있어요. 바꾼 것은 게임을 끄고 다시 켤 때 적용돼요.":"바꾼 것은 다음에 게임을 켤 때 적용돼요. 직접 mods 폴더에 넣은 모드는 건드리지 않아요.";
+  document.querySelectorAll(".sw").forEach(b=>b.onclick=async()=>{const m=op[+b.dataset.i];m.enabled=!m.enabled;b.classList.toggle("on",m.enabled);
+    const r=await(await fetch("/api/mods",{method:"POST",headers:{"X-KW-Token":TOKEN,"Content-Type":"application/json"},body:JSON.stringify({id:m.id,on:m.enabled})})).json();mods=r;});
 }
 // ---------------- 버튼
 $("play").onclick=async()=>{$("play").disabled=true;await post("/api/play");tick()};
@@ -333,7 +380,7 @@ $("disc").onclick=()=>post("/api/open",{url:discordUrl});
 $("save").onclick=async()=>{await post("/api/config",{memoryMB:+$("mem").value,host:$("host").value,autoJoin:$("auto").value==="1"});filled=false;tick();$("saved").style.opacity=1;setTimeout(()=>$("saved").style.opacity=0,1600)};
 $("folder").onclick=()=>post("/api/openfolder");
 $("quit").onclick=async()=>{await post("/api/quit");document.body.innerHTML='<div style="padding:44px;color:#f2ede2">런처를 껐어요. 이 창은 닫아도 돼요.</div>'};
-{const h=location.hash.slice(1); if(["map","players","news","settings"].includes(h)) setTimeout(()=>openOv(h),50);}
+{const h=location.hash.slice(1); if(["map","players","news","settings","mods"].includes(h)) setTimeout(()=>openOv(h),50);}
 tick(); setInterval(tick,1000); infoTick(); setInterval(infoTick,5000);
 </script>
 </body>

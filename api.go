@@ -116,6 +116,50 @@ func registerAPI(mux *http.ServeMux) {
 		go pingServer()
 		writeJSON(w, map[string]bool{"ok": true})
 	}))
+	// 편의성 모드 목록 (서버에서 새로 받아 봄, 못 받으면 마지막 것)
+	mux.HandleFunc("/api/mods", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == "POST" {
+			if r.Header.Get("X-KW-Token") != apiToken {
+				http.Error(w, "forbidden", 403)
+				return
+			}
+			var in struct {
+				ID string `json:"id"`
+				On bool   `json:"on"`
+			}
+			_ = json.NewDecoder(io.LimitReader(r.Body, 4096)).Decode(&in)
+			if in.ID != "" && len(in.ID) < 128 {
+				cfgMu.Lock()
+				if cfg.Mods == nil {
+					cfg.Mods = map[string]bool{}
+				}
+				cfg.Mods[in.ID] = in.On
+				cfgMu.Unlock()
+				saveConfig()
+			}
+		}
+		m := cachedManifest()
+		if r.Method == "GET" {
+			if f, err := fetchManifest(); err == nil {
+				m = f
+			}
+		}
+		type row struct {
+			OptMod
+			Enabled bool `json:"enabled"`
+		}
+		out := []row{}
+		var req []string
+		if m != nil {
+			for _, o := range m.Optional {
+				out = append(out, row{o, optEnabled(o)})
+			}
+			for _, f := range m.Mods {
+				req = append(req, f.File)
+			}
+		}
+		writeJSON(w, map[string]any{"optional": out, "required": req, "running": gameRunning()})
+	})
 	mux.HandleFunc("/api/openfolder", guard(func(w http.ResponseWriter, r *http.Request) {
 		openBrowser(gameDir())
 		writeJSON(w, map[string]bool{"ok": true})

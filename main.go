@@ -23,7 +23,7 @@ import (
 
 // 빌드할 때 -ldflags "-X main.defaultHost=... -X main.defaultClientID=..." 로 바꿀 수 있음
 var (
-	LauncherVersion  = "1.0.4"
+	LauncherVersion  = "1.0.5"
 	defaultHost      = "210.100.163.165"
 	defaultGamePort  = "25565"
 	defaultFilesPort = "8163"
@@ -46,12 +46,13 @@ const uiPort = 25585 // Azure 앱 리디렉션 URI: http://localhost:25585/auth
 var webFS embed.FS
 
 type Config struct {
-	Host      string `json:"host"`
-	GamePort  int    `json:"gamePort"`
-	FilesPort int    `json:"filesPort"`
-	MemoryMB  int    `json:"memoryMB"`
-	ClientID  string `json:"clientId,omitempty"` // 비우면 서버가 알려 준 것
-	AutoJoin  bool   `json:"autoJoin"`
+	Host      string          `json:"host"`
+	GamePort  int             `json:"gamePort"`
+	FilesPort int             `json:"filesPort"`
+	MemoryMB  int             `json:"memoryMB"`
+	ClientID  string          `json:"clientId,omitempty"` // 비우면 서버가 알려 준 것
+	AutoJoin  bool            `json:"autoJoin"`
+	Mods      map[string]bool `json:"mods,omitempty"` // 편의성 모드 켬/끔 (모드 id)
 }
 
 var (
