@@ -42,7 +42,7 @@ button:disabled{cursor:default}
 #loginBtn:disabled{opacity:.4}
 
 /* 오른쪽 세로 줄 */
-#rail{position:fixed;right:28px;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+#rail{z-index:30;position:fixed;right:28px;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
 #rail:before,#rail:after{content:"";width:1px;height:70px;background:linear-gradient(var(--line),transparent)}
 #rail:before{background:linear-gradient(transparent,var(--line))}
 .ri{position:relative;width:42px;height:42px;display:grid;place-items:center;color:var(--mute);transition:color .15s}
@@ -79,7 +79,7 @@ button:disabled{cursor:default}
 #ver{position:fixed;right:30px;bottom:14px;font-size:10.5px;color:var(--dim);letter-spacing:1px}
 
 /* 덮개 화면 */
-.ov{position:fixed;inset:0;display:flex;flex-direction:column;padding:34px 96px 30px 44px;opacity:0;pointer-events:none;transition:opacity .25s,transform .3s}
+.ov{z-index:20;position:fixed;inset:0;display:flex;flex-direction:column;padding:34px 96px 30px 44px;opacity:0;pointer-events:none;transition:opacity .25s,transform .3s}
 .ov.on{opacity:1;pointer-events:auto;transform:none!important}
 #ov-news{transform:translateY(30px)}
 .ov:not(#ov-news){transform:translateX(30px)}
@@ -332,18 +332,22 @@ async function infoTick(){
 }
 // ---------------- 지도 (끌어서 옮기기, 휠로 확대)
 let view={x:0,y:0,k:1}, fitted=false;
-function apply(){$("world").style.transform=`translate(${view.x}px,${view.y}px) scale(${view.k})`;document.querySelectorAll(".core").forEach(m=>m.style.transform=`translate(-50%,-50%) scale(${1/view.k})`)}
+// 최대 축소 = 지도 칸을 빈틈없이 꽉 채우는 배율 (밖의 빈 곳이 안 보이게), 옮겨도 지도 밖으로 안 나감
+function kMin(){const img=$("mapimg"),p=$("mapBox");return img.naturalWidth?Math.max(p.clientWidth/img.naturalWidth,p.clientHeight/img.naturalHeight):0.15}
+function clampView(){const img=$("mapimg"),p=$("mapBox");if(!img.naturalWidth)return;view.k=Math.max(kMin(),view.k);
+  const W=img.naturalWidth*view.k,H=img.naturalHeight*view.k;view.x=Math.min(0,Math.max(p.clientWidth-W,view.x));view.y=Math.min(0,Math.max(p.clientHeight-H,view.y))}
+function apply(){clampView();$("world").style.transform=`translate(${view.x}px,${view.y}px) scale(${view.k})`;document.querySelectorAll(".core").forEach(m=>m.style.transform=`translate(-50%,-50%) scale(${1/view.k})`)}
 // 지도 칸 너비 = 높이 × 지도 비율 (양옆 칸이 나머지를 채움)
 function sizeMap(){const box=$("mapBox"),wrap=box.parentElement,img=$("mapimg"),b=info&&info.bounds;
   const r=img.naturalWidth?img.naturalWidth/img.naturalHeight:(b?b.width/b.height:.4);
   box.style.width=Math.max(260,Math.min(box.clientHeight*r,wrap.clientWidth-520))+"px"}
 function fitMap(force){
   const img=$("mapimg"), pane=$("mapBox"); if(!img.naturalWidth||cur!=="map") return; if(fitted&&!force) return;
-  const k=Math.min(pane.clientWidth/img.naturalWidth,pane.clientHeight/img.naturalHeight);
+  const k=kMin();
   view={k,x:(pane.clientWidth-img.naturalWidth*k)/2,y:(pane.clientHeight-img.naturalHeight*k)/2}; fitted=true; apply();
 }
 $("mapimg").onload=()=>{sizeMap();fitted=false;fitMap(true);drawMarks()};
-function zoomAt(f,cx,cy){const nk=Math.max(0.15,Math.min(8,view.k*f));view.x=cx-(cx-view.x)*nk/view.k;view.y=cy-(cy-view.y)*nk/view.k;view.k=nk;apply()}
+function zoomAt(f,cx,cy){const nk=Math.max(kMin(),Math.min(8,view.k*f));view.x=cx-(cx-view.x)*nk/view.k;view.y=cy-(cy-view.y)*nk/view.k;view.k=nk;apply()}
 $("mapBox").addEventListener("wheel",e=>{e.preventDefault();const r=$("mapBox").getBoundingClientRect();zoomAt(e.deltaY<0?1.2:1/1.2,e.clientX-r.left,e.clientY-r.top)},{passive:false});
 let drag=null;
 $("mapBox").addEventListener("pointerdown",e=>{if(e.target.closest(".mapbtns"))return;drag={x:e.clientX,y:e.clientY,vx:view.x,vy:view.y};$("mapBox").classList.add("drag");$("mapBox").setPointerCapture(e.pointerId)});
