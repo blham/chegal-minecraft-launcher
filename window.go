@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"sync"
+	"time"
 )
 
 var (
@@ -91,7 +92,10 @@ func gameEnded() {
 	winMu.Lock()
 	o, a := winOpen, usedApp
 	winMu.Unlock()
-	if a && !o {
+	pollMu.Lock()
+	alive := time.Since(lastPoll) < 6*time.Second // 창 프로세스가 일찍 끝났어도 화면이 살아 있으면 열린 것
+	pollMu.Unlock()
+	if a && !o && !alive {
 		logger.Printf("게임 끝, 창도 닫혀 있어 끝냄")
 		os.Exit(0)
 	}

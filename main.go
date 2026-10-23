@@ -23,7 +23,7 @@ import (
 
 // 빌드할 때 -ldflags "-X main.defaultHost=... -X main.defaultClientID=..." 로 바꿀 수 있음
 var (
-	LauncherVersion  = "1.0.9"
+	LauncherVersion  = "1.1.0"
 	defaultHost      = "210.100.163.165"
 	defaultGamePort  = "25565"
 	defaultFilesPort = "8163"
@@ -32,9 +32,19 @@ var (
 
 var devOffline string
 
-// 창을 닫으면: 게임·준비 중이 아니면 끝냄 (게임 중이면 게임이 끝날 때)
+// 창을 닫으면: 게임·준비 중·로그인 중이 아니면 끝냄 (게임 중이면 게임이 끝날 때)
+// 1.1.0 윈도우 Edge 는 앱 창을 띄운 뒤 처음 프로세스를 바로 끝내기도 함 → 프로세스가 끝났다고 바로 끄지 않고,
+// 화면이 아직 상태를 묻고 있는지(살아 있는지) 몇 초 보고 판단
 func windowClosed() {
-	if !gameRunning() && !busy() {
+	time.Sleep(8 * time.Second)
+	pollMu.Lock()
+	alive := time.Since(lastPoll) < 6*time.Second
+	pollMu.Unlock()
+	if alive {
+		logger.Printf("창 프로세스는 끝났지만 화면은 살아 있음 (그대로 둠)")
+		return
+	}
+	if !gameRunning() && !busy() && !loginPending() {
 		logger.Printf("창을 닫아 끝냄")
 		os.Exit(0)
 	}
@@ -196,7 +206,7 @@ func main() {
 		pollMu.Lock()
 		idle := time.Since(lastPoll)
 		pollMu.Unlock()
-		if idle > 3*time.Minute && !gameRunning() && !busy() {
+		if idle > 3*time.Minute && !gameRunning() && !busy() && !loginPending() {
 			logger.Printf("창이 닫혀 끝냄")
 			return
 		}

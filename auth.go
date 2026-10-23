@@ -113,6 +113,7 @@ func beginLogin() (string, error) {
 	state := randString(16)
 	pendMu.Lock()
 	pending[state] = verifier
+	loginStarted = time.Now()
 	pendMu.Unlock()
 	q := url.Values{}
 	q.Set("client_id", cid)
@@ -340,4 +341,13 @@ func logout() {
 	account = nil
 	accMu.Unlock()
 	saveAccount()
+}
+
+// 마이크로소프트 로그인 화면에 가 있는 동안 (화면이 런처 페이지를 떠나 상태를 안 물음) 런처가 꺼지지 않게: 15분까지
+var loginStarted time.Time
+
+func loginPending() bool {
+	pendMu.Lock()
+	defer pendMu.Unlock()
+	return len(pending) > 0 && time.Since(loginStarted) < 15*time.Minute
 }
