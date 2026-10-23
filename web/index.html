@@ -83,6 +83,7 @@ button:disabled{cursor:default}
 .ov.on{opacity:1;pointer-events:auto;transform:none!important}
 #ov-news{transform:translateY(30px)}
 .ov:not(#ov-news){transform:translateX(30px)}
+.ov .back{align-self:flex-start;font-size:12.5px;letter-spacing:1px;color:var(--mute);margin:-6px 0 14px;padding:6px 12px 6px 0}.ov .back:hover{color:var(--gold)}
 .ov h2{margin:0 0 4px;font-size:28px;font-weight:750;letter-spacing:-.3px}
 .ov .sub{color:var(--mute);font-size:12px;letter-spacing:2px;margin-bottom:22px}
 .ov .x{position:absolute;right:96px;top:36px;font-size:12px;letter-spacing:2px;color:var(--mute)}
@@ -197,6 +198,8 @@ option{background:#16181d}
 <div id="acct" class="t"></div>
 
 <nav id="rail">
+  <button class="ri on" id="homeRi" data-home><svg viewBox="0 0 24 24"><path d="M12 3 2 12h3v8h6v-6h2v6h6v-8h3z"/></svg><span>홈 (게임 시작)</span></button>
+  <div class="sep"></div>
   <button class="ri" data-ov="map"><svg viewBox="0 0 24 24"><path d="M15 5.1 9 3 3 5.2v15.7l6-2.1 6 2.1 6-2.2V3zM10 5.4l4 1.4v11.8l-4-1.4zM5 6.6l3-1v11.8l-3 1zm11 11.8V6.6l3-1v11.8z"/></svg><span>지도</span></button>
   <button class="ri" data-ov="players"><svg viewBox="0 0 24 24"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8m0-6a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7.5 6.5a3.5 3.5 0 1 0-1.2-6.8 6 6 0 0 1 0 6.6c.4.1.8.2 1.2.2M9 13c-3.3 0-7 1.6-7 4.5V20h14v-2.5C16 14.6 12.3 13 9 13m-5 5c.2-.9 2.4-3 5-3s4.8 2.1 5 3zm13.1-4.9c1.6.8 2.9 2.2 2.9 4.4V20h2v-2.5c0-2.1-2.4-3.8-4.9-4.4"/></svg><span>접속자</span></button>
   <button class="ri" data-ov="news" id="newsRi"><svg viewBox="0 0 24 24"><path d="M4 4h13v3h3v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2 2v12h10V6zm12 3v9h0V9zM8 8h6v2H8zm0 4h6v2H8z"/></svg><span>소식</span></button>
@@ -223,12 +226,12 @@ option{background:#16181d}
 
 <!-- 소식 -->
 <section class="ov" id="ov-news">
-  <h2 class="t">소식</h2><div class="sub">공지 · 전쟁 소식</div><button class="x" data-close>닫기 ✕</button>
+  <button class="back" data-close>← 홈</button><h2 class="t">소식</h2><div class="sub">공지 · 전쟁 소식</div><button class="x" data-close>닫기 ✕</button>
   <div class="body"><div class="news"><div><h3 class="cap">공지</h3><div id="notice"></div></div><div><h3 class="cap">전쟁 소식</h3><div id="feed2"></div></div></div></div>
 </section>
 <!-- 지도 -->
 <section class="ov" id="ov-map">
-  <h2 class="t">지도</h2><div class="sub">끌어서 옮기고 휠로 확대 · 코어를 누르면 그 자리로</div><button class="x" data-close>닫기 ✕</button>
+  <button class="back" data-close>← 홈</button><h2 class="t">지도</h2><div class="sub">끌어서 옮기고 휠로 확대 · 코어를 누르면 그 자리로</div><button class="x" data-close>닫기 ✕</button>
   <div class="mapwrap">
     <aside class="side left"><div class="big2"><div>점령된 코어<b id="mTaken">-</b></div><div>지금 접속<b id="mOn">-</b></div></div><h4>국가 현황</h4><div id="nat"></div><h4 style="margin-top:18px">접속 중</h4><div id="natPl" class="scroll"></div></aside>
     <div id="mapBox">
@@ -241,17 +244,17 @@ option{background:#16181d}
 </section>
 <!-- 접속자 -->
 <section class="ov" id="ov-players">
-  <h2 class="t">접속자</h2><div class="sub" id="plSub">&nbsp;</div><button class="x" data-close>닫기 ✕</button>
+  <button class="back" data-close>← 홈</button><h2 class="t">접속자</h2><div class="sub" id="plSub">&nbsp;</div><button class="x" data-close>닫기 ✕</button>
   <div class="body" id="players"></div>
 </section>
 <!-- 모드 -->
 <section class="ov" id="ov-mods">
-  <h2 class="t">모드</h2><div class="sub">편의성 모드는 원하는 것만 켜서 쓰세요</div><button class="x" data-close>닫기 ✕</button>
+  <button class="back" data-close>← 홈</button><h2 class="t">모드</h2><div class="sub">편의성 모드는 원하는 것만 켜서 쓰세요</div><button class="x" data-close>닫기 ✕</button>
   <div class="body"><div class="mods"><div class="verbox" id="modVer"></div><div class="req" id="modReq"></div><div id="modList"></div><h3 class="cap2">직접 넣은 모드</h3><div id="modMan"></div><div id="modNote">바꾼 것은 다음에 게임을 켤 때 적용돼요. 직접 mods 폴더에 넣은 모드는 건드리지 않아요.</div></div></div>
 </section>
 <!-- 설정 -->
 <section class="ov" id="ov-settings">
-  <h2 class="t">설정</h2><div class="sub">이 컴퓨터에만 저장돼요</div><button class="x" data-close>닫기 ✕</button>
+  <button class="back" data-close>← 홈</button><h2 class="t">설정</h2><div class="sub">이 컴퓨터에만 저장돼요</div><button class="x" data-close>닫기 ✕</button>
   <div class="body"><div class="form">
     <div class="fr"><label for="mem">메모리</label><select id="mem"><option value="2048">2 GB</option><option value="3072">3 GB</option><option value="4096">4 GB (권장)</option><option value="6144">6 GB</option><option value="8192">8 GB</option></select></div>
     <div class="fr"><label for="auto">켜면 바로 접속</label><select id="auto"><option value="1">예</option><option value="0">아니요</option></select></div>
@@ -269,6 +272,7 @@ function openOv(n){
   if(cur===n) n="";
   document.querySelectorAll(".ov").forEach(o=>o.classList.toggle("on",o.id==="ov-"+n));
   document.querySelectorAll(".ri[data-ov]").forEach(r=>r.classList.toggle("on",r.dataset.ov===n));
+  $("homeRi").classList.toggle("on",!n);
   document.body.classList.toggle("ov-open",!!n); cur=n;
   ["launch","newsBtn","logo","acct"].forEach(id=>$(id).style.visibility=n?"hidden":"");
   if(n==="map") setTimeout(()=>{sizeMap();fitMap(false)},30);
@@ -277,6 +281,7 @@ function openOv(n){
 }
 document.querySelectorAll("[data-ov]").forEach(b=>b.onclick=()=>openOv(b.dataset.ov));
 document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>openOv(""));
+$("homeRi").onclick=()=>{if(cur)openOv(cur)};
 addEventListener("keydown",e=>{if(e.key==="Escape"&&cur)openOv("")});
 function badge(){let o=$("newsRi").querySelector(".badge"); if(!$("ncnt").hidden){if(!o){o=document.createElement("i");o.className="badge";$("newsRi").appendChild(o)}}else if(o)o.remove()}
 // ---------------- 런처 상태
