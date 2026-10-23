@@ -176,6 +176,14 @@ func registerAPI(mux *http.ServeMux) {
 			for _, e := range es {
 				n := e.Name()
 				if !e.IsDir() && strings.HasSuffix(strings.ToLower(n), ".jar") && !managed[n] {
+					if m != nil {
+						id := strings.ToLower(jarModID(filepath.Join(gameDir(), "mods", n)))
+						for _, b := range m.BlockedMods {
+							if strings.ToLower(b) == id {
+								n += " (막힌 모드: 게임 켤 때 빠져요)"
+							}
+						}
+					}
 					manual = append(manual, n)
 				}
 			}

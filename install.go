@@ -4,6 +4,7 @@ package main
 // 받은 파일은 sha1 로 확인하고, 이미 맞는 파일이 있으면 건너뜀.
 
 import (
+	"archive/zip"
 	"crypto/sha1"
 	"encoding/hex"
 	"encoding/json"
@@ -285,6 +286,7 @@ type Manifest struct {
 	Server        string            `json:"server"`
 	Mods          []ModFile         `json:"mods"`
 	Optional      []OptMod          `json:"optional"`
+	BlockedMods   []string          `json:"blockedMods"` // 서버가 막는 모드 id (미니맵 등)
 	Launcher      string            `json:"launcher"`
 	LauncherFiles map[string]string `json:"launcherFiles"`
 }
@@ -768,9 +770,67 @@ func ensureJava(component string) (string, error) {
 // ---------------------------------------------------------------- 보조 모드 (서버의 plugins/KoreaWar/mod)
 func gameDir() string { return dirs("game") }
 
+// jar 안 fabric.mod.json 의 id
+func jarModID(path string) string {
+	z, err := zip.OpenReader(path)
+	if err != nil {
+		return ""
+	}
+	defer z.Close()
+	for _, f := range z.File {
+		if f.Name != "fabric.mod.json" {
+			continue
+		}
+		rc, err := f.Open()
+		if err != nil {
+			return ""
+		}
+		defer rc.Close()
+		var j struct {
+			ID string `json:"id"`
+		}
+		b, _ := io.ReadAll(io.LimitReader(rc, 1<<20))
+		_ = json.Unmarshal(b, &j)
+		return j.ID
+	}
+	return ""
+}
+
+// 서버가 막는 모드(미니맵 등)를 mods 폴더에서 mods-blocked 로 옮김. 옮긴 파일 이름들
+func moveBlockedMods(man *Manifest) []string {
+	bad := map[string]bool{}
+	for _, id := range man.BlockedMods {
+		bad[strings.ToLower(id)] = true
+	}
+	var moved []string
+	if len(bad) == 0 {
+		return nil
+	}
+	modsDir := filepath.Join(gameDir(), "mods")
+	es, _ := os.ReadDir(modsDir)
+	for _, e := range es {
+		n := e.Name()
+		if e.IsDir() || !strings.HasSuffix(strings.ToLower(n), ".jar") {
+			continue
+		}
+		if id := jarModID(filepath.Join(modsDir, n)); bad[strings.ToLower(id)] {
+			bd := filepath.Join(gameDir(), "mods-blocked")
+			_ = os.MkdirAll(bd, 0o755)
+			if os.Rename(filepath.Join(modsDir, n), filepath.Join(bd, n)) == nil {
+				logger.Printf("막힌 모드 뺌: %s (%s)", n, id)
+				moved = append(moved, n)
+			}
+		}
+	}
+	return moved
+}
+
+var lastBlocked []string
+
 func syncMods(man *Manifest) error {
 	modsDir := filepath.Join(gameDir(), "mods")
 	_ = os.MkdirAll(modsDir, 0o755)
+	lastBlocked = moveBlockedMods(man)
 	var tasks []dlTask
 	want := map[string]bool{}
 	for _, m := range man.Mods {

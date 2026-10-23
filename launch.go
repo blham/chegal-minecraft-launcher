@@ -182,7 +182,11 @@ func launchGame(p *Prepared) error {
 	gameCmd = cmd
 	gameStart = time.Now()
 	gameMu.Unlock()
-	setStatus("running", a.Name+" 로 게임이 켜졌어요. 서버로 바로 접속해요.", 0)
+	if len(lastBlocked) > 0 {
+		setStatus("running", "미니맵·지도 모드는 이 서버에서 못 써서 빼 두었어요 (mods-blocked 폴더): "+strings.Join(lastBlocked, ", "), 0)
+	} else {
+		setStatus("running", a.Name+" 로 게임이 켜졌어요. 서버로 바로 접속해요.", 0)
+	}
 	go func() {
 		err := cmd.Wait()
 		if lf != nil {

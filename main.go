@@ -23,7 +23,7 @@ import (
 
 // 빌드할 때 -ldflags "-X main.defaultHost=... -X main.defaultClientID=..." 로 바꿀 수 있음
 var (
-	LauncherVersion  = "1.0.7"
+	LauncherVersion  = "1.0.8"
 	defaultHost      = "210.100.163.165"
 	defaultGamePort  = "25565"
 	defaultFilesPort = "8163"
