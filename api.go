@@ -10,6 +10,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"sync"
@@ -158,8 +159,39 @@ func registerAPI(mux *http.ServeMux) {
 				req = append(req, f.File)
 			}
 		}
-		writeJSON(w, map[string]any{"optional": out, "required": req, "running": gameRunning()})
+		// 직접 넣은 모드 = mods 폴더에서 런처가 넣지 않은 .jar
+		managed := map[string]bool{}
+		var ml []string
+		if b, err := os.ReadFile(dirs("managed-mods.json")); err == nil {
+			_ = json.Unmarshal(b, &ml)
+		}
+		for _, f := range ml {
+			managed[f] = true
+		}
+		manual := []string{}
+		if es, err := os.ReadDir(filepath.Join(gameDir(), "mods")); err == nil {
+			for _, e := range es {
+				n := e.Name()
+				if !e.IsDir() && strings.HasSuffix(strings.ToLower(n), ".jar") && !managed[n] {
+					manual = append(manual, n)
+				}
+			}
+		}
+		mc, fl := "26.3", ""
+		if m != nil {
+			if m.Minecraft != "" {
+				mc = m.Minecraft
+			}
+			fl = m.FabricLoader
+		}
+		writeJSON(w, map[string]any{"optional": out, "required": req, "manual": manual, "minecraft": mc, "fabricLoader": fl, "running": gameRunning()})
 	})
+	mux.HandleFunc("/api/openmods", guard(func(w http.ResponseWriter, r *http.Request) {
+		d := filepath.Join(gameDir(), "mods")
+		_ = os.MkdirAll(d, 0o755)
+		openBrowser(d)
+		writeJSON(w, map[string]bool{"ok": true})
+	}))
 	mux.HandleFunc("/api/openfolder", guard(func(w http.ResponseWriter, r *http.Request) {
 		openBrowser(gameDir())
 		writeJSON(w, map[string]bool{"ok": true})

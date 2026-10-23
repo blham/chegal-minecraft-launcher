@@ -122,6 +122,12 @@ button:disabled{cursor:default}
 .sw{position:relative;width:46px;height:26px;border-radius:13px;background:rgba(242,237,226,.18);transition:background .2s;flex:none}
 .sw:after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:var(--ink);transition:transform .2s}
 .sw.on{background:var(--gold)}.sw.on:after{transform:translateX(20px);background:#1a1408}
+.verbox{display:flex;align-items:center;gap:22px;padding:16px 18px;border:1px solid var(--line);margin-bottom:22px}
+.verbox .v{font-size:11px;letter-spacing:1px;color:var(--mute)}.verbox .v b{display:block;font-size:19px;color:var(--ink);letter-spacing:0;font-weight:700;margin-top:3px;user-select:text}
+.verbox p{margin:0;flex:1;font-size:12px;color:var(--dim);line-height:1.6}
+.fbtn{border:1px solid var(--ink);padding:9px 16px;font-weight:650;font-size:13px;white-space:nowrap;transition:background .15s,color .15s}.fbtn:hover{background:var(--ink);color:#111}
+.cap2{margin:28px 0 6px;font-size:11px;letter-spacing:3px;color:var(--gold);font-weight:600}
+.man{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px;user-select:text}.man:before{content:"";width:6px;height:6px;background:var(--mute);transform:rotate(45deg)}
 #modNote{font-size:12px;color:var(--dim);margin-top:16px}
 #mapBox{position:relative;overflow:hidden;background:#1d3f86;cursor:grab}
 #mapBox.drag{cursor:grabbing}
@@ -226,7 +232,7 @@ option{background:#16181d}
 <!-- 모드 -->
 <section class="ov" id="ov-mods">
   <h2 class="t">모드</h2><div class="sub">편의성 모드는 원하는 것만 켜서 쓰세요</div><button class="x" data-close>닫기 ✕</button>
-  <div class="body"><div class="mods"><div class="req" id="modReq"></div><div id="modList"></div><div id="modNote">바꾼 것은 다음에 게임을 켤 때 적용돼요. 직접 mods 폴더에 넣은 모드는 건드리지 않아요.</div></div></div>
+  <div class="body"><div class="mods"><div class="verbox" id="modVer"></div><div class="req" id="modReq"></div><div id="modList"></div><h3 class="cap2">직접 넣은 모드</h3><div id="modMan"></div><div id="modNote">바꾼 것은 다음에 게임을 켤 때 적용돼요. 직접 mods 폴더에 넣은 모드는 건드리지 않아요.</div></div></div>
 </section>
 <!-- 설정 -->
 <section class="ov" id="ov-settings">
@@ -367,6 +373,10 @@ async function loadMods(){
 }
 function drawMods(){
   const d=mods, req=d.required||[], op=d.optional||[];
+  $("modVer").innerHTML=`<div class="v">마인크래프트<b>${esc(d.minecraft)}</b></div><div class="v">모드 로더<b>Fabric${d.fabricLoader?" "+esc(d.fabricLoader):""}</b></div><p>모드를 직접 넣을 땐 <b style="color:var(--ink)">마인크래프트 ${esc(d.minecraft)} · Fabric</b> 용을 받으세요. (Modrinth·CurseForge 에서 버전 ${esc(d.minecraft)}, 로더 Fabric 으로 거르기)</p><button class="fbtn" id="openMods">모드 폴더 열기</button>`;
+  $("openMods").onclick=()=>post("/api/openmods");
+  const man=d.manual||[];
+  $("modMan").innerHTML=man.length?man.map(f=>`<div class="man">${esc(f)}</div>`).join(""):`<div class="empty">없어요. "모드 폴더 열기"로 연 폴더에 .jar 를 넣으면 다음에 게임을 켤 때 같이 켜져요.</div>`;
   $("modReq").innerHTML=`<b>서버 필수 모드 ${req.length}개</b><span>항상 켜져 있고 자동으로 업데이트돼요</span>`;
   $("modList").innerHTML=op.length?op.map((m,i)=>`<div class="mod"><div class="ic">${m.icon?`<img alt="" src="${esc(m.icon)}">`:esc((m.name||"?")[0])}</div><div><h5>${esc(m.name)}<small>${esc(m.version)}</small></h5><p>${esc(m.description||"설명이 없어요")}</p></div><button class="sw${m.enabled?" on":""}" data-i="${i}" aria-label="${esc(m.name)} 켜기"></button></div>`).join("")
     :`<div class="empty">아직 서버에 편의성 모드가 없어요.</div>`;
