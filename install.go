@@ -237,7 +237,9 @@ type OptMod struct {
 	Icon        string   `json:"icon,omitempty"`
 	On          bool     `json:"on"` // 서버가 정한 처음 값
 	Depends     []string `json:"depends"`
-	Lib         bool     `json:"lib"` // 라이브러리: 목록에 안 보이고 필요할 때만 같이 받음
+	Lib         bool     `json:"lib"`              // 라이브러리: 목록에 안 보이고 필요할 때만 같이 받음
+	Detail      string   `json:"detail,omitempty"` // 누르면 보이는 자세한 설명
+	Link        string   `json:"link,omitempty"`   // 모드 페이지 (https)
 }
 
 // 실제로 받을 편의성 모드 (id): 켠 것 + 그것들이 필요로 하는 것(줄줄이). neededBy[id] = 그걸 필요로 하는 켠 모드 이름들

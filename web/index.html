@@ -134,6 +134,15 @@ button:disabled{cursor:default}
 .exp{font-size:11.5px;color:var(--dim);margin-top:5px;user-select:text;word-break:break-all}
 .expwarn{font-size:11.5px;color:var(--gold);margin-top:6px}
 .expnew{font-size:12px;color:#111;background:var(--gold);padding:5px 9px;margin-top:7px;display:inline-block;font-weight:600}
+.mod[data-id]{cursor:pointer}.mod[data-id]:hover h5{color:var(--gold)}
+.mod .chev{font-style:normal;color:var(--dim);font-size:11px;margin-left:8px;display:inline-block;transition:transform .2s}
+.mod.open .chev{transform:rotate(180deg)}
+.mod .more{display:none;margin-top:10px;padding:12px 14px;background:rgba(8,9,12,.5);border-left:2px solid var(--gold)}
+.mod.open .more{display:block}
+.mod .det{color:var(--ink);font-size:13px;line-height:1.7;margin:0}
+.mod .dep{color:var(--dim);font-size:12px;margin:8px 0 0}
+.mod .lnk{margin-top:12px;border:1px solid var(--ink);padding:7px 14px;font-size:12.5px;font-weight:650}.mod .lnk:hover{background:var(--ink);color:#111}
+.mod{align-items:start}.mod .sw{margin-top:10px}
 #modNote{font-size:12px;color:var(--dim);margin-top:16px}
 #mapBox{position:relative;overflow:hidden;background:#1d3f86;cursor:grab}
 #mapBox.drag{cursor:grabbing}
@@ -373,7 +382,7 @@ function drawSides(col){
   $("feed").innerHTML=fe(25); $("feed2").innerHTML=fe(40);
 }
 // ---------------- 모드
-let mods=null;
+let mods=null, openMod="";
 async function loadMods(){
   let d; try{d=await(await fetch("/api/mods",{cache:"no-store"})).json()}catch(e){return}
   mods=d; drawMods();
@@ -390,10 +399,13 @@ function drawMods(){
     $("expMsg").textContent=r.error?r.error:`저장했어요: ${r.path}  (공식 런처·Prism·CurseForge 에 Fabric ${d.minecraft} 로 설치 후 mods 폴더에 넣기 — zip 안 설명서 참고)`};
   const vis=op.map((m,i)=>({m,i})).filter(x=>!x.m.lib), libs=op.filter(m=>m.lib);
   $("modList").innerHTML=vis.length?vis.map(({m,i})=>{const forced=!m.enabled&&m.active, why=(m.neededBy||[]).join(", ");
-    return `<div class="mod"><div class="ic">${m.icon?`<img alt="" src="${esc(m.icon)}">`:esc((m.name||"?")[0])}</div><div><h5>${esc(m.name)}<small>${esc(m.version)}</small></h5><p>${esc(m.description||"설명이 없어요")}</p>${forced?`<p class="need">${esc(why)} 에 필요해서 같이 켜져요</p>`:""}</div><button class="sw${m.enabled||m.active?" on":""}${forced?" forced":""}" data-i="${i}" aria-label="${esc(m.name)} 켜기"></button></div>`}).join("")
+    return `<div class="mod${openMod===m.id?" open":""}" data-id="${esc(m.id)}"><div class="ic">${m.icon?`<img alt="" src="${esc(m.icon)}">`:esc((m.name||"?")[0])}</div><div><h5>${esc(m.name)}<small>${esc(m.version)}</small><i class="chev">▾</i></h5><p>${esc(m.description||"설명이 없어요")}</p>${forced?`<p class="need">${esc(why)} 에 필요해서 같이 켜져요</p>`:""}
+      <div class="more"><p class="det">${esc(m.detail||m.description||"")}</p>${(m.depends||[]).length?`<p class="dep">필요한 모드: ${(m.depends||[]).map(d=>esc((op.find(x=>x.id===d)||{}).name||d)).join(", ")} (같이 받아요)</p>`:""}${m.link?`<button class="lnk" data-link="${esc(m.link)}">모드 페이지 · 다운로드 ↗</button>`:""}</div></div><button class="sw${m.enabled||m.active?" on":""}${forced?" forced":""}" data-i="${i}" aria-label="${esc(m.name)} 켜기"></button></div>`}).join("")
     +(libs.length?`<div class="libs">라이브러리 ${libs.length}개 (${libs.map(l=>esc(l.name)).join(", ")}) — 필요한 모드를 켜면 런처가 알아서 같이 받아요</div>`:"")
     :`<div class="empty">아직 서버에 편의성 모드가 없어요.</div>`;
   $("modNote").textContent=d.running?"게임이 켜져 있어요. 바꾼 것은 게임을 끄고 다시 켤 때 적용돼요.":"바꾼 것은 다음에 게임을 켤 때 적용돼요. 직접 mods 폴더에 넣은 모드는 건드리지 않아요.";
+  document.querySelectorAll(".mod[data-id]").forEach(c=>c.onclick=e=>{if(e.target.closest(".sw,.lnk"))return;openMod=openMod===c.dataset.id?"":c.dataset.id;document.querySelectorAll(".mod[data-id]").forEach(x=>x.classList.toggle("open",x.dataset.id===openMod))});
+  document.querySelectorAll(".lnk").forEach(b=>b.onclick=e=>{e.stopPropagation();post("/api/open",{url:b.dataset.link})});
   document.querySelectorAll(".sw").forEach(b=>b.onclick=async()=>{const m=op[+b.dataset.i];const on=!(m.enabled||m.active)||(!m.enabled&&m.active);
     if(!m.enabled&&m.active){$("modNote").textContent=`${m.name} 은(는) ${(m.neededBy||[]).join(", ")} 에 필요해서 끌 수 없어요. 그 모드를 먼저 꺼 주세요.`;return}
     mods=await(await fetch("/api/mods",{method:"POST",headers:{"X-KW-Token":TOKEN,"Content-Type":"application/json"},body:JSON.stringify({id:m.id,on:!m.enabled})})).json();drawMods();});

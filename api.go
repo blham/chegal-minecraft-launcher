@@ -267,7 +267,15 @@ func registerAPI(mux *http.ServeMux) {
 			URL string `json:"url"`
 		}
 		_ = json.NewDecoder(io.LimitReader(r.Body, 4096)).Decode(&in)
-		if regexp.MustCompile(`^https://(discord\.gg|discord\.com|(www\.)?github\.com)/[A-Za-z0-9/_\-.]+$`).MatchString(in.URL) {
+		ok := regexp.MustCompile(`^https://(discord\.gg|discord\.com|(www\.)?github\.com|modrinth\.com|(www\.)?curseforge\.com)/[A-Za-z0-9/_\-.]+$`).MatchString(in.URL)
+		if m := cachedManifest(); !ok && m != nil { // 서버가 알려 준 모드 페이지
+			for _, o := range m.Optional {
+				if o.Link != "" && o.Link == in.URL && strings.HasPrefix(o.Link, "https://") {
+					ok = true
+				}
+			}
+		}
+		if ok {
 			openBrowser(in.URL)
 		}
 		writeJSON(w, map[string]bool{"ok": true})
