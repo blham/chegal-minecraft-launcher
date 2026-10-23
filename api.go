@@ -309,7 +309,7 @@ func registerAPI(mux *http.ServeMux) {
 			URL string `json:"url"`
 		}
 		_ = json.NewDecoder(io.LimitReader(r.Body, 4096)).Decode(&in)
-		ok := regexp.MustCompile(`^https://(discord\.gg|discord\.com|(www\.)?github\.com|modrinth\.com|(www\.)?curseforge\.com|ko-fi\.com)/[A-Za-z0-9/_\-.]+$`).MatchString(in.URL) // 1.2.7 정해진 곳만
+		ok := regexp.MustCompile(`^https://(discord\.gg|discord\.com|(www\.)?github\.com|modrinth\.com|(www\.)?curseforge\.com|ko-fi\.com|toss\.me|qr\.kakaopay\.com)/[A-Za-z0-9/_\-.]+$`).MatchString(in.URL) // 1.2.7 정해진 곳만
 		if ok {
 			openBrowser(in.URL)
 		}
