@@ -6,6 +6,7 @@ package main
 import (
 	"archive/zip"
 	"crypto/sha1"
+	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
 	"errors"
@@ -56,11 +57,12 @@ func busy() bool { s := getStatus(); return s.Phase == "prepare" }
 
 // ---------------------------------------------------------------- 내려받기
 type dlTask struct {
-	URL  string
-	Path string
-	Sha1 string
-	Size int64
-	Exec bool
+	URL    string
+	Path   string
+	Sha1   string
+	Sha256 string // 1.2.6 서명 목록의 값 (서버 파일은 이걸로 확인)
+	Size   int64
+	Exec   bool
 	// 크기만 맞으면 믿음 (애셋처럼 이름이 곧 해시인 것)
 	TrustSize bool
 }
@@ -78,6 +80,17 @@ func fileSha1(p string) string {
 	return hex.EncodeToString(h.Sum(nil))
 }
 
+func fileSha256(p string) string {
+	f, err := os.Open(p)
+	if err != nil {
+		return ""
+	}
+	defer f.Close()
+	h := sha256.New()
+	_, _ = io.Copy(h, f)
+	return hex.EncodeToString(h.Sum(nil))
+}
+
 func needDownload(t dlTask) bool {
 	st, err := os.Stat(t.Path)
 	if err != nil || st.IsDir() {
@@ -85,6 +98,9 @@ func needDownload(t dlTask) bool {
 	}
 	if t.Size > 0 && st.Size() != t.Size {
 		return true
+	}
+	if t.Sha256 != "" {
+		return !strings.EqualFold(fileSha256(t.Path), t.Sha256)
 	}
 	if t.TrustSize || t.Sha1 == "" {
 		return false
@@ -121,13 +137,18 @@ func download(t dlTask) error {
 			return err
 		}
 		h := sha1.New()
-		_, err = io.Copy(io.MultiWriter(f, h), resp.Body)
+		h2 := sha256.New()
+		_, err = io.Copy(io.MultiWriter(f, h, h2), resp.Body)
 		resp.Body.Close()
 		f.Close()
 		if err != nil {
 			last = err
 			os.Remove(tmp)
 			continue
+		}
+		if t.Sha256 != "" && !strings.EqualFold(hex.EncodeToString(h2.Sum(nil)), t.Sha256) {
+			os.Remove(tmp)
+			return fmt.Errorf("%s: 서명된 파일과 달라요 (바꿔치기됐을 수 있어 설치하지 않았어요)", filepath.Base(t.Path))
 		}
 		if t.Sha1 != "" && !strings.EqualFold(hex.EncodeToString(h.Sum(nil)), t.Sha1) {
 			last = fmt.Errorf("%s: 받은 파일이 깨졌어요 (sha1)", filepath.Base(t.Path))
@@ -834,22 +855,37 @@ func syncMods(man *Manifest) error {
 	modsDir := filepath.Join(gameDir(), "mods")
 	_ = os.MkdirAll(modsDir, 0o755)
 	lastBlocked = moveBlockedMods(man)
+	signed, err := fetchSigned()
+	if err != nil {
+		return err
+	}
+	lastUnsigned = nil
 	var tasks []dlTask
 	want := map[string]bool{}
 	for _, m := range man.Mods {
 		if m.File == "" || strings.ContainsAny(m.File, `/\`) {
 			continue
 		}
+		h := signed["mod/"+m.File]
+		if h == "" {
+			return fmt.Errorf("서버의 필수 모드 %s 에 서명이 없어서 받지 않았어요. 서버장이 kwsign 으로 서명해야 해요.", m.File)
+		}
 		want[m.File] = true
-		tasks = append(tasks, dlTask{URL: filesBase() + "/mod/" + m.File, Path: filepath.Join(modsDir, m.File), Sha1: m.Sha1, Size: m.Size})
+		tasks = append(tasks, dlTask{URL: filesBase() + "/mod/" + m.File, Path: filepath.Join(modsDir, m.File), Sha256: h, Size: m.Size})
 	}
 	active, _ := optActive(man)
 	for _, m := range man.Optional {
 		if m.File == "" || strings.ContainsAny(m.File, `/\`) || want[m.File] || !active[m.ID] {
 			continue
 		}
+		h := signed["mod/optional/"+m.File]
+		if h == "" {
+			lastUnsigned = append(lastUnsigned, m.Name)
+			logger.Printf("서명 없는 편의성 모드 건너뜀: %s", m.File)
+			continue
+		}
 		want[m.File] = true
-		tasks = append(tasks, dlTask{URL: filesBase() + "/mod/optional/" + m.File, Path: filepath.Join(modsDir, m.File), Sha1: m.Sha1, Size: m.Size})
+		tasks = append(tasks, dlTask{URL: filesBase() + "/mod/optional/" + m.File, Path: filepath.Join(modsDir, m.File), Sha256: h, Size: m.Size})
 	}
 	if err := downloadAll("보조 모드 업데이트 중", tasks, 4); err != nil {
 		return fmt.Errorf("보조 모드를 받지 못했어요: %v", err)

@@ -23,7 +23,7 @@ import (
 
 // 빌드할 때 -ldflags "-X main.defaultHost=... -X main.defaultClientID=..." 로 바꿀 수 있음
 var (
-	LauncherVersion  = "1.2.5"
+	LauncherVersion  = "1.2.6"
 	defaultHost      = "" // 빌드할 때 -ldflags "-X main.defaultHost=서버주소" 로 넣음 (소스에 IP 를 안 남기려고)
 	defaultGamePort  = "25565"
 	defaultFilesPort = "8163"
@@ -200,6 +200,7 @@ func main() {
 	tb := make([]byte, 16)
 	_, _ = rand.Read(tb)
 	apiToken = hex.EncodeToString(tb)
+	_ = os.WriteFile(filepath.Join(dataDir, "api-token"), []byte(apiToken), 0o600) // 1.2.6 설치·제거 도구가 이 런처를 끌 때 씀 (본인만 읽힘)
 
 	mux := http.NewServeMux()
 	sub, _ := fs.Sub(webFS, "web")
@@ -216,7 +217,7 @@ func main() {
 	})
 	mux.HandleFunc("/auth", handleAuthCallback)
 	registerAPI(mux)
-	srv := &http.Server{Handler: mux, ReadHeaderTimeout: 10 * time.Second}
+	srv := &http.Server{Handler: hostGuard(mux), ReadHeaderTimeout: 10 * time.Second}
 	go func() { _ = srv.Serve(ln) }()
 
 	restartHook = func() { _ = srv.Close() }
@@ -258,4 +259,26 @@ func main() {
 			return
 		}
 	}
+}
+
+// 1.2.6 DNS 리바인딩 막기: 주소창이 localhost / 127.0.0.1 인 요청만 받음
+// (악성 사이트가 자기 도메인을 127.0.0.1 로 돌려서 런처 정보를 읽어 가는 것 방지)
+func hostGuard(h http.Handler) http.Handler {
+	ok := map[string]bool{
+		fmt.Sprintf("localhost:%d", uiPort): true,
+		fmt.Sprintf("127.0.0.1:%d", uiPort): true,
+	}
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if !ok[strings.ToLower(r.Host)] {
+			http.Error(w, "forbidden", http.StatusForbidden)
+			return
+		}
+		h.ServeHTTP(w, r)
+	})
+}
+
+// 켜져 있는 런처의 토큰 (같은 사용자만 읽힘)
+func runningToken() string {
+	b, _ := os.ReadFile(filepath.Join(dataDir, "api-token"))
+	return strings.TrimSpace(string(b))
 }

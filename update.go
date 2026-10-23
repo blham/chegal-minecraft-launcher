@@ -50,9 +50,14 @@ func checkUpdate() {
 		return
 	}
 	name := updateAssetName()
-	sha := man.LauncherSha1[name]
+	signed, err := fetchSigned()
+	if err != nil {
+		logger.Printf("런처 업데이트 안 함: %v", err)
+		return
+	}
+	sha := signed["launcher/"+name] // 1.2.6 서명된 것만
 	if sha == "" {
-		logger.Printf("새 런처 %s 이 있지만 서버에 %s 파일이 없음", man.Launcher, name)
+		logger.Printf("새 런처 %s 이 있지만 %s 에 서명이 없음", man.Launcher, name)
 		return
 	}
 	if gameRunning() || busy() {
@@ -61,7 +66,7 @@ func checkUpdate() {
 	exe := selfExe()
 	tmp := exe + ".new"
 	setStatus("prepare", "새 런처 "+man.Launcher+" 받는 중", 0)
-	if err := download(dlTask{URL: filesBase() + "/launcher/" + name, Path: tmp, Sha1: sha}); err != nil {
+	if err := download(dlTask{URL: filesBase() + "/launcher/" + name, Path: tmp, Sha256: sha}); err != nil {
 		logger.Printf("런처 업데이트 받기 실패: %v", err)
 		setStatus("idle", "", 0)
 		_ = os.Remove(tmp)

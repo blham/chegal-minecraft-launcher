@@ -54,9 +54,21 @@ func loadAccount() {
 	if err != nil {
 		return
 	}
+	plain := false
+	if bytes.HasPrefix(b, []byte(protPrefix)) { // 1.2.6 잠근 파일
+		if b, err = unprotect(b[len(protPrefix):]); err != nil {
+			logger.Printf("로그인 정보를 풀지 못함 (다른 컴퓨터·계정에서 복사됐을 수 있음): %v", err)
+			return
+		}
+	} else {
+		plain = true
+	}
 	var a Account
 	if json.Unmarshal(b, &a) == nil && a.Name != "" {
 		account = &a
+		if plain && protectAvailable { // 예전 평문 파일 → 잠가서 다시 저장
+			go saveAccount()
+		}
 	}
 }
 
@@ -68,6 +80,13 @@ func saveAccount() {
 		return
 	}
 	b, _ := json.MarshalIndent(account, "", "  ")
+	if protectAvailable { // 1.2.6 윈도우: 이 윈도우 계정으로만 풀리게 잠금 (DPAPI)
+		if p, err := protect(b); err == nil {
+			b = append([]byte(protPrefix), p...)
+		} else {
+			logger.Printf("로그인 정보 잠그기 실패, 평문으로 저장: %v", err)
+		}
+	}
 	_ = os.WriteFile(accountPath(), b, 0o600)
 }
 

@@ -222,7 +222,8 @@ func registerAPI(mux *http.ServeMux) {
 	}))
 	// 제거할 때 켜져 있는 런처를 끝냄 (게임 중이면 그대로)
 	mux.HandleFunc("/api/quit-uninstall", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != "POST" || gameRunning() {
+		if r.Method != "POST" || r.Header.Get("X-KW-Token") != apiToken || gameRunning() { // 1.2.6 토큰 있어야
+			http.Error(w, "forbidden", 403)
 			return
 		}
 		writeJSON(w, map[string]bool{"ok": true})

@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"io"
 	"net"
+	"net/http"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -159,7 +160,7 @@ func uninstall() {
 	}
 	data := msgBox("게임 자료(로그인 정보·마인크래프트·모드·스크린샷)도 같이 지울까요?\n\n[아니요]를 누르면 다시 설치했을 때 그대로 쓸 수 있어요.", 0x4|0x20|0x100) == 6
 	// 켜져 있는 런처 끝내기 (창이 떠 있으면)
-	_, _ = httpc.Post(fmt.Sprintf("http://127.0.0.1:%d/api/quit-uninstall", uiPort), "text/plain", nil)
+	quitRunning()
 	_ = powershell(fmt.Sprintf(`
 foreach ($d in @([Environment]::GetFolderPath('Desktop'), [Environment]::GetFolderPath('Programs'))) { Remove-Item -LiteralPath (Join-Path $d %s) -Force -ErrorAction SilentlyContinue }
 Remove-Item -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\KoreaWarLauncher' -Recurse -Force -ErrorAction SilentlyContinue`, psq(appName+".lnk")))
@@ -187,9 +188,7 @@ func stopRunningLauncher() {
 		c.Close()
 	}
 	logger.Printf("켜져 있는 예전 런처를 끔")
-	if r, err := httpc.Post("http://"+addr+"/api/quit-uninstall", "text/plain", nil); err == nil {
-		r.Body.Close()
-	}
+	quitRunning()
 	for i := 0; i < 25; i++ {
 		time.Sleep(200 * time.Millisecond)
 		c, err := net.DialTimeout("tcp", addr, 300*time.Millisecond)
@@ -197,5 +196,13 @@ func stopRunningLauncher() {
 			return
 		}
 		c.Close()
+	}
+}
+
+func quitRunning() {
+	req, _ := http.NewRequest("POST", fmt.Sprintf("http://127.0.0.1:%d/api/quit-uninstall", uiPort), nil)
+	req.Header.Set("X-KW-Token", runningToken())
+	if r, err := httpc.Do(req); err == nil {
+		r.Body.Close()
 	}
 }

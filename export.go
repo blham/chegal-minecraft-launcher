@@ -21,12 +21,19 @@ func exportMods() (string, error) {
 	}
 	tmp := dirs("cache", "export")
 	_ = os.MkdirAll(tmp, 0o755)
+	signed, err := fetchSigned()
+	if err != nil {
+		return "", err
+	}
 	var tasks []dlTask
 	for _, m := range man.Mods {
 		if m.File == "" || strings.ContainsAny(m.File, `/\`) {
 			continue
 		}
-		tasks = append(tasks, dlTask{URL: filesBase() + "/mod/" + m.File, Path: filepath.Join(tmp, m.File), Sha1: m.Sha1, Size: m.Size})
+		if signed["mod/"+m.File] == "" {
+			return "", fmt.Errorf("%s 에 서명이 없어요. 서버장이 kwsign 으로 서명해야 해요", m.File)
+		}
+		tasks = append(tasks, dlTask{URL: filesBase() + "/mod/" + m.File, Path: filepath.Join(tmp, m.File), Sha256: signed["mod/"+m.File], Size: m.Size})
 	}
 	if err := downloadAll("모드 묶는 중", tasks, 4); err != nil {
 		return "", fmt.Errorf("모드를 받지 못했어요: %v", err)
