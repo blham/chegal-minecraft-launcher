@@ -24,7 +24,7 @@ import (
 // 빌드할 때 -ldflags "-X main.defaultHost=... -X main.defaultClientID=..." 로 바꿀 수 있음
 var (
 	LauncherVersion  = "1.1.2"
-	defaultHost      = "210.100.163.165"
+	defaultHost      = "" // 빌드할 때 -ldflags "-X main.defaultHost=서버주소" 로 넣음 (소스에 IP 를 안 남기려고)
 	defaultGamePort  = "25565"
 	defaultFilesPort = "8163"
 	defaultClientID  = ""
