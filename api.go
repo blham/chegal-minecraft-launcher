@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"encoding/binary"
 	"encoding/json"
 	"errors"
@@ -9,6 +10,7 @@ import (
 	"io"
 	"net"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -211,6 +213,44 @@ func registerAPI(mux *http.ServeMux) {
 		openBrowser(filepath.Dir(p))
 		writeJSON(w, map[string]string{"path": p})
 	}))
+	// 1.2.8 내 후원 내역: 마인크래프트 계정 주인임을 모장 세션 서버로 증명(서버 접속과 같은 방식)한 뒤 서버에 물어봄.
+	// 접속 토큰은 모장에만 보내고 우리 서버에는 안 보냄.
+	mux.HandleFunc("/api/donate/me", guard(func(w http.ResponseWriter, r *http.Request) {
+		a := currentAccount()
+		if a == nil {
+			writeJSON(w, map[string]string{"error": "login"})
+			return
+		}
+		if err := ensureFreshToken(); err != nil {
+			writeJSON(w, map[string]string{"error": "로그인을 다시 확인해야 해요: " + err.Error()})
+			return
+		}
+		a = currentAccount()
+		var ch struct {
+			ServerID string `json:"serverId"`
+		}
+		if err := getJSON(filesBase()+"/launcher/donor-challenge", &ch); err != nil || !regexp.MustCompile(`^[0-9a-f]{32}$`).MatchString(ch.ServerID) {
+			writeJSON(w, map[string]string{"error": "서버에 연결하지 못했어요"})
+			return
+		}
+		body, _ := json.Marshal(map[string]string{"accessToken": a.McToken, "selectedProfile": a.UUID, "serverId": ch.ServerID})
+		resp, err := httpc.Post("https://sessionserver.mojang.com/session/minecraft/join", "application/json", bytes.NewReader(body))
+		if err != nil {
+			writeJSON(w, map[string]string{"error": "마인크래프트 계정 확인에 실패했어요"})
+			return
+		}
+		resp.Body.Close()
+		if resp.StatusCode != 204 && resp.StatusCode != 200 {
+			writeJSON(w, map[string]string{"error": fmt.Sprintf("마인크래프트 계정 확인에 실패했어요 (%d)", resp.StatusCode)})
+			return
+		}
+		var me map[string]any
+		if err := getJSON(filesBase()+"/launcher/donor-me?name="+url.QueryEscape(a.Name)+"&sid="+ch.ServerID, &me); err != nil {
+			writeJSON(w, map[string]string{"error": "서버가 내역을 주지 않았어요"})
+			return
+		}
+		writeJSON(w, me)
+	}))
 	mux.HandleFunc("/api/openmods", guard(func(w http.ResponseWriter, r *http.Request) {
 		d := filepath.Join(gameDir(), "mods")
 		_ = os.MkdirAll(d, 0o755)
@@ -269,7 +309,7 @@ func registerAPI(mux *http.ServeMux) {
 			URL string `json:"url"`
 		}
 		_ = json.NewDecoder(io.LimitReader(r.Body, 4096)).Decode(&in)
-		ok := regexp.MustCompile(`^https://(discord\.gg|discord\.com|(www\.)?github\.com|modrinth\.com|(www\.)?curseforge\.com)/[A-Za-z0-9/_\-.]+$`).MatchString(in.URL) // 1.2.7 정해진 곳만
+		ok := regexp.MustCompile(`^https://(discord\.gg|discord\.com|(www\.)?github\.com|modrinth\.com|(www\.)?curseforge\.com|ko-fi\.com)/[A-Za-z0-9/_\-.]+$`).MatchString(in.URL) // 1.2.7 정해진 곳만
 		if ok {
 			openBrowser(in.URL)
 		}

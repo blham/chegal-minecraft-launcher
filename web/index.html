@@ -144,6 +144,14 @@ button:disabled{cursor:default}
 .mod .dep{color:var(--dim);font-size:12px;margin:8px 0 0}
 .mod .lnk{margin-top:12px;border:1px solid var(--ink);padding:7px 14px;font-size:12.5px;font-weight:650}.mod .lnk:hover{background:var(--ink);color:#111}
 .mod{align-items:start}.mod .sw{margin-top:10px}
+.don{display:grid;grid-template-columns:1fr 300px;gap:44px;max-width:1080px}
+.dbox{background:rgba(8,9,12,.5);padding:18px 20px}
+.steps{margin:0;padding-left:20px;line-height:1.8;font-size:13.5px;color:var(--mute)}.steps b{color:var(--ink)}
+.nick{display:flex;align-items:center;gap:12px;margin:6px 0 4px}.nick span{font-size:20px;font-weight:750;color:var(--gold);user-select:text}
+.kofi{margin-top:16px;background:#ff5e5b;color:#fff;font-weight:750;padding:12px 22px;font-size:15px}.kofi:hover{filter:brightness(1.1)}.kofi:disabled{opacity:.4}
+.tier{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid var(--line)}.tier .w{width:110px;color:var(--mute);font-size:13px}.tier .tt{font-weight:750}
+.dn{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px}.dn img{width:22px;height:22px;image-rendering:pixelated}.dn small{margin-left:auto;font-size:11.5px}
+.meTotal{font-size:26px;font-weight:750}.prog{height:4px;background:var(--line);margin:10px 0 6px}.prog i{display:block;height:100%;background:var(--gold)}
 #modNote{font-size:12px;color:var(--dim);margin-top:16px}
 #mapBox{position:relative;overflow:hidden;background:#1d3f86;cursor:grab}
 #mapBox.drag{cursor:grabbing}
@@ -206,6 +214,7 @@ option{background:#16181d}
   <div class="sep"></div>
   <button class="ri" id="disc" hidden><svg viewBox="0 0 71 55"><path d="M60 4.6A58 58 0 0 0 45.6.2l-1.8 3.7a54 54 0 0 0-16.2 0L25.8.2A58 58 0 0 0 11.3 4.6 59.6 59.6 0 0 0 .9 44.8 58.3 58.3 0 0 0 18.6 53.8l3.8-5.2a38 38 0 0 1-6-2.9l1.5-1.1a41.6 41.6 0 0 0 35.4 0l1.5 1.1a38 38 0 0 1-6 2.9l3.8 5.2a58 58 0 0 0 17.8-9A59.4 59.4 0 0 0 60 4.6ZM23.7 36.7c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2 6.4 3.3 6.4 7.2-2.8 7.2-6.4 7.2Zm23.6 0c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2 6.4 3.3 6.4 7.2-2.8 7.2-6.4 7.2Z"/></svg><span>디스코드</span></button>
   <button class="ri" id="folder"><svg viewBox="0 0 24 24"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8zm10 14H4V8h16z"/></svg><span>게임 폴더</span></button>
+  <button class="ri" data-ov="donate"><svg viewBox="0 0 24 24"><path d="M12 21.4 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5z"/></svg><span>후원</span></button>
   <button class="ri" data-ov="mods"><svg viewBox="0 0 24 24"><path d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4a2 2 0 0 0-2 2v3.8h1.5a2.7 2.7 0 0 1 0 5.4H2V20a2 2 0 0 0 2 2h3.8v-1.5a2.7 2.7 0 0 1 5.4 0V22H17a2 2 0 0 0 2-2v-4h1.5a2.5 2.5 0 0 0 0-5"/></svg><span>모드</span></button>
   <button class="ri" data-ov="settings"><svg viewBox="0 0 24 24"><path d="M19.4 13a7.6 7.6 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7 7 0 0 0-1.7-1L15 3h-4l-.4 2.9a7 7 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.6 7.6 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7 7 0 0 0 1.7 1L11 21h4l.4-2.9a7 7 0 0 0 1.7-1l2.5 1 2-3.5zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7"/></svg><span>설정</span></button>
 </nav>
@@ -247,6 +256,24 @@ option{background:#16181d}
   <button class="back" data-close>← 홈</button><h2 class="t">접속자</h2><div class="sub" id="plSub">&nbsp;</div><button class="x" data-close>닫기 ✕</button>
   <div class="body" id="players"></div>
 </section>
+<!-- 후원 -->
+<section class="ov" id="ov-donate">
+  <button class="back" data-close>← 홈</button><h2 class="t">후원</h2><div class="sub">후원은 서버 운영비에 쓰여요 · 보상은 칭호뿐이에요 (게임에 유리한 것 없음)</div><button class="x" data-close>닫기 ✕</button>
+  <div class="body"><div class="don">
+    <div class="dcol">
+      <div class="dbox">
+        <h3 class="cap2" style="margin-top:0">후원하는 법</h3>
+        <ol class="steps"><li><b>후원할 때 메시지에 내 닉네임을 꼭 적어 주세요.</b> 그래야 칭호가 자동으로 붙어요.<div class="nick"><span id="dNick">로그인하면 보여요</span><button class="fbtn" id="dCopy" hidden>복사</button></div></li>
+        <li>아래 버튼으로 Ko-fi 후원 페이지를 열어 후원해요. (카드·페이팔)</li>
+        <li>몇 분 안에 게임에 칭호가 생겨요. 안 생기면 디스코드로 알려 주세요.</li></ol>
+        <button class="kofi" id="dGo">Ko-fi 에서 후원하기 ↗</button><div class="exp" id="dGoNote"></div>
+      </div>
+      <h3 class="cap2">칭호 단계 (누적 금액)</h3><div id="dTiers"></div>
+      <h3 class="cap2">내 후원</h3><div id="dMe" class="dbox"><div class="empty">불러오는 중…</div></div>
+    </div>
+    <div class="dcol"><h3 class="cap2" style="margin-top:0">최근 후원해 주신 분</h3><div id="dRecent"></div><h3 class="cap2">후원자 명예의 전당</h3><div id="dHall"></div></div>
+  </div></div>
+</section>
 <!-- 모드 -->
 <section class="ov" id="ov-mods">
   <button class="back" data-close>← 홈</button><h2 class="t">모드</h2><div class="sub">편의성 모드는 원하는 것만 켜서 쓰세요</div><button class="x" data-close>닫기 ✕</button>
@@ -269,7 +296,7 @@ const sc=c=>/^#[0-9a-fA-F]{6}$/.test(String(c||""))?c:"#888888";
 const num=v=>{const n=Number(v);return Number.isFinite(n)?Math.round(n):0};
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 async function post(p,b){return (await fetch(p,{method:"POST",headers:{"X-KW-Token":TOKEN,"Content-Type":"application/json"},body:JSON.stringify(b||{})})).json()}
-let wasDown=false, upd=false, filled=false, info=null, discordUrl="", cur="";
+let lastState=null, wasDown=false, upd=false, filled=false, info=null, discordUrl="", cur="";
 // ---------------- 덮개 화면
 function openOv(n){
   if(cur===n) n="";
@@ -280,6 +307,7 @@ function openOv(n){
   ["launch","newsBtn","logo","acct"].forEach(id=>$(id).style.visibility=n?"hidden":"");
   if(n==="map") setTimeout(()=>{sizeMap();fitMap(false)},30);
   if(n==="mods") loadMods();
+  if(n==="donate") loadDonateMe();
   if(n==="news"){ try{localStorage.setItem("kwSeen",String(noticeKey()))}catch(e){} $("ncnt").hidden=true; badge(); }
 }
 document.querySelectorAll("[data-ov]").forEach(b=>b.onclick=()=>openOv(b.dataset.ov));
@@ -289,7 +317,7 @@ addEventListener("keydown",e=>{if(e.key==="Escape"&&cur)openOv("")});
 function badge(){let o=$("newsRi").querySelector(".badge"); if(!$("ncnt").hidden){if(!o){o=document.createElement("i");o.className="badge";$("newsRi").appendChild(o)}}else if(o)o.remove()}
 // ---------------- 런처 상태
 async function tick(){
-  let s; try{s=await(await fetch("/api/state",{cache:"no-store"})).json()}catch(e){wasDown=true;$("stat").textContent=upd?"새 런처로 다시 켜는 중…":"런처가 꺼져 있어요. 다시 실행해 주세요.";$("play").disabled=true;return}
+  let s; try{s=lastState=await(await fetch("/api/state",{cache:"no-store"})).json()}catch(e){wasDown=true;$("stat").textContent=upd?"새 런처로 다시 켜는 중…":"런처가 꺼져 있어요. 다시 실행해 주세요.";$("play").disabled=true;return}
   if(wasDown){location.reload();return}   // 런처가 새 버전으로 다시 켜졌으면 새 화면으로
   upd=/새 런처/.test((s.status||{}).text||"");
   $("addr").textContent=(s.server||{}).online?"서버 열림":"서버 꺼짐"; $("noapp").hidden=s.hasClientId;
@@ -331,6 +359,7 @@ async function infoTick(){
   $("plSub").textContent=`지금 ${ps.length}명 · 최대 ${d.max}명`;
   $("players").innerHTML=ps.length?`<div class="plist">${ps.map(p=>`<div class="pl"><img alt="" src="https://mc-heads.net/avatar/${encodeURIComponent(p.name)}/30" data-fb="hide"><div><b>${esc(p.name)}</b><small style="color:${p.nation?col[p.nation]||"#ccc":"rgba(242,237,226,.38)"}">${esc(p.nation||"방랑자")}</small></div></div>`).join("")}</div>`:`<div class="empty">지금은 아무도 없어요</div>`;
   drawMarks(col);
+  drawDonate(d.donate||{});
   if(first||$("mapimg").dataset.v!==d.map){ if(d.map){$("mapimg").dataset.v=d.map;$("mapimg").src="/api/map.png?v="+encodeURIComponent(d.map)} }
 }
 // ---------------- 지도 (끌어서 옮기기, 휠로 확대)
@@ -393,6 +422,32 @@ function drawSides(col){
   const fe=n=>ev.length?ev.slice(0,n).map(e=>`<div class="ev ${esc(e.kind)}"><div class="w">${ago(e.t)}</div><div class="x">${esc(e.text)}</div></div>`).join(""):`<div class="empty">아직 소식이 없어요. 코어를 점령하거나 공격하면 여기에 떠요.</div>`;
   $("feed").innerHTML=fe(25); $("feed2").innerHTML=fe(40);
 }
+// ---------------- 후원
+const wonF=v=>num(v).toLocaleString("ko-KR")+"원";
+let myName="";
+function titleSpan(t,c){return t?`<span class="tt" style="color:${sc(c)}">『${esc(t)}』</span>`:""}
+function drawDonate(dn){
+  const page=/^https:\/\/ko-fi\.com\/[A-Za-z0-9_\-]+\/?$/.test(dn.page||"")?dn.page:"";
+  $("dGo").disabled=!page; $("dGoNote").textContent=page?"":"서버장이 아직 Ko-fi 페이지를 설정하지 않았어요.";
+  $("dGo").onclick=()=>{if(page)post("/api/open",{url:page})};
+  $("dTiers").innerHTML=(dn.tiers||[]).map(t=>`<div class="tier"><span class="w">${wonF(t.min)} 이상</span>${titleSpan(t.title,t.color)}</div>`).join("")||`<div class="empty">아직 단계가 없어요</div>`;
+  const row=x=>`<div class="dn"><img alt="" src="https://mc-heads.net/avatar/${encodeURIComponent(x.name)}/22" data-fb="hide">${esc(x.name)}<small>${titleSpan(x.title,x.color)}</small></div>`;
+  $("dRecent").innerHTML=(dn.recent||[]).map(row).join("")||`<div class="empty">아직 없어요. 첫 후원자가 되어 주세요!</div>`;
+  $("dHall").innerHTML=(dn.hall||[]).map(row).join("")||`<div class="empty">아직 없어요</div>`;
+}
+async function loadDonateMe(){
+  if(!lastState) await tick();   // 화면을 바로 열었을 때 로그인 상태부터
+  const a=(lastState||{}).account;
+  if(a){myName=a.name;$("dNick").textContent=a.name;$("dCopy").hidden=false;$("dCopy").onclick=()=>{try{navigator.clipboard.writeText(a.name);$("dCopy").textContent="복사됨"}catch(e){}}}
+  else{$("dMe").innerHTML=`<div class="empty">로그인하면 내 누적 후원과 칭호가 보여요.</div>`;return}
+  $("dMe").innerHTML=`<div class="empty">마인크래프트 계정 확인 중…</div>`;
+  let r; try{r=await post("/api/donate/me")}catch(e){r={error:"런처 오류"}}
+  if(r.error){$("dMe").innerHTML=`<div class="empty">${esc(r.error==="login"?"로그인하면 보여요.":r.error)}</div>`;return}
+  const pct=r.nextMin?Math.min(100,Math.round(num(r.total)*100/num(r.nextMin))):100;
+  $("dMe").innerHTML=`<div class="meTotal">${wonF(r.total)}</div><div>${r.title?"지금 칭호 "+titleSpan(r.title,r.color):"아직 칭호가 없어요"}</div>`
+    +(r.nextMin?`<div class="prog"><i style="width:${pct}%"></i></div><div class="exp">다음 단계 『${esc(r.nextTitle)}』까지 ${wonF(num(r.nextMin)-num(r.total))}</div>`:`<div class="exp" style="margin-top:8px">가장 높은 단계예요. 정말 감사합니다!</div>`)
+    +((r.history||[]).length?`<div style="margin-top:12px">${r.history.map(h=>`<div class="dn">${new Date(num(h.t)).toLocaleDateString("ko-KR")}<small>${wonF(h.krw)} · ${esc(h.source)}</small></div>`).join("")}</div>`:"");
+}
 // ---------------- 모드
 let mods=null, openMod="";
 async function loadMods(){
@@ -428,7 +483,7 @@ $("disc").onclick=()=>post("/api/open",{url:discordUrl});
 $("save").onclick=async()=>{await post("/api/config",{memoryMB:+$("mem").value,autoJoin:$("auto").value==="1"});filled=false;tick();$("saved").style.opacity=1;setTimeout(()=>$("saved").style.opacity=0,1600)};
 $("folder").onclick=()=>post("/api/openfolder");
 $("quit").onclick=async()=>{await post("/api/quit");document.body.innerHTML='<div style="padding:44px;color:#f2ede2">런처를 껐어요. 이 창은 닫아도 돼요.</div>'};
-{const h=location.hash.slice(1); if(["map","players","news","settings","mods"].includes(h)) setTimeout(()=>openOv(h),50);}
+{const h=location.hash.slice(1); if(["map","players","news","settings","mods","donate"].includes(h)) setTimeout(()=>openOv(h),50);}
 // 1.2.7 인라인 이벤트 대신 (CSP): 그림 못 불러오면 숨기기, 코어 목록 누르면 그 자리로
 document.addEventListener("error",e=>{const t=e.target;if(!t||t.tagName!=="IMG"||!t.dataset.fb)return;if(t.dataset.fb==="q"){const d=document.createElement("div");d.className="q";d.textContent="?";t.replaceWith(d)}else t.style.visibility="hidden"},true);
 $("coreList").addEventListener("click",e=>{const c=e.target.closest("[data-core]");if(c)focusCore(+c.dataset.core)});
