@@ -128,6 +128,9 @@ button:disabled{cursor:default}
 .fbtn{border:1px solid var(--ink);padding:9px 16px;font-weight:650;font-size:13px;white-space:nowrap;transition:background .15s,color .15s}.fbtn:hover{background:var(--ink);color:#111}
 .cap2{margin:28px 0 6px;font-size:11px;letter-spacing:3px;color:var(--gold);font-weight:600}
 .man{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px;user-select:text}.man:before{content:"";width:6px;height:6px;background:var(--mute);transform:rotate(45deg)}
+.mod .need{color:var(--gold);font-size:12px}
+.sw.forced{opacity:.55}
+.libs{font-size:12px;color:var(--dim);padding:14px 0;line-height:1.6}
 #modNote{font-size:12px;color:var(--dim);margin-top:16px}
 #mapBox{position:relative;overflow:hidden;background:#1d3f86;cursor:grab}
 #mapBox.drag{cursor:grabbing}
@@ -378,11 +381,15 @@ function drawMods(){
   const man=d.manual||[];
   $("modMan").innerHTML=man.length?man.map(f=>`<div class="man">${esc(f)}</div>`).join(""):`<div class="empty">없어요. "모드 폴더 열기"로 연 폴더에 .jar 를 넣으면 다음에 게임을 켤 때 같이 켜져요.</div>`;
   $("modReq").innerHTML=`<b>서버 필수 모드 ${req.length}개</b><span>항상 켜져 있고 자동으로 업데이트돼요</span>`;
-  $("modList").innerHTML=op.length?op.map((m,i)=>`<div class="mod"><div class="ic">${m.icon?`<img alt="" src="${esc(m.icon)}">`:esc((m.name||"?")[0])}</div><div><h5>${esc(m.name)}<small>${esc(m.version)}</small></h5><p>${esc(m.description||"설명이 없어요")}</p></div><button class="sw${m.enabled?" on":""}" data-i="${i}" aria-label="${esc(m.name)} 켜기"></button></div>`).join("")
+  const vis=op.map((m,i)=>({m,i})).filter(x=>!x.m.lib), libs=op.filter(m=>m.lib);
+  $("modList").innerHTML=vis.length?vis.map(({m,i})=>{const forced=!m.enabled&&m.active, why=(m.neededBy||[]).join(", ");
+    return `<div class="mod"><div class="ic">${m.icon?`<img alt="" src="${esc(m.icon)}">`:esc((m.name||"?")[0])}</div><div><h5>${esc(m.name)}<small>${esc(m.version)}</small></h5><p>${esc(m.description||"설명이 없어요")}</p>${forced?`<p class="need">${esc(why)} 에 필요해서 같이 켜져요</p>`:""}</div><button class="sw${m.enabled||m.active?" on":""}${forced?" forced":""}" data-i="${i}" aria-label="${esc(m.name)} 켜기"></button></div>`}).join("")
+    +(libs.length?`<div class="libs">라이브러리 ${libs.length}개 (${libs.map(l=>esc(l.name)).join(", ")}) — 필요한 모드를 켜면 런처가 알아서 같이 받아요</div>`:"")
     :`<div class="empty">아직 서버에 편의성 모드가 없어요.</div>`;
   $("modNote").textContent=d.running?"게임이 켜져 있어요. 바꾼 것은 게임을 끄고 다시 켤 때 적용돼요.":"바꾼 것은 다음에 게임을 켤 때 적용돼요. 직접 mods 폴더에 넣은 모드는 건드리지 않아요.";
-  document.querySelectorAll(".sw").forEach(b=>b.onclick=async()=>{const m=op[+b.dataset.i];m.enabled=!m.enabled;b.classList.toggle("on",m.enabled);
-    const r=await(await fetch("/api/mods",{method:"POST",headers:{"X-KW-Token":TOKEN,"Content-Type":"application/json"},body:JSON.stringify({id:m.id,on:m.enabled})})).json();mods=r;});
+  document.querySelectorAll(".sw").forEach(b=>b.onclick=async()=>{const m=op[+b.dataset.i];const on=!(m.enabled||m.active)||(!m.enabled&&m.active);
+    if(!m.enabled&&m.active){$("modNote").textContent=`${m.name} 은(는) ${(m.neededBy||[]).join(", ")} 에 필요해서 끌 수 없어요. 그 모드를 먼저 꺼 주세요.`;return}
+    mods=await(await fetch("/api/mods",{method:"POST",headers:{"X-KW-Token":TOKEN,"Content-Type":"application/json"},body:JSON.stringify({id:m.id,on:!m.enabled})})).json();drawMods();});
 }
 // ---------------- 버튼
 $("play").onclick=async()=>{$("play").disabled=true;await post("/api/play");tick()};

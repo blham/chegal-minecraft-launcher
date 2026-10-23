@@ -226,15 +226,48 @@ type ModFile struct {
 
 // 편의성 모드 (서버 plugins/KoreaWar/mod/optional): 사람마다 런처 "모드" 화면에서 켜고 끔
 type OptMod struct {
-	File        string `json:"file"`
-	Sha1        string `json:"sha1"`
-	Size        int64  `json:"size"`
-	ID          string `json:"id"`
-	Name        string `json:"name"`
-	Version     string `json:"version"`
-	Description string `json:"description"`
-	Icon        string `json:"icon,omitempty"`
-	On          bool   `json:"on"` // 서버가 정한 처음 값
+	File        string   `json:"file"`
+	Sha1        string   `json:"sha1"`
+	Size        int64    `json:"size"`
+	ID          string   `json:"id"`
+	Name        string   `json:"name"`
+	Version     string   `json:"version"`
+	Description string   `json:"description"`
+	Icon        string   `json:"icon,omitempty"`
+	On          bool     `json:"on"` // 서버가 정한 처음 값
+	Depends     []string `json:"depends"`
+	Lib         bool     `json:"lib"` // 라이브러리: 목록에 안 보이고 필요할 때만 같이 받음
+}
+
+// 실제로 받을 편의성 모드 (id): 켠 것 + 그것들이 필요로 하는 것(줄줄이). neededBy[id] = 그걸 필요로 하는 켠 모드 이름들
+func optActive(man *Manifest) (active map[string]bool, neededBy map[string][]string) {
+	active, neededBy = map[string]bool{}, map[string][]string{}
+	byID := map[string]OptMod{}
+	for _, m := range man.Optional {
+		byID[m.ID] = m
+	}
+	var queue []string
+	for _, m := range man.Optional {
+		if !m.Lib && optEnabled(m) {
+			active[m.ID] = true
+			queue = append(queue, m.ID)
+		}
+	}
+	for len(queue) > 0 {
+		id := queue[0]
+		queue = queue[1:]
+		for _, d := range byID[id].Depends {
+			if _, ok := byID[d]; !ok {
+				continue
+			}
+			neededBy[d] = append(neededBy[d], byID[id].Name)
+			if !active[d] {
+				active[d] = true
+				queue = append(queue, d)
+			}
+		}
+	}
+	return
 }
 
 func optEnabled(m OptMod) bool {
@@ -747,8 +780,9 @@ func syncMods(man *Manifest) error {
 		want[m.File] = true
 		tasks = append(tasks, dlTask{URL: filesBase() + "/mod/" + m.File, Path: filepath.Join(modsDir, m.File), Sha1: m.Sha1, Size: m.Size})
 	}
+	active, _ := optActive(man)
 	for _, m := range man.Optional {
-		if m.File == "" || strings.ContainsAny(m.File, `/\`) || want[m.File] || !optEnabled(m) {
+		if m.File == "" || strings.ContainsAny(m.File, `/\`) || want[m.File] || !active[m.ID] {
 			continue
 		}
 		want[m.File] = true

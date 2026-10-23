@@ -147,13 +147,16 @@ func registerAPI(mux *http.ServeMux) {
 		}
 		type row struct {
 			OptMod
-			Enabled bool `json:"enabled"`
+			Enabled  bool     `json:"enabled"`
+			Active   bool     `json:"active"`
+			NeededBy []string `json:"neededBy"`
 		}
 		out := []row{}
 		var req []string
 		if m != nil {
+			act, nb := optActive(m)
 			for _, o := range m.Optional {
-				out = append(out, row{o, optEnabled(o)})
+				out = append(out, row{o, optEnabled(o), act[o.ID], nb[o.ID]})
 			}
 			for _, f := range m.Mods {
 				req = append(req, f.File)
