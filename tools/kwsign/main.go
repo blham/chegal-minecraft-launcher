@@ -19,15 +19,84 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"time"
 )
 
+// v2 (런처 1.2.7~): serial(서명한 시각, 계속 커짐) 로 예전 목록 되돌리기 막기,
+// launcherVersion·clientId·server·blockedMods 도 서명 안에 (서버 정보 바꿔치기 막기)
 type Signed struct {
-	V     int               `json:"v"`
-	Time  string            `json:"time"`
-	Files map[string]string `json:"files"`
+	V               int               `json:"v"`
+	Serial          int64             `json:"serial"`
+	Expires         int64             `json:"expires"` // 이 시각이 지나면 런처가 안 믿음 (120일, 다시 서명하면 연장)
+	Time            string            `json:"time"`
+	LauncherVersion string            `json:"launcherVersion"`
+	ClientID        string            `json:"clientId"`
+	Server          string            `json:"server"`
+	BlockedMods     []string          `json:"blockedMods"`
+	Files           map[string]string `json:"files"`
+}
+
+var launcherFile = regexp.MustCompile(`^(KoreaWarLauncher-[A-Za-z0-9.-]+|KoreaWarSetup(-arm64)?\.exe)$`)
+
+var defaultBlocked = []string{"xaerominimap", "xaerominimapfair", "xaeroworldmap", "xaerolib", "journeymap", "voxelmap", "ftbchunks", "minimap", "mapfrontiers", "worldmap"}
+
+// config.yml 에서 "섹션.키" 값 읽기 (두 단계까지, 글자 또는 목록)
+func yamlGet(lines []string, section, key string) (string, []string, bool) {
+	in := false
+	for i := 0; i < len(lines); i++ {
+		l := strings.TrimRight(lines[i], "\r")
+		if strings.HasPrefix(l, section+":") {
+			in = true
+			continue
+		}
+		if !in {
+			continue
+		}
+		if l != "" && !strings.HasPrefix(l, " ") && !strings.HasPrefix(l, "#") {
+			break
+		}
+		t := strings.TrimSpace(l)
+		if !strings.HasPrefix(t, key+":") || strings.HasPrefix(l, "    ") {
+			continue
+		}
+		v := strings.TrimSpace(strings.TrimPrefix(t, key+":"))
+		if j := strings.Index(v, " #"); j >= 0 && !strings.HasPrefix(v, "\"") {
+			v = strings.TrimSpace(v[:j])
+		}
+		if strings.HasPrefix(v, "[") {
+			v = strings.TrimSuffix(strings.TrimPrefix(v, "["), "]")
+			var out []string
+			for _, x := range strings.Split(v, ",") {
+				if x = strings.Trim(strings.TrimSpace(x), "\"'"); x != "" {
+					out = append(out, x)
+				}
+			}
+			return "", out, true
+		}
+		if v == "" { // 아래 줄에 - 목록
+			var out []string
+			for k := i + 1; k < len(lines); k++ {
+				t2 := strings.TrimSpace(lines[k])
+				if !strings.HasPrefix(t2, "- ") {
+					break
+				}
+				out = append(out, strings.Trim(strings.TrimSpace(t2[2:]), "\"'"))
+			}
+			return "", out, true
+		}
+		if strings.HasPrefix(v, "\"") {
+			if j := strings.Index(v[1:], "\""); j >= 0 {
+				v = v[1 : j+1]
+			}
+		} else {
+			v = strings.Trim(v, "'")
+		}
+		return v, nil, true
+	}
+	return "", nil, false
 }
 
 func exeDir() string {
@@ -104,12 +173,40 @@ func main() {
 	if st, err := os.Stat(filepath.Join(dir, "mod")); err != nil || !st.IsDir() {
 		fail("%s 안에 mod 폴더가 없어요. 서버의 plugins\\KoreaWar 폴더를 골라 주세요.", dir)
 	}
-	s := Signed{V: 1, Time: time.Now().Format(time.RFC3339), Files: map[string]string{}}
+	cb, err := os.ReadFile(filepath.Join(dir, "config.yml"))
+	if err != nil {
+		fail("%s 안에 config.yml 이 없어요. 서버의 plugins\\KoreaWar 폴더를 골라 주세요.", dir)
+	}
+	lines := strings.Split(string(cb), "\n")
+	lv, _, _ := yamlGet(lines, "launcher", "version")
+	if lv == "" {
+		fail("config.yml 의 launcher.version 이 비어 있어요. 지금 런처 버전(예: \"1.2.7\")을 적고 다시 해 주세요.")
+	}
+	cid, _, _ := yamlGet(lines, "launcher", "client-id")
+	srv, _, _ := yamlGet(lines, "launcher", "server-address")
+	blocked := defaultBlocked
+	if en, _, ok := yamlGet(lines, "minimap-block", "enabled"); ok && en == "false" {
+		blocked = []string{}
+	} else if _, ids, ok := yamlGet(lines, "minimap-block", "mod-ids"); ok {
+		blocked = ids
+	}
+	now := time.Now()
+	serial := now.Unix()
+	if ob, err := os.ReadFile(filepath.Join(dir, "launcher", "kw-signed.json")); err == nil { // 시계가 뒤로 가도 번호는 항상 커지게
+		var old Signed
+		if json.Unmarshal(ob, &old) == nil && old.Serial >= serial {
+			serial = old.Serial + 1
+		}
+	}
+	s := Signed{V: 2, Serial: serial, Expires: now.AddDate(0, 0, 120).Unix(), Time: now.Format(time.RFC3339), LauncherVersion: lv, ClientID: cid, Server: srv, BlockedMods: blocked, Files: map[string]string{}}
 	add := func(sub string, onlyJar bool) {
 		es, _ := os.ReadDir(filepath.Join(dir, filepath.FromSlash(sub)))
 		for _, e := range es {
 			n := e.Name()
 			if e.IsDir() || strings.HasPrefix(n, "kw-signed.") || (onlyJar && !strings.HasSuffix(strings.ToLower(n), ".jar")) {
+				continue
+			}
+			if !onlyJar && !launcherFile.MatchString(n) { // 런처 파일만 (서버가 내려주는 것과 같은 규칙)
 				continue
 			}
 			h, err := sha256File(filepath.Join(dir, filepath.FromSlash(sub), n))
@@ -137,11 +234,13 @@ func main() {
 		names = append(names, k)
 	}
 	sort.Strings(names)
+	fmt.Printf("런처 버전 %s, 로그인 앱 ID %q, 접속 주소 %q, 막는 모드 %d개\n", lv, cid, srv, len(blocked))
 	fmt.Printf("서명했어요 (%d개 파일):\n", len(names))
 	for _, n := range names {
 		fmt.Println("  " + n)
 	}
 	fmt.Println("\n→ launcher\\kw-signed.json, kw-signed.sig 를 만들었어요. 서버를 다시 켤 필요는 없어요.")
+	fmt.Printf("이 서명은 %s 까지 유효해요. 그 전에 한 번 더 서명해 주세요 (서버 콘솔에도 미리 알려 줘요).\n", time.Unix(s.Expires, 0).Format("2006-01-02"))
 	if len(args) == 0 || os.Getenv("KW_SIGN_NOPAUSE") == "" {
 		pause()
 	}

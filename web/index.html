@@ -262,8 +262,11 @@ option{background:#16181d}
   </div></div>
 </section>
 
-<script>
+<script nonce="__NONCE__">
 const TOKEN="__TOKEN__", $=id=>document.getElementById(id);
+// 1.2.7 서버가 주는 색은 #rrggbb 만 (그 밖의 글자가 style 에 들어가지 않게)
+const sc=c=>/^#[0-9a-fA-F]{6}$/.test(String(c||""))?c:"#888888";
+const num=v=>{const n=Number(v);return Number.isFinite(n)?Math.round(n):0};
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 async function post(p,b){return (await fetch(p,{method:"POST",headers:{"X-KW-Token":TOKEN,"Content-Type":"application/json"},body:JSON.stringify(b||{})})).json()}
 let wasDown=false, upd=false, filled=false, info=null, discordUrl="", cur="";
@@ -294,10 +297,10 @@ async function tick(){
   if(!info){ $("cnt").textContent=sv.online?sv.players:"-"; $("cntmax").textContent=sv.online?" / "+sv.max:""; }
   $("motd").textContent=sv.online?(sv.motd||""):"서버가 꺼져 있어요";
   const a=s.account;
-  $("acct").innerHTML=a?`<div><div class="n">${esc(a.name)}</div><div class="k">마이크로소프트 계정 · <button id="logout">로그아웃</button></div></div><div id="avatar"><img alt="" src="https://mc-heads.net/head/${esc(a.uuid)}/58" onerror="this.outerHTML='<div class=q>?</div>'"></div>`
+  $("acct").innerHTML=a?`<div><div class="n">${esc(a.name)}</div><div class="k">마이크로소프트 계정 · <button id="logout">로그아웃</button></div></div><div id="avatar"><img alt="" src="https://mc-heads.net/head/${esc(a.uuid)}/58" data-fb="q"></div>`
    :`<div><div class="n">로그인이 필요해요</div><div class="k">마인크래프트 자바 에디션</div></div><button id="loginBtn" ${s.hasClientId?"":"disabled"}>로그인</button>`;
   if(a)$("logout").onclick=async()=>{await post("/api/logout");tick()};
-  else $("loginBtn").onclick=async()=>{const r=await post("/api/login");if(r.url)location.href=r.url;else if(r.error){$("autherr").hidden=false;$("autherr").textContent=r.error}};
+  else $("loginBtn").onclick=async()=>{const r=await post("/api/login");if(r.opened){$("autherr").hidden=false;$("autherr").textContent="브라우저에서 마이크로소프트 로그인을 마치면 여기로 자동으로 돌아와요."}else if(r.error){$("autherr").hidden=false;$("autherr").textContent=r.error}};
   $("autherr").hidden=!s.authError; if(s.authError)$("autherr").textContent=s.authError;
   const st=s.status||{}, busy=st.phase==="prepare";
   $("play").disabled=!a||busy||s.running; $("playTxt").textContent=s.running?"게임 실행 중":busy?"준비 중":!a?"로그인 후 시작":"게임 시작";
@@ -323,10 +326,10 @@ async function infoTick(){
   $("notice").innerHTML=ns.length?ns.map(n=>`<div class="notice"><div class="d">${esc(n.date)}</div><h4>${esc(n.title)}</h4><p>${esc(n.text)}</p></div>`).join(""):`<div class="empty">공지가 없어요</div>`;
   let seen=""; try{seen=localStorage.getItem("kwSeen")||""}catch(e){}
   if(ns.length&&seen!==noticeKey()&&cur!=="news"){$("ncnt").hidden=false} badge();
-  const col={}; (d.nations||[]).forEach(n=>col[n.name]=n.color);
+  const col={}; (d.nations||[]).forEach(n=>col[n.name]=sc(n.color));
   const ps=d.players||[];
   $("plSub").textContent=`지금 ${ps.length}명 · 최대 ${d.max}명`;
-  $("players").innerHTML=ps.length?`<div class="plist">${ps.map(p=>`<div class="pl"><img alt="" src="https://mc-heads.net/avatar/${encodeURIComponent(p.name)}/30" onerror="this.style.visibility='hidden'"><div><b>${esc(p.name)}</b><small style="color:${p.nation?col[p.nation]||"#ccc":"rgba(242,237,226,.38)"}">${esc(p.nation||"방랑자")}</small></div></div>`).join("")}</div>`:`<div class="empty">지금은 아무도 없어요</div>`;
+  $("players").innerHTML=ps.length?`<div class="plist">${ps.map(p=>`<div class="pl"><img alt="" src="https://mc-heads.net/avatar/${encodeURIComponent(p.name)}/30" data-fb="hide"><div><b>${esc(p.name)}</b><small style="color:${p.nation?col[p.nation]||"#ccc":"rgba(242,237,226,.38)"}">${esc(p.nation||"방랑자")}</small></div></div>`).join("")}</div>`:`<div class="empty">지금은 아무도 없어요</div>`;
   drawMarks(col);
   if(first||$("mapimg").dataset.v!==d.map){ if(d.map){$("mapimg").dataset.v=d.map;$("mapimg").src="/api/map.png?v="+encodeURIComponent(d.map)} }
 }
@@ -358,13 +361,13 @@ $("zin").onclick=()=>zoomAt(1.5,...mid()); $("zout").onclick=()=>zoomAt(1/1.5,..
 addEventListener("resize",()=>{sizeMap();fitMap(true)});
 function drawMarks(col){
   if(!info||!info.bounds) return; const img=$("mapimg");
-  col=col||{}; (info.nations||[]).forEach(n=>col[n.name]=n.color);
+  col=col||{}; (info.nations||[]).forEach(n=>col[n.name]=sc(n.color));
   drawSides(col); if(!img.naturalWidth) return;
   const b=info.bounds, W=img.naturalWidth, H=img.naturalHeight;
   $("marks").innerHTML=(info.cores||[]).map((c,i)=>{const x=(c.x-b.minX)/b.width*W, y=(c.z-b.minZ)/b.height*H, cl=c.owner?(col[c.owner]||"#ccc"):"#8a8a8a";
     return `<div class="core" data-i="${i}" style="left:${x}px;top:${y}px"><i style="background:${cl}"></i><span>${esc(c.name)}</span></div>`}).join("");
   document.querySelectorAll(".core").forEach(m=>{
-    m.onpointerenter=()=>{const c=info.cores[+m.dataset.i];$("tip").style.display="block";$("tip").innerHTML=`<b>${esc(c.name)}</b><br>주인: ${esc(c.owner||"없음")}<br>체력: ${c.hp} / ${c.maxHp}<br>좌표: ${c.x}, ${c.z}`};
+    m.onpointerenter=()=>{const c=info.cores[+m.dataset.i];$("tip").style.display="block";$("tip").innerHTML=`<b>${esc(c.name)}</b><br>주인: ${esc(c.owner||"없음")}<br>체력: ${num(c.hp)} / ${num(c.maxHp)}<br>좌표: ${num(c.x)}, ${num(c.z)}`};
     m.onpointermove=e=>{const r=$("mapBox").getBoundingClientRect();$("tip").style.left=(e.clientX-r.left+14)+"px";$("tip").style.top=(e.clientY-r.top+14)+"px"};
     m.onpointerleave=()=>$("tip").style.display="none";
   });
@@ -377,15 +380,15 @@ function focusCore(i){const c=info.cores[i],b=info.bounds,img=$("mapimg");if(!c|
   const m=document.querySelector(`.core[data-i="${i}"] i`);if(m){m.animate([{transform:"rotate(45deg) scale(1)"},{transform:"rotate(45deg) scale(2.2)"},{transform:"rotate(45deg) scale(1)"}],{duration:700,iterations:2})}}
 function drawSides(col){
   const cores=info.cores||[], ps=info.players||[];
-  const nat=(info.nations||[]).map(n=>({n:n.name,c:n.color,cores:cores.filter(x=>x.owner===n.name).length,on:ps.filter(p=>p.nation===n.name).length}));
+  const nat=(info.nations||[]).map(n=>({n:n.name,c:sc(n.color),cores:cores.filter(x=>x.owner===n.name).length,on:ps.filter(p=>p.nation===n.name).length}));
   nat.sort((a,b)=>b.cores-a.cores||b.on-a.on);
   const free=cores.filter(x=>!x.owner).length;
   $("nat").innerHTML=(nat.length?nat.map((n,i)=>`<div class="nat"><div class="tt"><b style="background:${n.c}"></b>${esc(n.n)}<span class="rank">${i+1}위</span></div><div class="r"><span>코어 ${n.cores}</span><span>접속 ${n.on}</span></div><div class="share"><i style="width:${cores.length?Math.round(n.cores*100/cores.length):0}%;background:${n.c}"></i></div></div>`).join(""):`<div class="empty">아직 국가가 없어요</div>`)
     +`<div class="nat"><div class="tt"><b style="background:#8a8a8a"></b>주인 없음</div><div class="r"><span>코어 ${free}</span></div></div>`;
   $("coreList").innerHTML=cores.map((c,i)=>({c,i})).sort((a,b)=>(a.c.owner||"~").localeCompare(b.c.owner||"~")).map(({c,i})=>{const cl=c.owner?(col[c.owner]||"#ccc"):"#8a8a8a",pct=c.maxHp?Math.round(c.hp*100/c.maxHp):0;
-    return `<div class="ci" onclick="focusCore(${i})"><div class="tt"><b style="background:${cl}"></b>${esc(c.name)}<small>${esc(c.owner||"주인 없음")}</small></div><div class="hp"><i style="width:${pct}%;background:${pct<35?"#e0533b":pct<70?"#e2b45a":"#7bd389"}"></i></div></div>`}).join("");
+    return `<div class="ci" data-core="${i}"><div class="tt"><b style="background:${cl}"></b>${esc(c.name)}<small>${esc(c.owner||"주인 없음")}</small></div><div class="hp"><i style="width:${pct}%;background:${pct<35?"#e0533b":pct<70?"#e2b45a":"#7bd389"}"></i></div></div>`}).join("");
   $("mTaken").innerHTML=`${cores.length-free}<span style="font-size:13px;color:var(--mute);font-weight:400"> / ${cores.length}</span>`; $("mOn").textContent=ps.length;
-  $("natPl").innerHTML=ps.length?ps.map(p=>`<div class="mini"><img alt="" src="https://mc-heads.net/avatar/${encodeURIComponent(p.name)}/20" onerror="this.style.visibility='hidden'">${esc(p.name)}<small style="color:${p.nation?col[p.nation]||"#ccc":"var(--dim)"}">${esc(p.nation||"방랑자")}</small></div>`).join(""):`<div class="empty">지금은 아무도 없어요</div>`;
+  $("natPl").innerHTML=ps.length?ps.map(p=>`<div class="mini"><img alt="" src="https://mc-heads.net/avatar/${encodeURIComponent(p.name)}/20" data-fb="hide">${esc(p.name)}<small style="color:${p.nation?col[p.nation]||"#ccc":"var(--dim)"}">${esc(p.nation||"방랑자")}</small></div>`).join(""):`<div class="empty">지금은 아무도 없어요</div>`;
   const ev=info.events||[];
   const fe=n=>ev.length?ev.slice(0,n).map(e=>`<div class="ev ${esc(e.kind)}"><div class="w">${ago(e.t)}</div><div class="x">${esc(e.text)}</div></div>`).join(""):`<div class="empty">아직 소식이 없어요. 코어를 점령하거나 공격하면 여기에 떠요.</div>`;
   $("feed").innerHTML=fe(25); $("feed2").innerHTML=fe(40);
@@ -393,7 +396,7 @@ function drawSides(col){
 // ---------------- 모드
 let mods=null, openMod="";
 async function loadMods(){
-  let d; try{d=await(await fetch("/api/mods",{cache:"no-store"})).json()}catch(e){return}
+  let d; try{d=await(await fetch("/api/mods",{cache:"no-store",headers:{"X-KW-Token":TOKEN}})).json()}catch(e){return}
   mods=d; drawMods();
 }
 function drawMods(){
@@ -426,6 +429,9 @@ $("save").onclick=async()=>{await post("/api/config",{memoryMB:+$("mem").value,a
 $("folder").onclick=()=>post("/api/openfolder");
 $("quit").onclick=async()=>{await post("/api/quit");document.body.innerHTML='<div style="padding:44px;color:#f2ede2">런처를 껐어요. 이 창은 닫아도 돼요.</div>'};
 {const h=location.hash.slice(1); if(["map","players","news","settings","mods"].includes(h)) setTimeout(()=>openOv(h),50);}
+// 1.2.7 인라인 이벤트 대신 (CSP): 그림 못 불러오면 숨기기, 코어 목록 누르면 그 자리로
+document.addEventListener("error",e=>{const t=e.target;if(!t||t.tagName!=="IMG"||!t.dataset.fb)return;if(t.dataset.fb==="q"){const d=document.createElement("div");d.className="q";d.textContent="?";t.replaceWith(d)}else t.style.visibility="hidden"},true);
+$("coreList").addEventListener("click",e=>{const c=e.target.closest("[data-core]");if(c)focusCore(+c.dataset.core)});
 tick(); setInterval(tick,1000); infoTick(); setInterval(infoTick,5000);
 </script>
 </body>

@@ -23,7 +23,7 @@ import (
 
 // 빌드할 때 -ldflags "-X main.defaultHost=... -X main.defaultClientID=..." 로 바꿀 수 있음
 var (
-	LauncherVersion  = "1.2.6"
+	LauncherVersion  = "1.2.7"
 	defaultHost      = "" // 빌드할 때 -ldflags "-X main.defaultHost=서버주소" 로 넣음 (소스에 IP 를 안 남기려고)
 	defaultGamePort  = "25565"
 	defaultFilesPort = "8163"
@@ -190,7 +190,9 @@ func main() {
 	}
 	if err != nil { // 이미 켜져 있음: 그 창만 다시 열기
 		logger.Printf("이미 켜져 있음: %v", err)
-		if resp, err := httpc.Get(ui + "api/show"); err == nil { // 이미 켜진 런처에게 창을 다시 열라고
+		req, _ := http.NewRequest("POST", ui+"api/show", nil) // 이미 켜진 런처에게 창을 다시 열라고 (그 런처의 토큰으로)
+		req.Header.Set("X-KW-Token", runningToken())
+		if resp, err := httpc.Do(req); err == nil && resp.StatusCode == 200 {
 			resp.Body.Close()
 		} else {
 			openBrowser(ui)
@@ -208,9 +210,18 @@ func main() {
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/" || r.URL.Path == "/index.html" {
 			b, _ := webFS.ReadFile("web/index.html")
+			nb := make([]byte, 16)
+			_, _ = rand.Read(nb)
+			nonce := hex.EncodeToString(nb)
 			w.Header().Set("Content-Type", "text/html; charset=utf-8")
 			w.Header().Set("Cache-Control", "no-store")
-			_, _ = w.Write([]byte(strings.Replace(string(b), "__TOKEN__", apiToken, 1)))
+			// 1.2.7 화면 보안 규칙: 이 화면이 직접 넣은 스크립트(nonce)만 실행, 외부로 요청·이동 못 함
+			w.Header().Set("Content-Security-Policy", "default-src 'self'; script-src 'nonce-"+nonce+"'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://mc-heads.net; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'")
+			w.Header().Set("X-Frame-Options", "DENY")
+			w.Header().Set("Referrer-Policy", "no-referrer")
+			html := strings.Replace(string(b), "__TOKEN__", apiToken, 1)
+			html = strings.Replace(html, "__NONCE__", nonce, 1)
+			_, _ = w.Write([]byte(html))
 			return
 		}
 		static.ServeHTTP(w, r)
@@ -239,10 +250,12 @@ func main() {
 		openWindow(ui)
 	}
 	go func() { // 1.2.4 켤 때 한 번 + 켜 둔 동안 10분마다 (서버가 새 런처를 올리면 게임 중이 아닐 때 바로 바뀜)
+		_, _ = fetchManifest() // 로그인 앱 ID·접속 주소 등 (서명된 값) 미리
 		checkUpdate()
 		for {
 			time.Sleep(10 * time.Minute)
 			if !gameRunning() && !busy() {
+				_, _ = fetchManifest()
 				checkUpdate()
 			}
 		}

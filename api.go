@@ -82,7 +82,8 @@ func registerAPI(mux *http.ServeMux) {
 			return
 		}
 		authError = ""
-		writeJSON(w, map[string]string{"url": u})
+		openBrowser(u) // 1.2.7 주소창이 보이는 기본 브라우저에서 로그인 (런처 창 안에서는 진짜 마이크로소프트인지 확인할 수 없어서)
+		writeJSON(w, map[string]bool{"opened": true})
 	}))
 	mux.HandleFunc("/api/logout", guard(func(w http.ResponseWriter, r *http.Request) {
 		logout()
@@ -123,11 +124,11 @@ func registerAPI(mux *http.ServeMux) {
 	}))
 	// 편의성 모드 목록 (서버에서 새로 받아 봄, 못 받으면 마지막 것)
 	mux.HandleFunc("/api/mods", func(w http.ResponseWriter, r *http.Request) {
+		if r.Header.Get("X-KW-Token") != apiToken { // 1.2.7 읽기(서버에서 새로 받음)도 토큰 있어야
+			http.Error(w, "forbidden", 403)
+			return
+		}
 		if r.Method == "POST" {
-			if r.Header.Get("X-KW-Token") != apiToken {
-				http.Error(w, "forbidden", 403)
-				return
-			}
 			var in struct {
 				ID string `json:"id"`
 				On bool   `json:"on"`
@@ -229,10 +230,10 @@ func registerAPI(mux *http.ServeMux) {
 		writeJSON(w, map[string]bool{"ok": true})
 		go func() { time.Sleep(200 * time.Millisecond); os.Exit(0) }()
 	})
-	mux.HandleFunc("/api/show", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/api/show", guard(func(w http.ResponseWriter, r *http.Request) { // 1.2.7 토큰 있어야 (아무 사이트나 창을 띄우지 못하게)
 		openWindow(fmt.Sprintf("http://localhost:%d/", uiPort))
 		writeJSON(w, map[string]bool{"ok": true})
-	})
+	}))
 	// 1.0.2 서버 화면 정보 (접속자·코어·공지·디스코드), 고화질 지도
 	mux.HandleFunc("/api/info", func(w http.ResponseWriter, r *http.Request) {
 		b, err := serverInfo()
@@ -268,14 +269,7 @@ func registerAPI(mux *http.ServeMux) {
 			URL string `json:"url"`
 		}
 		_ = json.NewDecoder(io.LimitReader(r.Body, 4096)).Decode(&in)
-		ok := regexp.MustCompile(`^https://(discord\.gg|discord\.com|(www\.)?github\.com|modrinth\.com|(www\.)?curseforge\.com)/[A-Za-z0-9/_\-.]+$`).MatchString(in.URL)
-		if m := cachedManifest(); !ok && m != nil { // 서버가 알려 준 모드 페이지
-			for _, o := range m.Optional {
-				if o.Link != "" && o.Link == in.URL && strings.HasPrefix(o.Link, "https://") {
-					ok = true
-				}
-			}
-		}
+		ok := regexp.MustCompile(`^https://(discord\.gg|discord\.com|(www\.)?github\.com|modrinth\.com|(www\.)?curseforge\.com)/[A-Za-z0-9/_\-.]+$`).MatchString(in.URL) // 1.2.7 정해진 곳만
 		if ok {
 			openBrowser(in.URL)
 		}
@@ -452,8 +446,16 @@ func serverInfo() ([]byte, error) {
 		return nil, err
 	}
 	infoCache, infoAt = b, time.Now()
+	var mv struct {
+		Map string `json:"map"`
+	}
+	if json.Unmarshal(b, &mv) == nil {
+		curMapV = mv.Map
+	}
 	return b, nil
 }
+
+var curMapV string // 1.2.7 서버가 알려 준 지금 지도 판 (그 판만 받음)
 
 var mapMu sync.Mutex
 
@@ -466,8 +468,24 @@ func mapImage(v string) (string, error) {
 	if st, err := os.Stat(p); err == nil && st.Size() > 0 && safe != "" {
 		return p, nil
 	}
+	if safe == "" || len(safe) > 80 {
+		return "", fmt.Errorf("bad")
+	}
+	infoMu.Lock()
+	cur := curMapV
+	infoMu.Unlock()
+	if v != cur { // 아무 사이트가 v 를 바꿔 가며 계속 받게 하지 못하게
+		return "", fmt.Errorf("not current")
+	}
 	if err := download(dlTask{URL: filesBase() + "/launcher/map.png", Path: p}); err != nil {
 		return "", err
+	}
+	if old, _ := filepath.Glob(dirs("cache", "map-*.png")); len(old) > 0 { // 1.2.7 지금 것만 남김 (캐시가 끝없이 쌓이지 않게)
+		for _, o := range old {
+			if o != p {
+				_ = os.Remove(o)
+			}
+		}
 	}
 	return p, nil
 }

@@ -16,6 +16,9 @@ func exportMods() (string, error) {
 	if err != nil {
 		return "", err
 	}
+	if _, err := fetchSignedDoc(); err != nil { // 서명 문제면 그 이유를 그대로
+		return "", err
+	}
 	if len(man.Mods) == 0 {
 		return "", fmt.Errorf("서버에 필수 모드가 없어요")
 	}
@@ -49,7 +52,17 @@ func exportMods() (string, error) {
 			ver = strings.TrimSuffix(strings.TrimPrefix(m.File, "koreawar-mod-"), ".jar")
 		}
 	}
-	out := filepath.Join(outDir, fmt.Sprintf("KoreaWar-mods-%s-mc%s.zip", ver, man.Minecraft))
+	if !verRe.MatchString(ver) { // 1.2.7 파일 이름에 들어가는 글자는 엄격히 (다운로드 폴더 밖으로 못 나가게)
+		ver = "mods"
+	}
+	mc := man.Minecraft
+	if !verRe.MatchString(mc) {
+		mc = "unknown"
+	}
+	out := filepath.Join(outDir, fmt.Sprintf("KoreaWar-mods-%s-mc%s.zip", ver, mc))
+	if filepath.Dir(out) != filepath.Clean(outDir) {
+		return "", fmt.Errorf("파일 이름이 이상해요")
+	}
 	f, err := os.Create(out)
 	if err != nil {
 		return "", fmt.Errorf("파일을 만들지 못했어요: %v", err)

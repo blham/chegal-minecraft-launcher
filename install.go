@@ -331,6 +331,8 @@ func cachedManifest() *Manifest {
 	if manifest == nil {
 		var m Manifest
 		if b, err := os.ReadFile(filepath.Join(dataDir, "manifest.json")); err == nil && json.Unmarshal(b, &m) == nil {
+			// 1.2.7 디스크에 남은 것은 다시 확인할 수 없으니 보안 값은 버림 (서버에서 새로 받으면 서명된 값으로 채워짐)
+			m.Launcher, m.ClientID, m.Server, m.BlockedMods, m.Mods = "", "", "", nil, nil
 			manifest = &m
 		}
 	}
@@ -348,6 +350,14 @@ func fetchManifest() (*Manifest, error) {
 	if m.Minecraft == "" {
 		m.Minecraft = "26.3"
 	}
+	// 1.2.7 버전 글자는 엄격히 (경로·주소에 쓰이므로)
+	if !verRe.MatchString(m.Minecraft) {
+		return nil, fmt.Errorf("서버가 알려 준 마인크래프트 버전이 이상해요")
+	}
+	if m.FabricLoader != "" && !verRe.MatchString(m.FabricLoader) {
+		return nil, fmt.Errorf("서버가 알려 준 Fabric 버전이 이상해요")
+	}
+	applySigned(&m)
 	b, _ := json.MarshalIndent(m, "", "  ")
 	_ = os.WriteFile(filepath.Join(dataDir, "manifest.json"), b, 0o644)
 	manifestMu.Lock()
@@ -569,6 +579,9 @@ func prepare() (*Prepared, error) {
 	ver := &base
 	if man.FabricLoader != "" {
 		var fab VersionJSON
+		if !verRe.MatchString(man.FabricLoader) || !verRe.MatchString(mcv) { // 1.2.7 경로·주소에 들어가므로
+			return nil, fmt.Errorf("서버가 알려 준 버전 글자가 이상해요")
+		}
 		fid := "fabric-loader-" + man.FabricLoader + "-" + mcv
 		fpath := dirs("versions", fid, fid+".json")
 		furl := "https://meta.fabricmc.net/v2/versions/loader/" + mcv + "/" + man.FabricLoader + "/profile/json"

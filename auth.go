@@ -11,6 +11,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"html"
 	"io"
 	"net/http"
 	"net/url"
@@ -105,7 +106,7 @@ func clientID() string {
 	if c := getCfg().ClientID; c != "" {
 		return c
 	}
-	if m := cachedManifest(); m != nil && m.ClientID != "" {
+	if m := cachedManifest(); m != nil && m.ClientID != "" { // 1.2.7 manifest 의 이 값은 서명된 것으로 바뀌어 있음
 		return m.ClientID
 	}
 	return defaultClientID
@@ -149,21 +150,32 @@ func beginLogin() (string, error) {
 
 func handleAuthCallback(w http.ResponseWriter, r *http.Request) {
 	q := r.URL.Query()
+	// 1.2.7 로그인은 기본 브라우저에서 하므로 결과는 짧은 안내 페이지로 (런처 창은 상태를 보고 알아서 바뀜)
+	page := func(ok bool, msg string) {
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		w.Header().Set("Content-Security-Policy", "default-src 'none'; style-src 'unsafe-inline'")
+		t := "로그인했어요"
+		if !ok {
+			t = "로그인하지 못했어요"
+		}
+		_, _ = fmt.Fprintf(w, `<!doctype html><meta charset="utf-8"><title>Korea War</title><body style="font-family:sans-serif;background:#111;color:#eee;display:grid;place-items:center;height:90vh;margin:0"><div style="text-align:center"><h2>%s</h2><p>%s</p><p style="color:#999">이 탭은 닫고 Korea War 런처로 돌아가세요.</p></div>`, html.EscapeString(t), html.EscapeString(msg))
+	}
 	back := func(msg string) {
 		authError = msg
-		http.Redirect(w, r, "/", http.StatusFound)
+		page(false, msg)
 	}
-	if e := q.Get("error"); e != "" {
-		logger.Printf("로그인 취소/실패: %s %s", e, q.Get("error_description"))
-		back("로그인이 취소되었거나 실패했어요: " + q.Get("error_description"))
-		return
-	}
+	// 확인 값(state)이 맞는 로그인에서 온 것만 처리 (아무 사이트나 오류 글을 띄우지 못하게)
 	pendMu.Lock()
 	verifier, ok := pending[q.Get("state")]
 	delete(pending, q.Get("state"))
 	pendMu.Unlock()
 	if !ok {
-		back("로그인 확인 값이 맞지 않아요. 다시 로그인해 주세요.")
+		page(false, "확인 값이 맞지 않아요. 런처에서 다시 로그인해 주세요.")
+		return
+	}
+	if e := q.Get("error"); e != "" {
+		logger.Printf("로그인 취소/실패: %s", e)
+		back("로그인이 취소되었거나 실패했어요.")
 		return
 	}
 	form := url.Values{}
@@ -183,7 +195,7 @@ func handleAuthCallback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	authError = ""
-	http.Redirect(w, r, "/", http.StatusFound)
+	page(true, "Korea War 런처에 로그인됐어요.")
 }
 
 type msTok struct {

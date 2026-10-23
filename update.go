@@ -45,19 +45,19 @@ func checkUpdate() {
 	if devOffline != "" && os.Getenv("KW_TEST_UPDATE") == "" {
 		return
 	}
-	man, err := fetchManifest()
-	if err != nil || man.Launcher == "" || !verLess(LauncherVersion, man.Launcher) {
+	doc, err := fetchSignedDoc() // 1.2.7 업데이트 여부·파일 모두 서명된 값으로만
+	if err != nil {
+		logger.Printf("런처 업데이트 확인 안 함: %v", err)
+		return
+	}
+	target := doc.LauncherVersion
+	if target == "" || !verLess(LauncherVersion, target) { // 같거나 낮은 버전으로는 절대 안 바꿈
 		return
 	}
 	name := updateAssetName()
-	signed, err := fetchSigned()
-	if err != nil {
-		logger.Printf("런처 업데이트 안 함: %v", err)
-		return
-	}
-	sha := signed["launcher/"+name] // 1.2.6 서명된 것만
+	sha := doc.Files["launcher/"+name]
 	if sha == "" {
-		logger.Printf("새 런처 %s 이 있지만 %s 에 서명이 없음", man.Launcher, name)
+		logger.Printf("새 런처 %s 이 있지만 %s 에 서명이 없음", target, name)
 		return
 	}
 	if gameRunning() || busy() {
@@ -65,7 +65,7 @@ func checkUpdate() {
 	}
 	exe := selfExe()
 	tmp := exe + ".new"
-	setStatus("prepare", "새 런처 "+man.Launcher+" 받는 중", 0)
+	setStatus("prepare", "새 런처 "+target+" 받는 중", 0)
 	if err := download(dlTask{URL: filesBase() + "/launcher/" + name, Path: tmp, Sha256: sha}); err != nil {
 		logger.Printf("런처 업데이트 받기 실패: %v", err)
 		setStatus("idle", "", 0)
@@ -85,8 +85,8 @@ func checkUpdate() {
 		setStatus("idle", "", 0)
 		return
 	}
-	logger.Printf("런처 %s -> %s 로 바꿈, 다시 켬", LauncherVersion, man.Launcher)
-	setStatus("prepare", "새 런처 "+man.Launcher+" 로 다시 켜는 중", 0)
+	logger.Printf("런처 %s -> %s 로 바꿈, 다시 켬", LauncherVersion, target)
+	setStatus("prepare", "새 런처 "+target+" 로 다시 켜는 중", 0)
 	time.Sleep(700 * time.Millisecond) // 화면이 글을 한 번 보게
 	if restartHook != nil {
 		restartHook()
