@@ -61,7 +61,7 @@ func registerAPI(mux *http.ServeMux) {
 		c := getCfg()
 		m := cachedManifest()
 		newer := ""
-		if m != nil && m.Launcher != "" && m.Launcher != LauncherVersion {
+		if m != nil && m.Launcher != "" && verLess(LauncherVersion, m.Launcher) {
 			newer = m.Launcher
 		}
 		writeJSON(w, map[string]any{
@@ -118,6 +118,38 @@ func registerAPI(mux *http.ServeMux) {
 	}))
 	mux.HandleFunc("/api/openfolder", guard(func(w http.ResponseWriter, r *http.Request) {
 		openBrowser(gameDir())
+		writeJSON(w, map[string]bool{"ok": true})
+	}))
+	mux.HandleFunc("/api/show", func(w http.ResponseWriter, r *http.Request) {
+		openWindow(fmt.Sprintf("http://localhost:%d/", uiPort))
+		writeJSON(w, map[string]bool{"ok": true})
+	})
+	// 1.0.2 서버 화면 정보 (접속자·코어·공지·디스코드), 고화질 지도
+	mux.HandleFunc("/api/info", func(w http.ResponseWriter, r *http.Request) {
+		b, err := serverInfo()
+		if err != nil {
+			writeJSON(w, map[string]string{"error": err.Error()})
+			return
+		}
+		w.Header().Set("Content-Type", "application/json; charset=utf-8")
+		w.Header().Set("Cache-Control", "no-store")
+		_, _ = w.Write(b)
+	})
+	mux.HandleFunc("/api/map.png", func(w http.ResponseWriter, r *http.Request) {
+		p, err := mapImage(r.URL.Query().Get("v"))
+		if err != nil {
+			http.Error(w, err.Error(), 404)
+			return
+		}
+		w.Header().Set("Cache-Control", "max-age=86400")
+		http.ServeFile(w, r, p)
+	})
+	mux.HandleFunc("/api/open", guard(func(w http.ResponseWriter, r *http.Request) {
+		var in struct{ URL string `json:"url"` }
+		_ = json.NewDecoder(io.LimitReader(r.Body, 4096)).Decode(&in)
+		if regexp.MustCompile(`^https://(discord\.gg|discord\.com|(www\.)?github\.com)/[A-Za-z0-9/_\-.]+$`).MatchString(in.URL) {
+			openBrowser(in.URL)
+		}
 		writeJSON(w, map[string]bool{"ok": true})
 	}))
 	mux.HandleFunc("/api/quit", guard(func(w http.ResponseWriter, r *http.Request) {
@@ -260,3 +292,71 @@ func motdText(raw json.RawMessage) string {
 }
 
 func stripCodes(s string) string { return regexp.MustCompile(`§.`).ReplaceAllString(s, "") }
+
+// ---------------------------------------------------------------- 서버 화면 정보 (플러그인 /launcher/status.json)
+var (
+	infoMu    sync.Mutex
+	infoCache []byte
+	infoAt    time.Time
+)
+
+func serverInfo() ([]byte, error) {
+	infoMu.Lock()
+	defer infoMu.Unlock()
+	if infoCache != nil && time.Since(infoAt) < 4*time.Second {
+		return infoCache, nil
+	}
+	c := &http.Client{Timeout: 5 * time.Second}
+	resp, err := c.Get(filesBase() + "/launcher/status.json")
+	if err != nil {
+		if infoCache != nil {
+			return infoCache, nil
+		}
+		return nil, errors.New("서버에 연결하지 못했어요")
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("서버 정보 없음 (HTTP %d)", resp.StatusCode)
+	}
+	b, err := io.ReadAll(io.LimitReader(resp.Body, 4<<20))
+	if err != nil {
+		return nil, err
+	}
+	infoCache, infoAt = b, time.Now()
+	return b, nil
+}
+
+var mapMu sync.Mutex
+
+// 지도 그림은 서버가 그린 것을 받아 두고 (v = 서버가 알려 준 지도 판), 같은 판이면 받아 둔 것을 씀
+func mapImage(v string) (string, error) {
+	mapMu.Lock()
+	defer mapMu.Unlock()
+	safe := regexp.MustCompile(`[^A-Za-z0-9.,@x\-]`).ReplaceAllString(v, "_")
+	p := dirs("cache", "map-"+safe+".png")
+	if st, err := os.Stat(p); err == nil && st.Size() > 0 && safe != "" {
+		return p, nil
+	}
+	if err := download(dlTask{URL: filesBase() + "/launcher/map.png", Path: p}); err != nil {
+		return "", err
+	}
+	return p, nil
+}
+
+// a < b ("1.0.2" < "1.0.10")
+func verLess(a, b string) bool {
+	pa, pb := strings.Split(a, "."), strings.Split(b, ".")
+	for i := 0; i < len(pa) || i < len(pb); i++ {
+		x, y := 0, 0
+		if i < len(pa) {
+			fmt.Sscanf(pa[i], "%d", &x)
+		}
+		if i < len(pb) {
+			fmt.Sscanf(pb[i], "%d", &y)
+		}
+		if x != y {
+			return x < y
+		}
+	}
+	return false
+}

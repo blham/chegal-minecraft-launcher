@@ -204,6 +204,7 @@ func launchGame(p *Prepared) error {
 		} else {
 			setStatus("idle", "게임이 끝났어요", 0)
 		}
+		gameEnded()
 	}()
 	return nil
 }

@@ -23,7 +23,7 @@ import (
 
 // 빌드할 때 -ldflags "-X main.defaultHost=... -X main.defaultClientID=..." 로 바꿀 수 있음
 var (
-	LauncherVersion  = "1.0.1"
+	LauncherVersion  = "1.0.2"
 	defaultHost      = "210.100.163.165"
 	defaultGamePort  = "25565"
 	defaultFilesPort = "8163"
@@ -31,6 +31,14 @@ var (
 )
 
 var devOffline string
+
+// 창을 닫으면: 게임·준비 중이 아니면 끝냄 (게임 중이면 게임이 끝날 때)
+func windowClosed() {
+	if !gameRunning() && !busy() {
+		logger.Printf("창을 닫아 끝냄")
+		os.Exit(0)
+	}
+}
 
 const uiPort = 25585 // Azure 앱 리디렉션 URI: http://localhost:25585/auth
 
@@ -148,7 +156,11 @@ func main() {
 	ln, err := net.Listen("tcp", fmt.Sprintf("127.0.0.1:%d", uiPort))
 	if err != nil { // 이미 켜져 있음: 그 창만 다시 열기
 		logger.Printf("이미 켜져 있음: %v", err)
-		openBrowser(ui)
+		if resp, err := httpc.Get(ui + "api/show"); err == nil { // 이미 켜진 런처에게 창을 다시 열라고
+			resp.Body.Close()
+		} else {
+			openBrowser(ui)
+		}
 		return
 	}
 	tb := make([]byte, 16)
@@ -174,7 +186,7 @@ func main() {
 	go func() { _ = srv.Serve(ln) }()
 
 	go serverWatcher()
-	openBrowser(ui)
+	openWindow(ui)
 
 	// 창(브라우저 탭)을 닫고 게임도 안 켜져 있으면 잠시 뒤 스스로 끝남
 	for {
