@@ -65,9 +65,13 @@ func registerAPI(mux *http.ServeMux) {
 		if m != nil && m.Launcher != "" && verLess(LauncherVersion, m.Launcher) {
 			newer = m.Launcher
 		}
+		// 1.1.2 화면에 서버 IP 가 안 보이게 (설정·오류 글에서 가림)
+		st := getStatus()
+		st.Text, st.Error, st.LogTail = hideHost(st.Text), hideHost(st.Error), hideHost(st.LogTail)
+		c.Host = ""
 		writeJSON(w, map[string]any{
-			"account": acc, "status": getStatus(), "server": si, "authError": authError,
-			"config": c, "address": serverAddr(), "version": LauncherVersion, "newerLauncher": newer,
+			"account": acc, "status": st, "server": si, "authError": hideHost(authError),
+			"config": c, "address": "", "version": LauncherVersion, "newerLauncher": newer,
 			"running": gameRunning(), "hasClientId": clientID() != "",
 		})
 	})
@@ -486,4 +490,13 @@ func serverBackground() string {
 		}
 	})
 	return bgPath
+}
+
+// 글 안의 서버 주소(IP)를 "서버" 로 가림
+func hideHost(t string) string {
+	h := getCfg().Host
+	if h == "" || t == "" {
+		return t
+	}
+	return strings.ReplaceAll(t, h, "서버")
 }

@@ -319,7 +319,7 @@ func fetchManifest() (*Manifest, error) {
 		if c := cachedManifest(); c != nil {
 			return c, nil
 		}
-		return nil, fmt.Errorf("서버(%s)에서 정보를 받지 못했어요: %v", filesBase(), err)
+		return nil, fmt.Errorf("서버에서 정보를 받지 못했어요 (서버가 꺼져 있거나 인터넷 연결 문제): %v", err)
 	}
 	if m.Minecraft == "" {
 		m.Minecraft = "26.3"

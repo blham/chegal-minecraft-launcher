@@ -245,7 +245,6 @@ option{background:#16181d}
   <h2 class="t">설정</h2><div class="sub">이 컴퓨터에만 저장돼요</div><button class="x" data-close>닫기 ✕</button>
   <div class="body"><div class="form">
     <div class="fr"><label for="mem">메모리</label><select id="mem"><option value="2048">2 GB</option><option value="3072">3 GB</option><option value="4096">4 GB (권장)</option><option value="6144">6 GB</option><option value="8192">8 GB</option></select></div>
-    <div class="fr"><label for="host">서버 주소</label><input type="text" id="host" spellcheck="false"></div>
     <div class="fr"><label for="auto">켜면 바로 접속</label><select id="auto"><option value="1">예</option><option value="0">아니요</option></select></div>
     <div class="acts"><button class="pri" id="save">저장</button><span id="saved">저장했어요</span><span style="flex:1"></span><button id="quit">런처 끄기</button></div>
   </div></div>
@@ -274,7 +273,7 @@ function badge(){let o=$("newsRi").querySelector(".badge"); if(!$("ncnt").hidden
 // ---------------- 런처 상태
 async function tick(){
   let s; try{s=await(await fetch("/api/state",{cache:"no-store"})).json()}catch(e){$("stat").textContent="런처가 꺼져 있어요. 다시 실행해 주세요.";$("play").disabled=true;return}
-  $("addr").textContent=s.address; $("noapp").hidden=s.hasClientId;
+  $("addr").textContent=(s.server||{}).online?"서버 열림":"서버 꺼짐"; $("noapp").hidden=s.hasClientId;
   const sv=s.server||{}; $("dot").className=sv.online?"on":"";
   if(!info){ $("cnt").textContent=sv.online?sv.players:"-"; $("cntmax").textContent=sv.online?" / "+sv.max:""; }
   $("motd").textContent=sv.online?(sv.motd||""):"서버가 꺼져 있어요";
@@ -290,7 +289,7 @@ async function tick(){
   $("barv").style.width=(st.total>0?Math.min(100,Math.round(st.done*100/st.total)):(busy?8:(s.running?100:0)))+"%";
   $("stat").textContent=(st.text||"")+(st.total>0&&busy?`  ${st.done} / ${st.total}`:"")||" ";
   $("err").hidden=!st.error; if(st.error)$("err").innerHTML=esc(st.error)+(st.logTail?`<pre>${esc(st.logTail)}</pre>`:"");
-  if(!filled){filled=true;$("mem").value=String(s.config.memoryMB);$("host").value=s.config.host;$("auto").value=s.config.autoJoin?"1":"0"}
+  if(!filled){filled=true;$("mem").value=String(s.config.memoryMB);$("auto").value=s.config.autoJoin?"1":"0"}
   $("ver").textContent=`런처 ${s.version}`+(s.newerLauncher?` · 새 런처 ${s.newerLauncher} 이 나왔어요`:"");
 }
 // ---------------- 서버 정보 (공지·접속자·코어)
@@ -400,7 +399,7 @@ function drawMods(){
 // ---------------- 버튼
 $("play").onclick=async()=>{$("play").disabled=true;await post("/api/play");tick()};
 $("disc").onclick=()=>post("/api/open",{url:discordUrl});
-$("save").onclick=async()=>{await post("/api/config",{memoryMB:+$("mem").value,host:$("host").value,autoJoin:$("auto").value==="1"});filled=false;tick();$("saved").style.opacity=1;setTimeout(()=>$("saved").style.opacity=0,1600)};
+$("save").onclick=async()=>{await post("/api/config",{memoryMB:+$("mem").value,autoJoin:$("auto").value==="1"});filled=false;tick();$("saved").style.opacity=1;setTimeout(()=>$("saved").style.opacity=0,1600)};
 $("folder").onclick=()=>post("/api/openfolder");
 $("quit").onclick=async()=>{await post("/api/quit");document.body.innerHTML='<div style="padding:44px;color:#f2ede2">런처를 껐어요. 이 창은 닫아도 돼요.</div>'};
 {const h=location.hash.slice(1); if(["map","players","news","settings","mods"].includes(h)) setTimeout(()=>openOv(h),50);}
