@@ -289,6 +289,7 @@ type Manifest struct {
 	BlockedMods   []string          `json:"blockedMods"` // 서버가 막는 모드 id (미니맵 등)
 	Launcher      string            `json:"launcher"`
 	LauncherFiles map[string]string `json:"launcherFiles"`
+	LauncherSha1  map[string]string `json:"launcherSha1"` // 자동 업데이트용 (파일 이름 -> sha1)
 }
 
 var (

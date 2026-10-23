@@ -254,7 +254,7 @@ option{background:#16181d}
 const TOKEN="__TOKEN__", $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 async function post(p,b){return (await fetch(p,{method:"POST",headers:{"X-KW-Token":TOKEN,"Content-Type":"application/json"},body:JSON.stringify(b||{})})).json()}
-let filled=false, info=null, discordUrl="", cur="";
+let wasDown=false, upd=false, filled=false, info=null, discordUrl="", cur="";
 // ---------------- 덮개 화면
 function openOv(n){
   if(cur===n) n="";
@@ -272,7 +272,9 @@ addEventListener("keydown",e=>{if(e.key==="Escape"&&cur)openOv("")});
 function badge(){let o=$("newsRi").querySelector(".badge"); if(!$("ncnt").hidden){if(!o){o=document.createElement("i");o.className="badge";$("newsRi").appendChild(o)}}else if(o)o.remove()}
 // ---------------- 런처 상태
 async function tick(){
-  let s; try{s=await(await fetch("/api/state",{cache:"no-store"})).json()}catch(e){$("stat").textContent="런처가 꺼져 있어요. 다시 실행해 주세요.";$("play").disabled=true;return}
+  let s; try{s=await(await fetch("/api/state",{cache:"no-store"})).json()}catch(e){wasDown=true;$("stat").textContent=upd?"새 런처로 다시 켜는 중…":"런처가 꺼져 있어요. 다시 실행해 주세요.";$("play").disabled=true;return}
+  if(wasDown){location.reload();return}   // 런처가 새 버전으로 다시 켜졌으면 새 화면으로
+  upd=/새 런처/.test((s.status||{}).text||"");
   $("addr").textContent=(s.server||{}).online?"서버 열림":"서버 꺼짐"; $("noapp").hidden=s.hasClientId;
   const sv=s.server||{}; $("dot").className=sv.online?"on":"";
   if(!info){ $("cnt").textContent=sv.online?sv.players:"-"; $("cntmax").textContent=sv.online?" / "+sv.max:""; }

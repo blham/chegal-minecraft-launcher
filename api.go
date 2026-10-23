@@ -220,6 +220,14 @@ func registerAPI(mux *http.ServeMux) {
 		openBrowser(gameDir())
 		writeJSON(w, map[string]bool{"ok": true})
 	}))
+	// 제거할 때 켜져 있는 런처를 끝냄 (게임 중이면 그대로)
+	mux.HandleFunc("/api/quit-uninstall", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != "POST" || gameRunning() {
+			return
+		}
+		writeJSON(w, map[string]bool{"ok": true})
+		go func() { time.Sleep(200 * time.Millisecond); os.Exit(0) }()
+	})
 	mux.HandleFunc("/api/show", func(w http.ResponseWriter, r *http.Request) {
 		openWindow(fmt.Sprintf("http://localhost:%d/", uiPort))
 		writeJSON(w, map[string]bool{"ok": true})

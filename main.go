@@ -23,7 +23,7 @@ import (
 
 // 빌드할 때 -ldflags "-X main.defaultHost=... -X main.defaultClientID=..." 로 바꿀 수 있음
 var (
-	LauncherVersion  = "1.1.2"
+	LauncherVersion  = "1.2.0"
 	defaultHost      = "" // 빌드할 때 -ldflags "-X main.defaultHost=서버주소" 로 넣음 (소스에 IP 를 안 남기려고)
 	defaultGamePort  = "25565"
 	defaultFilesPort = "8163"
@@ -164,6 +164,19 @@ func main() {
 	}
 	logger.Printf("KoreaWar 런처 %s (%s/%s) 자료 폴더 %s", LauncherVersion, runtime.GOOS, runtime.GOARCH, dataDir)
 	loadConfig()
+	if maybeInstall(os.Args[1:]) { // 윈도우: 설치 안 된 자리에서 켜면 설치하고 설치된 런처를 켬
+		return
+	}
+	updated := false
+	for _, a := range os.Args[1:] {
+		if a == "--updated" {
+			updated = true
+		}
+	}
+	go cleanOldExe()
+	if updated {
+		go afterUpdate()
+	}
 	loadAccount()
 	if devOffline != "" {
 		account = &Account{Name: devOffline, UUID: "00000000000040008000000000000001", McToken: "0", McExpires: 1 << 40, Xuid: "0", ClientID: "dev"}
@@ -171,6 +184,10 @@ func main() {
 
 	ui := fmt.Sprintf("http://localhost:%d/", uiPort)
 	ln, err := net.Listen("tcp", fmt.Sprintf("127.0.0.1:%d", uiPort))
+	for i := 0; err != nil && updated && i < 30; i++ { // 업데이트 직후: 예전 런처가 포트를 놓을 때까지
+		time.Sleep(300 * time.Millisecond)
+		ln, err = net.Listen("tcp", fmt.Sprintf("127.0.0.1:%d", uiPort))
+	}
 	if err != nil { // 이미 켜져 있음: 그 창만 다시 열기
 		logger.Printf("이미 켜져 있음: %v", err)
 		if resp, err := httpc.Get(ui + "api/show"); err == nil { // 이미 켜진 런처에게 창을 다시 열라고
@@ -202,8 +219,25 @@ func main() {
 	srv := &http.Server{Handler: mux, ReadHeaderTimeout: 10 * time.Second}
 	go func() { _ = srv.Serve(ln) }()
 
+	restartHook = func() { _ = srv.Close() }
 	go serverWatcher()
-	openWindow(ui)
+	if updated { // 예전 창이 그대로 붙어 있으면 새 창을 안 띄움
+		go func() {
+			time.Sleep(10 * time.Second)
+			pollMu.Lock()
+			alive := time.Since(lastPoll) < 6*time.Second
+			pollMu.Unlock()
+			if !alive {
+				openWindow(ui)
+			}
+		}()
+		pollMu.Lock()
+		lastPoll = time.Now().Add(-7 * time.Second) // "창 안 붙음" 으로 시작 (3분 꺼짐 타이머엔 안 걸리게)
+		pollMu.Unlock()
+	} else {
+		openWindow(ui)
+	}
+	go checkUpdate()
 
 	// 창(브라우저 탭)을 닫고 게임도 안 켜져 있으면 잠시 뒤 스스로 끝남
 	for {
