@@ -17,13 +17,13 @@ import (
 )
 
 type ServerInfo struct {
-	Online  bool   `json:"online"`
-	Players int    `json:"players"`
-	Max     int    `json:"max"`
-	Motd    string `json:"motd"`
+	Online  bool     `json:"online"`
+	Players int      `json:"players"`
+	Max     int      `json:"max"`
+	Motd    string   `json:"motd"`
 	Names   []string `json:"names"`
-	Version string `json:"version"`
-	Ping    int64  `json:"ping"`
+	Version string   `json:"version"`
+	Ping    int64    `json:"ping"`
 }
 
 var (
@@ -66,7 +66,7 @@ func registerAPI(mux *http.ServeMux) {
 		}
 		writeJSON(w, map[string]any{
 			"account": acc, "status": getStatus(), "server": si, "authError": authError,
-			"config":  c, "address": serverAddr(), "version": LauncherVersion, "newerLauncher": newer,
+			"config": c, "address": serverAddr(), "version": LauncherVersion, "newerLauncher": newer,
 			"running": gameRunning(), "hasClientId": clientID() != "",
 		})
 	})
@@ -144,8 +144,20 @@ func registerAPI(mux *http.ServeMux) {
 		w.Header().Set("Cache-Control", "max-age=86400")
 		http.ServeFile(w, r, p)
 	})
+	mux.HandleFunc("/api/bg", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Cache-Control", "no-cache")
+		if p := serverBackground(); p != "" {
+			http.ServeFile(w, r, p)
+			return
+		}
+		b, _ := webFS.ReadFile("web/bg.jpg")
+		w.Header().Set("Content-Type", "image/jpeg")
+		_, _ = w.Write(b)
+	})
 	mux.HandleFunc("/api/open", guard(func(w http.ResponseWriter, r *http.Request) {
-		var in struct{ URL string `json:"url"` }
+		var in struct {
+			URL string `json:"url"`
+		}
 		_ = json.NewDecoder(io.LimitReader(r.Body, 4096)).Decode(&in)
 		if regexp.MustCompile(`^https://(discord\.gg|discord\.com|(www\.)?github\.com)/[A-Za-z0-9/_\-.]+$`).MatchString(in.URL) {
 			openBrowser(in.URL)
@@ -359,4 +371,23 @@ func verLess(a, b string) bool {
 		}
 	}
 	return false
+}
+
+// 서버장이 plugins/KoreaWar/launcher/background.jpg 를 두면 그 그림을 배경으로 (켤 때마다 한 번 받아 봄)
+var (
+	bgOnce sync.Once
+	bgPath string
+)
+
+func serverBackground() string {
+	bgOnce.Do(func() {
+		p := dirs("cache", "background.jpg")
+		_ = os.Remove(p)
+		if err := download(dlTask{URL: filesBase() + "/launcher/background.jpg", Path: p}); err == nil {
+			if st, err := os.Stat(p); err == nil && st.Size() > 1000 {
+				bgPath = p
+			}
+		}
+	})
+	return bgPath
 }

@@ -4,173 +4,256 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Korea War</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23b8432f'/%3E%3Cpath d='M4 12V4h2v3l3-3h2.5l-3.4 3.4L12 12H9.6L7 9.2 6 10.2V12z' fill='%23f3e7c9'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23a8321f'/%3E%3Cpath d='M4 12V4h2v3l3-3h2.5l-3.4 3.4L12 12H9.6L7 9.2 6 10.2V12z' fill='%23f1e6cc'/%3E%3C/svg%3E">
 <style>
-:root{--bg:#11151b;--panel:#1b222c;--panel2:#212a35;--line:#2e3946;--ink:#ece6d6;--mute:#97a2ae;--red:#c2452f;--red2:#9a3322;--gold:#d9b25f;--green:#5fb36b;--blurple:#5865f2}
+:root{--ink:#f2ede2;--mute:rgba(242,237,226,.62);--dim:rgba(242,237,226,.38);--line:rgba(242,237,226,.16);--red:#c4402a;--gold:#e2b45a;--green:#7bd389;--shade:rgba(8,9,12,.78)}
 *{box-sizing:border-box}
-html{background:var(--bg);color-scheme:dark}
-body{margin:0;min-height:100vh;color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","Noto Sans CJK KR",system-ui,sans-serif;
-  background:radial-gradient(1100px 520px at 90% -10%,rgba(194,69,47,.17),transparent 60%),radial-gradient(800px 500px at -10% 110%,rgba(79,134,198,.12),transparent 60%),var(--bg);background-attachment:fixed}
-.app{display:grid;grid-template-columns:340px 1fr;grid-template-rows:auto 1fr;gap:16px;padding:18px;height:100vh}
-header{grid-column:1/-1;display:flex;align-items:center;gap:14px}
-.mark{width:46px;height:46px;border-radius:11px;background:linear-gradient(145deg,var(--red),var(--red2));display:grid;place-items:center;font-weight:900;font-size:21px;color:#f3e7c9;box-shadow:0 6px 18px rgba(194,69,47,.35)}
-h1{margin:0;font-size:22px} h1 small{display:block;font-size:12px;color:var(--mute);font-weight:500;margin-top:2px}
-.pill{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);padding:8px 13px;border-radius:999px;font-size:13px;white-space:nowrap}
-.dot{width:9px;height:9px;border-radius:50%;background:#666}.dot.on{background:var(--green);box-shadow:0 0 10px var(--green)}
-.big{font-size:17px;font-weight:800}
-.sp{flex:1}
-.col{display:flex;flex-direction:column;gap:14px;min-height:0;overflow:auto}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
-.row{display:flex;align-items:center;gap:12px}
-.head{width:46px;height:46px;border-radius:9px;background:#3a4654;display:grid;place-items:center;font-weight:800;overflow:hidden;flex:none}.head img{width:100%;height:100%;image-rendering:pixelated}
-.who b{font-size:16px}.who div{color:var(--mute);font-size:12px;margin-top:2px}
-button{font:inherit;border:0;border-radius:9px;padding:10px 15px;cursor:pointer;color:var(--ink);background:#33404e;transition:filter .15s,transform .05s}
-button:hover{filter:brightness(1.12)}button:active{transform:translateY(1px)}button:disabled{opacity:.45;cursor:default;filter:none}
-.ms{background:#2f6fb5}.ghost{background:transparent;border:1px solid var(--line);color:var(--mute)}
-.disc{background:var(--blurple);display:flex;align-items:center;gap:8px}
-.play{width:100%;padding:18px;font-size:21px;font-weight:800;letter-spacing:1px;background:linear-gradient(180deg,var(--red),var(--red2));box-shadow:0 8px 22px rgba(194,69,47,.3)}
-.bar{height:9px;background:#0e1217;border-radius:999px;overflow:hidden;margin-top:12px;border:1px solid var(--line)}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),#f0d48c);transition:width .25s}
-.stat{margin-top:9px;color:var(--mute);font-size:13px;min-height:18px}
-.err{margin-top:12px;background:rgba(194,69,47,.12);border:1px solid rgba(194,69,47,.5);border-radius:9px;padding:11px 13px;font-size:13px;line-height:1.5}
-pre{white-space:pre-wrap;word-break:break-all;background:#0b0f14;border-radius:7px;padding:9px;font-size:11px;max-height:180px;overflow:auto}
-.note{font-size:12.5px;color:var(--mute);line-height:1.6}.warn{border-color:rgba(217,178,95,.5);background:rgba(217,178,95,.08)}
-details summary{cursor:pointer;color:var(--mute);font-size:13px}
-.grid{display:grid;grid-template-columns:100px 1fr;gap:10px 12px;align-items:center;margin-top:12px;font-size:13px}
-select,input[type=text]{font:inherit;background:#0e1217;color:var(--ink);border:1px solid var(--line);border-radius:7px;padding:7px 9px;width:100%}
-/* 오른쪽 탭 */
-.main{display:flex;flex-direction:column;min-height:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.tabs{display:flex;gap:4px;padding:8px;border-bottom:1px solid var(--line);background:var(--panel2)}
-.tab{background:transparent;color:var(--mute);padding:9px 16px}.tab.on{background:#2c3743;color:var(--ink)}
-.tab .n{display:inline-block;min-width:20px;padding:0 6px;margin-left:6px;border-radius:999px;background:var(--red);color:#fff;font-size:11px;line-height:18px}
-.pane{flex:1;min-height:0;overflow:auto;padding:18px}
-.pane[hidden]{display:none}
-.notice{border-left:3px solid var(--gold);padding:4px 0 4px 14px;margin-bottom:20px}
-.notice .d{color:var(--mute);font-size:12px}.notice h3{margin:3px 0 6px;font-size:16px}.notice p{margin:0;line-height:1.65;font-size:14px;white-space:pre-wrap;color:#d8d2c3}
-.empty{color:var(--mute);font-size:14px;padding:30px;text-align:center}
+[hidden]{display:none!important}
+html,body{height:100%;margin:0;overflow:hidden;background:#0b0c10;color-scheme:dark}
+body{color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","Noto Sans CJK KR",system-ui,sans-serif;font-size:14px;user-select:none}
+#bg{position:fixed;inset:-20px;background:#1b1410 url(/api/bg) center/cover no-repeat;animation:drift 60s ease-in-out infinite alternate;transition:filter .35s}
+body.ov-open #bg{filter:blur(6px) brightness(.55)}
+@keyframes drift{from{transform:scale(1.03) translateX(-8px)}to{transform:scale(1.08) translateX(8px)}}
+#shade{position:fixed;inset:0;background:linear-gradient(90deg,rgba(6,6,9,.78) 0%,rgba(6,6,9,.35) 38%,rgba(6,6,9,0) 60%),linear-gradient(0deg,rgba(6,6,9,.9) 0%,rgba(6,6,9,0) 42%),linear-gradient(180deg,rgba(6,6,9,.55) 0%,rgba(6,6,9,0) 22%)}
+.t{text-shadow:0 1px 3px rgba(0,0,0,.65)}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:disabled{cursor:default}
+
+/* 왼쪽 위: 로고 */
+#logo{position:fixed;left:44px;top:34px}
+#logo .w{font-family:"Arial Black","Segoe UI Black","Noto Sans KR",sans-serif;font-weight:900;font-size:46px;line-height:.92;letter-spacing:-1px;text-transform:uppercase}
+#logo .w em{font-style:normal;color:var(--red)}
+#logo .s{margin-top:10px;font-size:12px;letter-spacing:3px;color:var(--mute)}
+#logo .s b{display:inline-block;width:7px;height:7px;border-radius:50%;background:#777;margin-right:8px;vertical-align:1px}
+#logo .s b.on{background:var(--green);box-shadow:0 0 8px var(--green)}
+
+/* 오른쪽 위: 계정 */
+#acct{position:fixed;right:96px;top:30px;display:flex;align-items:center;gap:14px;text-align:right}
+#acct .n{font-size:15px;font-weight:700}
+#acct .k{font-size:11px;color:var(--mute);letter-spacing:1px;margin-top:3px}
+#acct .k button{color:var(--mute);text-decoration:underline;text-underline-offset:3px}
+#acct .k button:hover{color:var(--ink)}
+#avatar{width:58px;height:58px;display:grid;place-items:center;image-rendering:pixelated}
+#avatar img{width:58px;height:58px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.6))}
+#avatar .q{width:50px;height:50px;border:2px dashed var(--dim);display:grid;place-items:center;color:var(--dim);font-size:22px}
+#loginBtn{border:1px solid var(--ink);padding:9px 18px;font-weight:700;letter-spacing:1px;transition:background .15s,color .15s}
+#loginBtn:hover:not(:disabled){background:var(--ink);color:#111}
+#loginBtn:disabled{opacity:.4}
+
+/* 오른쪽 세로 줄 */
+#rail{position:fixed;right:28px;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+#rail:before,#rail:after{content:"";width:1px;height:70px;background:linear-gradient(var(--line),transparent)}
+#rail:before{background:linear-gradient(transparent,var(--line))}
+.ri{position:relative;width:42px;height:42px;display:grid;place-items:center;color:var(--mute);transition:color .15s}
+.ri:hover,.ri.on{color:var(--ink)}
+.ri svg{width:22px;height:22px;fill:currentColor}
+.ri span{position:absolute;right:52px;white-space:nowrap;font-size:12px;letter-spacing:1px;opacity:0;transform:translateX(6px);transition:.15s;pointer-events:none;background:var(--shade);padding:4px 9px}
+.ri:hover span{opacity:1;transform:none}
+.ri .badge{position:absolute;right:7px;top:7px;width:7px;height:7px;border-radius:50%;background:var(--red)}
+.sep{width:16px;height:1px;background:var(--line);margin:6px 0}
+
+/* 왼쪽 아래: 시작 */
+#launch{position:fixed;left:44px;bottom:40px;width:min(440px,calc(100vw - 180px))}
+#stats{display:flex;gap:26px;margin-bottom:14px;font-size:11px;letter-spacing:2px;color:var(--mute)}
+#stats b{display:block;font-size:20px;letter-spacing:0;color:var(--ink);font-weight:800;margin-top:2px}
+#play{display:flex;align-items:center;gap:14px;font-family:"Arial Black","Segoe UI Black","Noto Sans KR",sans-serif;font-weight:900;font-size:40px;letter-spacing:1px;transition:color .15s,gap .2s}
+#play svg{width:26px;height:26px;fill:currentColor;transition:transform .2s}
+#play:hover:not(:disabled){color:var(--gold);gap:20px}
+#play:disabled{color:var(--dim)}
+#play small{font-family:inherit;font-size:13px;letter-spacing:2px;color:var(--mute);font-weight:400;align-self:flex-end;margin-bottom:9px}
+.bar{height:2px;background:var(--line);margin-top:12px;overflow:hidden;opacity:0;transition:opacity .3s}
+.bar.on{opacity:1}.bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .25s}
+#stat{margin-top:9px;font-size:12.5px;color:var(--mute);min-height:18px}
+#motd{font-size:12.5px;color:var(--dim);margin-top:2px}
+.err{margin-top:12px;border-left:2px solid var(--red);background:rgba(196,64,42,.14);padding:9px 12px;font-size:12.5px;line-height:1.55;user-select:text}
+.err pre{white-space:pre-wrap;word-break:break-all;font-size:11px;max-height:160px;overflow:auto;margin:8px 0 0;color:var(--mute)}
+.warn{border-left-color:var(--gold);background:rgba(226,180,90,.12)}
+
+/* 아래 가운데: 소식 */
+#newsBtn{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;letter-spacing:4px;color:var(--mute)}
+#newsBtn:hover{color:var(--ink)}
+#newsBtn svg{width:16px;height:16px;fill:currentColor;animation:bob 2.4s ease-in-out infinite}
+#newsBtn .badge{position:absolute;right:-12px;top:20px;width:7px;height:7px;border-radius:50%;background:var(--red)}
+@keyframes bob{50%{transform:translateY(-3px)}}
+#ver{position:fixed;right:30px;bottom:14px;font-size:10.5px;color:var(--dim);letter-spacing:1px}
+
+/* 덮개 화면 */
+.ov{position:fixed;inset:0;display:flex;flex-direction:column;padding:34px 96px 30px 44px;opacity:0;pointer-events:none;transition:opacity .25s,transform .3s}
+.ov.on{opacity:1;pointer-events:auto;transform:none!important}
+#ov-news{transform:translateY(30px)}
+.ov:not(#ov-news){transform:translateX(30px)}
+.ov h2{margin:0 0 4px;font-family:"Arial Black","Segoe UI Black","Noto Sans KR",sans-serif;font-size:28px;font-weight:900;letter-spacing:1px}
+.ov .sub{color:var(--mute);font-size:12px;letter-spacing:2px;margin-bottom:22px}
+.ov .x{position:absolute;right:96px;top:36px;font-size:12px;letter-spacing:2px;color:var(--mute)}
+.ov .x:hover{color:var(--ink)}
+.body{flex:1;min-height:0;overflow:auto;user-select:text}
+.body::-webkit-scrollbar,.scroll::-webkit-scrollbar{width:6px}
+.body::-webkit-scrollbar-thumb,.scroll::-webkit-scrollbar-thumb{background:var(--line)}
+
+/* 소식 */
+.news{display:grid;grid-template-columns:1fr 320px;gap:48px;max-width:1100px}
+.news h3.cap{margin:0 0 14px;font-size:11px;letter-spacing:3px;color:var(--gold);font-weight:600}
+.notice{padding:0 0 22px;margin-bottom:22px;border-bottom:1px solid var(--line)}
+.notice .d{color:var(--dim);font-size:11.5px;letter-spacing:1px}
+.notice h4{margin:6px 0 8px;font-size:19px}
+.notice p{margin:0;line-height:1.75;font-size:14px;white-space:pre-wrap;color:rgba(242,237,226,.82)}
+.ev{display:grid;grid-template-columns:56px 1fr;gap:10px;font-size:13px;line-height:1.5;padding:9px 0;border-bottom:1px solid var(--line)}
+.ev .w{color:var(--dim);font-size:11.5px}.ev.capture .x{color:var(--gold)}.ev.attack .x{color:#ff8f78}.ev.lost .x{color:var(--mute)}
+.empty{color:var(--dim);font-size:13px;padding:18px 0}
+
 /* 지도 */
-#mapPane{padding:0;display:grid;grid-template-columns:220px 1fr 250px;overflow:hidden}
-#mapPane[hidden]{display:none}
-#mapBox{position:relative;overflow:hidden;background:#244a9a;cursor:grab}
+#ov-map{padding-right:84px}
+.mapwrap{flex:1;min-height:0;display:grid;grid-template-columns:200px 1fr 240px;gap:0;border:1px solid var(--line)}
+#mapBox{position:relative;overflow:hidden;background:#1d3f86;cursor:grab}
 #mapBox.drag{cursor:grabbing}
-.side{overflow:auto;padding:14px;background:var(--panel2);border-right:1px solid var(--line)}
-.side:last-child{border-right:0;border-left:1px solid var(--line)}
+.side{overflow:auto;padding:16px;background:rgba(8,9,12,.55)}
 .side.right{display:flex;flex-direction:column;overflow:hidden}.side .scroll{flex:1;min-height:0;overflow:auto}
-.side h4{margin:0 0 10px;font-size:13px;color:var(--mute);font-weight:600;letter-spacing:.5px}
-.nat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 11px;margin-bottom:8px}
-.nat .t{display:flex;align-items:center;gap:8px;font-weight:700}.nat .t b{width:11px;height:11px;transform:rotate(45deg);border:1px solid #fff}
-.nat .r{color:var(--mute);font-size:12px;margin-top:5px;display:flex;gap:10px}
-.nat .rank{margin-left:auto;color:var(--gold);font-size:12px}
-.ci{display:flex;flex-direction:column;gap:3px;padding:5px 8px;border-radius:8px;cursor:pointer;margin-bottom:1px}
-.ci:hover{background:#2c3743}
-.ci .t{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}.ci .t b{width:9px;height:9px;transform:rotate(45deg);border:1px solid #fff;flex:none}
-.ci .t small{margin-left:auto;color:var(--mute);font-weight:400;font-size:11.5px}
-.hp{height:5px;background:#0e1217;border-radius:9px;overflow:hidden}.hp i{display:block;height:100%;background:var(--green)}
-.ev{font-size:12.5px;line-height:1.5;padding:7px 0;border-bottom:1px dashed var(--line)}
-.ev .w{color:var(--mute);font-size:11px}.ev.capture .x{color:var(--gold)}.ev.attack .x{color:#ff8a72}
+.side h4{margin:0 0 12px;font-size:11px;color:var(--gold);font-weight:600;letter-spacing:3px}
+.nat{padding:9px 0;border-bottom:1px solid var(--line)}
+.nat .tt{display:flex;align-items:center;gap:9px;font-weight:700}.nat .tt b{width:10px;height:10px;transform:rotate(45deg);flex:none}
+.nat .r{color:var(--mute);font-size:12px;margin:4px 0 0 19px;display:flex;gap:10px}
+.nat .rank{margin-left:auto;color:var(--dim);font-size:11px;font-weight:400}
+.ci{padding:7px 6px;cursor:pointer}
+.ci:hover{background:rgba(242,237,226,.06)}
+.ci .tt{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}.ci .tt b{width:8px;height:8px;transform:rotate(45deg);flex:none}
+.ci .tt small{margin-left:auto;color:var(--dim);font-weight:400;font-size:11px}
+.hp{height:2px;background:var(--line);margin-top:5px}.hp i{display:block;height:100%}
 #world{position:absolute;left:0;top:0;transform-origin:0 0}
-#world img{display:block;image-rendering:pixelated;user-select:none;-webkit-user-drag:none}
-.core{position:absolute;transform:translate(-50%,-50%);pointer-events:auto}
-.core i{display:block;width:16px;height:16px;transform:rotate(45deg);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.6)}
-.core span{position:absolute;left:50%;top:13px;transform:translateX(-50%);white-space:nowrap;font-size:12px;font-weight:700;color:#fff;text-shadow:0 1px 3px #000,0 0 2px #000;background:rgba(10,14,20,.55);padding:1px 6px;border-radius:5px}
-.legend{position:absolute;right:12px;top:12px;background:rgba(15,20,27,.85);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12px;line-height:1.8;max-width:220px}
-.legend b{display:inline-block;width:10px;height:10px;transform:rotate(45deg);margin-right:8px;border:1px solid #fff}
-.mapbtns{position:absolute;right:12px;bottom:12px;display:flex;gap:6px}.mapbtns button{background:rgba(15,20,27,.85);border:1px solid var(--line);padding:7px 12px}
-#tip{position:absolute;pointer-events:none;background:rgba(10,14,20,.92);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;line-height:1.5;display:none;z-index:5}
-.plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.pl{display:flex;align-items:center;gap:10px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:9px}
-.pl img{width:32px;height:32px;border-radius:5px;image-rendering:pixelated;background:#3a4654}
-.pl small{display:block;font-size:12px}
-footer{position:fixed;left:18px;bottom:8px;color:#5f6a76;font-size:11px}
-@media (max-width:820px){.app{grid-template-columns:1fr;height:auto}.main{min-height:600px}}
+#world img{display:block;image-rendering:pixelated;-webkit-user-drag:none}
+.core{position:absolute;transform:translate(-50%,-50%)}
+.core i{display:block;width:14px;height:14px;transform:rotate(45deg);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.6)}
+.core span{position:absolute;left:50%;top:12px;transform:translateX(-50%);white-space:nowrap;font-size:12px;font-weight:700;color:#fff;text-shadow:0 1px 3px #000,0 0 2px #000}
+.mapbtns{position:absolute;right:10px;bottom:10px;display:flex;gap:4px}.mapbtns button{background:var(--shade);padding:6px 11px;font-size:13px}.mapbtns button:hover{background:#000}
+#tip{position:absolute;pointer-events:none;background:var(--shade);padding:8px 10px;font-size:12px;line-height:1.55;display:none;z-index:5}
+
+/* 접속자 */
+.plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:4px 18px;max-width:1000px}
+.pl{display:flex;align-items:center;gap:11px;padding:8px 0;border-bottom:1px solid var(--line)}
+.pl img{width:30px;height:30px;image-rendering:pixelated}
+.pl b{font-size:14px}.pl small{display:block;font-size:11.5px;margin-top:1px}
+
+/* 설정 */
+.form{max-width:520px}
+.fr{display:grid;grid-template-columns:130px 1fr;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.fr label{color:var(--mute);font-size:13px}
+.fr small{grid-column:2;color:var(--dim);font-size:11.5px;margin-top:-10px}
+select,input[type=text]{font:inherit;color:var(--ink);background:rgba(0,0,0,.35);border:0;border-bottom:1px solid var(--line);padding:8px 2px;width:100%;outline:none}
+select:focus,input:focus{border-bottom-color:var(--gold)}
+option{background:#16181d}
+.acts{display:flex;gap:22px;margin-top:22px;font-size:13px;letter-spacing:1px}
+.acts button{color:var(--mute)}.acts button:hover{color:var(--ink)}
+.acts .pri{color:#111;background:var(--ink);padding:9px 22px;font-weight:700}.acts .pri:hover{color:#111;background:var(--gold)}
+#saved{color:var(--green);font-size:12px;align-self:center;opacity:0;transition:opacity .3s}
 </style>
 </head>
 <body>
-<div class="app">
-  <header>
-    <div class="mark">KW</div>
-    <h1 id="sname">Korea War<small id="addr">서버 확인 중</small></h1>
-    <div class="sp"></div>
-    <div class="pill"><span class="dot" id="dot"></span><span><span class="big" id="cnt">-</span><span id="cntmax"></span> 명 접속 중</span></div>
-    <button class="disc" id="disc" hidden><svg width="18" height="14" viewBox="0 0 71 55" fill="#fff"><path d="M60 4.6A58 58 0 0 0 45.6.2l-1.8 3.7a54 54 0 0 0-16.2 0L25.8.2A58 58 0 0 0 11.3 4.6 59.6 59.6 0 0 0 .9 44.8 58.3 58.3 0 0 0 18.6 53.8l3.8-5.2a38 38 0 0 1-6-2.9l1.5-1.1a41.6 41.6 0 0 0 35.4 0l1.5 1.1a38 38 0 0 1-6 2.9l3.8 5.2a58 58 0 0 0 17.8-9A59.4 59.4 0 0 0 60 4.6ZM23.7 36.7c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2 6.4 3.3 6.4 7.2-2.8 7.2-6.4 7.2Zm23.6 0c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2 6.4 3.3 6.4 7.2-2.8 7.2-6.4 7.2Z"/></svg>디스코드 참가</button>
-  </header>
+<div id="bg"></div><div id="shade"></div>
 
-  <div class="col">
-    <div class="card warn" id="noapp" hidden><div class="note"><b>로그인 앱이 아직 설정되지 않았어요.</b><br>서버장이 config.yml 의 launcher.client-id 를 채우면 로그인할 수 있어요.</div></div>
-    <div class="card"><div class="row" id="acc"></div><div class="err" id="autherr" hidden></div></div>
-    <div class="card">
-      <button class="play" id="play" disabled>게임 시작</button>
-      <div class="bar"><i id="barv"></i></div>
-      <div class="stat" id="stat">&nbsp;</div>
-      <div class="err" id="err" hidden></div>
-      <div class="note" id="motd" style="margin-top:8px"></div>
-    </div>
-    <div class="card">
-      <details>
-        <summary>설정</summary>
-        <div class="grid">
-          <label for="mem">메모리</label>
-          <select id="mem"><option value="2048">2 GB</option><option value="3072">3 GB</option><option value="4096">4 GB (권장)</option><option value="6144">6 GB</option><option value="8192">8 GB</option></select>
-          <label for="host">서버 주소</label><input type="text" id="host" spellcheck="false">
-          <label for="auto">바로 접속</label><select id="auto"><option value="1">예</option><option value="0">아니요</option></select>
-          <span></span>
-          <div class="row" style="flex-wrap:wrap;gap:6px"><button id="save">저장</button><button class="ghost" id="folder">게임 폴더</button><button class="ghost" id="quit">런처 끄기</button></div>
-        </div>
-      </details>
-    </div>
-  </div>
-
-  <div class="main">
-    <div class="tabs">
-      <button class="tab on" data-t="notice">공지<span class="n" id="ncnt" hidden></span></button>
-      <button class="tab" data-t="map">지도</button>
-      <button class="tab" data-t="players">접속자</button>
-    </div>
-    <div class="pane" id="notice"></div>
-    <div class="pane" id="mapPane" hidden>
-      <aside class="side" id="natPanel"><h4>국가 현황</h4><div id="nat"></div></aside>
-      <div id="mapBox">
-        <div id="world"><img id="mapimg" alt=""><div id="marks"></div></div>
-        <div class="mapbtns"><button id="zin">＋</button><button id="zout">－</button><button id="zfit">전체</button></div>
-        <div id="tip"></div>
-      </div>
-      <aside class="side right"><h4>코어</h4><div id="coreList" class="scroll"></div><h4 style="margin-top:12px">전쟁 소식</h4><div id="feed" class="scroll"></div></aside>
-    </div>
-    <div class="pane" id="players" hidden></div>
-  </div>
+<div id="logo" class="t">
+  <div class="w" id="sname">Korea<br><em>War</em></div>
+  <div class="s"><b id="dot"></b><span id="addr">서버 확인 중</span></div>
 </div>
-<footer id="foot"></footer>
+
+<div id="acct" class="t"></div>
+
+<nav id="rail">
+  <button class="ri" data-ov="map"><svg viewBox="0 0 24 24"><path d="M15 5.1 9 3 3 5.2v15.7l6-2.1 6 2.1 6-2.2V3zM10 5.4l4 1.4v11.8l-4-1.4zM5 6.6l3-1v11.8l-3 1zm11 11.8V6.6l3-1v11.8z"/></svg><span>지도</span></button>
+  <button class="ri" data-ov="players"><svg viewBox="0 0 24 24"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8m0-6a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7.5 6.5a3.5 3.5 0 1 0-1.2-6.8 6 6 0 0 1 0 6.6c.4.1.8.2 1.2.2M9 13c-3.3 0-7 1.6-7 4.5V20h14v-2.5C16 14.6 12.3 13 9 13m-5 5c.2-.9 2.4-3 5-3s4.8 2.1 5 3zm13.1-4.9c1.6.8 2.9 2.2 2.9 4.4V20h2v-2.5c0-2.1-2.4-3.8-4.9-4.4"/></svg><span>접속자</span></button>
+  <button class="ri" data-ov="news" id="newsRi"><svg viewBox="0 0 24 24"><path d="M4 4h13v3h3v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2 2v12h10V6zm12 3v9h0V9zM8 8h6v2H8zm0 4h6v2H8z"/></svg><span>소식</span></button>
+  <div class="sep"></div>
+  <button class="ri" id="disc" hidden><svg viewBox="0 0 71 55"><path d="M60 4.6A58 58 0 0 0 45.6.2l-1.8 3.7a54 54 0 0 0-16.2 0L25.8.2A58 58 0 0 0 11.3 4.6 59.6 59.6 0 0 0 .9 44.8 58.3 58.3 0 0 0 18.6 53.8l3.8-5.2a38 38 0 0 1-6-2.9l1.5-1.1a41.6 41.6 0 0 0 35.4 0l1.5 1.1a38 38 0 0 1-6 2.9l3.8 5.2a58 58 0 0 0 17.8-9A59.4 59.4 0 0 0 60 4.6ZM23.7 36.7c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2 6.4 3.3 6.4 7.2-2.8 7.2-6.4 7.2Zm23.6 0c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2 6.4 3.3 6.4 7.2-2.8 7.2-6.4 7.2Z"/></svg><span>디스코드</span></button>
+  <button class="ri" id="folder"><svg viewBox="0 0 24 24"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8zm10 14H4V8h16z"/></svg><span>게임 폴더</span></button>
+  <button class="ri" data-ov="settings"><svg viewBox="0 0 24 24"><path d="M19.4 13a7.6 7.6 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7 7 0 0 0-1.7-1L15 3h-4l-.4 2.9a7 7 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.6 7.6 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7 7 0 0 0 1.7 1L11 21h4l.4-2.9a7 7 0 0 0 1.7-1l2.5 1 2-3.5zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7"/></svg><span>설정</span></button>
+</nav>
+
+<div id="launch" class="t">
+  <div id="stats"><div>접속<b><span id="cnt">-</span><span id="cntmax" style="font-size:13px;color:var(--mute);font-weight:400"></span></b></div><div>국가<b id="natCnt">-</b></div><div>코어<b id="coreCnt">-</b></div></div>
+  <div class="err warn" id="noapp" hidden>로그인 앱이 아직 설정되지 않았어요. 서버장이 config.yml 의 launcher.client-id 를 채우면 로그인할 수 있어요.</div>
+  <div class="err" id="autherr" hidden></div>
+  <button id="play" disabled><span id="playTxt">게임 시작</span><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9z"/></svg></button>
+  <div class="bar" id="bar"><i id="barv"></i></div>
+  <div id="stat">&nbsp;</div>
+  <div id="motd"></div>
+  <div class="err" id="err" hidden></div>
+</div>
+
+<button id="newsBtn" class="t" data-ov="news"><svg viewBox="0 0 24 24"><path d="M12 7l7 7-1.4 1.4L12 9.8l-5.6 5.6L5 14z"/></svg>소식<i class="badge" id="ncnt" hidden></i></button>
+<div id="ver"></div>
+
+<!-- 소식 -->
+<section class="ov" id="ov-news">
+  <h2 class="t">소식</h2><div class="sub">공지 · 전쟁 소식</div><button class="x" data-close>닫기 ✕</button>
+  <div class="body"><div class="news"><div><h3 class="cap">공지</h3><div id="notice"></div></div><div><h3 class="cap">전쟁 소식</h3><div id="feed2"></div></div></div></div>
+</section>
+<!-- 지도 -->
+<section class="ov" id="ov-map">
+  <h2 class="t">지도</h2><div class="sub">끌어서 옮기고 휠로 확대 · 코어를 누르면 그 자리로</div><button class="x" data-close>닫기 ✕</button>
+  <div class="mapwrap">
+    <aside class="side"><h4>국가 현황</h4><div id="nat"></div></aside>
+    <div id="mapBox">
+      <div id="world"><img id="mapimg" alt=""><div id="marks"></div></div>
+      <div class="mapbtns"><button id="zin">＋</button><button id="zout">－</button><button id="zfit">전체</button></div>
+      <div id="tip"></div>
+    </div>
+    <aside class="side right"><h4>코어</h4><div id="coreList" class="scroll"></div><h4 style="margin-top:14px">전쟁 소식</h4><div id="feed" class="scroll"></div></aside>
+  </div>
+</section>
+<!-- 접속자 -->
+<section class="ov" id="ov-players">
+  <h2 class="t">접속자</h2><div class="sub" id="plSub">&nbsp;</div><button class="x" data-close>닫기 ✕</button>
+  <div class="body" id="players"></div>
+</section>
+<!-- 설정 -->
+<section class="ov" id="ov-settings">
+  <h2 class="t">설정</h2><div class="sub">이 컴퓨터에만 저장돼요</div><button class="x" data-close>닫기 ✕</button>
+  <div class="body"><div class="form">
+    <div class="fr"><label for="mem">메모리</label><select id="mem"><option value="2048">2 GB</option><option value="3072">3 GB</option><option value="4096">4 GB (권장)</option><option value="6144">6 GB</option><option value="8192">8 GB</option></select></div>
+    <div class="fr"><label for="host">서버 주소</label><input type="text" id="host" spellcheck="false"></div>
+    <div class="fr"><label for="auto">켜면 바로 접속</label><select id="auto"><option value="1">예</option><option value="0">아니요</option></select></div>
+    <div class="acts"><button class="pri" id="save">저장</button><span id="saved">저장했어요</span><span style="flex:1"></span><button id="quit">런처 끄기</button></div>
+  </div></div>
+</section>
+
 <script>
 const TOKEN="__TOKEN__", $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 async function post(p,b){return (await fetch(p,{method:"POST",headers:{"X-KW-Token":TOKEN,"Content-Type":"application/json"},body:JSON.stringify(b||{})})).json()}
-let filled=false, info=null, discordUrl="";
-// ---------------- 탭
-document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{
-  document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===b));
-  ["notice","mapPane","players"].forEach(id=>$(id).hidden=(id!==(b.dataset.t==="map"?"mapPane":b.dataset.t)));
-  if(b.dataset.t==="map") fitMap(false);
-  if(b.dataset.t==="notice"){ try{localStorage.setItem("kwSeen",String(noticeKey()))}catch(e){} $("ncnt").hidden=true; }
-});
+let filled=false, info=null, discordUrl="", cur="";
+// ---------------- 덮개 화면
+function openOv(n){
+  if(cur===n) n="";
+  document.querySelectorAll(".ov").forEach(o=>o.classList.toggle("on",o.id==="ov-"+n));
+  document.querySelectorAll(".ri[data-ov]").forEach(r=>r.classList.toggle("on",r.dataset.ov===n));
+  document.body.classList.toggle("ov-open",!!n); cur=n;
+  ["launch","newsBtn","logo","acct"].forEach(id=>$(id).style.visibility=n?"hidden":"");
+  if(n==="map") setTimeout(()=>fitMap(false),30);
+  if(n==="news"){ try{localStorage.setItem("kwSeen",String(noticeKey()))}catch(e){} $("ncnt").hidden=true; badge(); }
+}
+document.querySelectorAll("[data-ov]").forEach(b=>b.onclick=()=>openOv(b.dataset.ov));
+document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>openOv(""));
+addEventListener("keydown",e=>{if(e.key==="Escape"&&cur)openOv("")});
+function badge(){let o=$("newsRi").querySelector(".badge"); if(!$("ncnt").hidden){if(!o){o=document.createElement("i");o.className="badge";$("newsRi").appendChild(o)}}else if(o)o.remove()}
 // ---------------- 런처 상태
 async function tick(){
   let s; try{s=await(await fetch("/api/state",{cache:"no-store"})).json()}catch(e){$("stat").textContent="런처가 꺼져 있어요. 다시 실행해 주세요.";$("play").disabled=true;return}
   $("addr").textContent=s.address; $("noapp").hidden=s.hasClientId;
-  const sv=s.server||{}; $("dot").className="dot"+(sv.online?" on":"");
+  const sv=s.server||{}; $("dot").className=sv.online?"on":"";
   if(!info){ $("cnt").textContent=sv.online?sv.players:"-"; $("cntmax").textContent=sv.online?" / "+sv.max:""; }
   $("motd").textContent=sv.online?(sv.motd||""):"서버가 꺼져 있어요";
   const a=s.account;
-  $("acc").innerHTML=a?`<div class="head"><img alt="" src="https://mc-heads.net/avatar/${esc(a.uuid)}/46" onerror="this.remove()"></div><div class="who"><b>${esc(a.name)}</b><div>마이크로소프트 계정</div></div><div class="sp"></div><button class="ghost" id="logout">로그아웃</button>`
-   :`<div class="head">?</div><div class="who"><b>로그인이 필요해요</b><div>마인크래프트 자바 에디션 계정</div></div><div class="sp"></div><button class="ms" id="login" ${s.hasClientId?"":"disabled"}>로그인</button>`;
+  $("acct").innerHTML=a?`<div><div class="n">${esc(a.name)}</div><div class="k">마이크로소프트 계정 · <button id="logout">로그아웃</button></div></div><div id="avatar"><img alt="" src="https://mc-heads.net/head/${esc(a.uuid)}/58" onerror="this.outerHTML='<div class=q>?</div>'"></div>`
+   :`<div><div class="n">로그인이 필요해요</div><div class="k">마인크래프트 자바 에디션</div></div><button id="loginBtn" ${s.hasClientId?"":"disabled"}>로그인</button>`;
   if(a)$("logout").onclick=async()=>{await post("/api/logout");tick()};
-  else $("login").onclick=async()=>{const r=await post("/api/login");if(r.url)location.href=r.url;else if(r.error){$("autherr").hidden=false;$("autherr").textContent=r.error}};
+  else $("loginBtn").onclick=async()=>{const r=await post("/api/login");if(r.url)location.href=r.url;else if(r.error){$("autherr").hidden=false;$("autherr").textContent=r.error}};
   $("autherr").hidden=!s.authError; if(s.authError)$("autherr").textContent=s.authError;
   const st=s.status||{}, busy=st.phase==="prepare";
-  $("play").disabled=!a||busy||s.running; $("play").textContent=s.running?"게임 실행 중":busy?"준비 중…":"게임 시작";
+  $("play").disabled=!a||busy||s.running; $("playTxt").textContent=s.running?"게임 실행 중":busy?"준비 중":!a?"로그인 후 시작":"게임 시작";
+  $("bar").classList.toggle("on",busy||st.total>0);
   $("barv").style.width=(st.total>0?Math.min(100,Math.round(st.done*100/st.total)):(busy?8:(s.running?100:0)))+"%";
-  $("stat").textContent=(st.text||"")+(st.total>0&&busy?`  (${st.done}/${st.total})`:"");
+  $("stat").textContent=(st.text||"")+(st.total>0&&busy?`  ${st.done} / ${st.total}`:"")||" ";
   $("err").hidden=!st.error; if(st.error)$("err").innerHTML=esc(st.error)+(st.logTail?`<pre>${esc(st.logTail)}</pre>`:"");
   if(!filled){filled=true;$("mem").value=String(s.config.memoryMB);$("host").value=s.config.host;$("auto").value=s.config.autoJoin?"1":"0"}
-  $("foot").textContent=`런처 ${s.version}`+(s.newerLauncher?` · 새 런처 ${s.newerLauncher} 이 있어요`:"")+" · 게임을 켠 뒤엔 이 창을 닫아도 돼요";
+  $("ver").textContent=`런처 ${s.version}`+(s.newerLauncher?` · 새 런처 ${s.newerLauncher} 이 나왔어요`:"");
 }
 // ---------------- 서버 정보 (공지·접속자·코어)
 function noticeKey(){return info&&info.notices&&info.notices.length?(info.notices[0].date+info.notices[0].title):""}
@@ -178,16 +261,19 @@ async function infoTick(){
   let d; try{d=await(await fetch("/api/info",{cache:"no-store"})).json()}catch(e){return}
   if(d.error){ if(!info) $("notice").innerHTML=`<div class="empty">${esc(d.error)}</div>`; return }
   const first=!info; info=d;
-  document.title=d.name||"Korea War"; $("sname").firstChild.textContent=d.name||"Korea War";
+  const nm=d.name||"Korea War"; document.title=nm;
+  const parts=nm.trim().split(/\s+/); $("sname").innerHTML=parts.length>1?esc(parts.slice(0,-1).join(" "))+"<br><em>"+esc(parts[parts.length-1])+"</em>":esc(nm);
   $("cnt").textContent=d.online; $("cntmax").textContent=" / "+d.max;
+  $("natCnt").textContent=(d.nations||[]).length; $("coreCnt").textContent=(d.cores||[]).length;
   discordUrl=d.discord||""; $("disc").hidden=!discordUrl;
   const ns=d.notices||[];
-  $("notice").innerHTML=ns.length?ns.map(n=>`<div class="notice"><div class="d">${esc(n.date)}</div><h3>${esc(n.title)}</h3><p>${esc(n.text)}</p></div>`).join(""):`<div class="empty">공지가 없어요</div>`;
+  $("notice").innerHTML=ns.length?ns.map(n=>`<div class="notice"><div class="d">${esc(n.date)}</div><h4>${esc(n.title)}</h4><p>${esc(n.text)}</p></div>`).join(""):`<div class="empty">공지가 없어요</div>`;
   let seen=""; try{seen=localStorage.getItem("kwSeen")||""}catch(e){}
-  if(ns.length&&seen!==noticeKey()&&$("notice").hidden){$("ncnt").hidden=false;$("ncnt").textContent="N"}
+  if(ns.length&&seen!==noticeKey()&&cur!=="news"){$("ncnt").hidden=false} badge();
   const col={}; (d.nations||[]).forEach(n=>col[n.name]=n.color);
   const ps=d.players||[];
-  $("players").innerHTML=ps.length?`<div class="plist">${ps.map(p=>`<div class="pl"><img alt="" src="https://mc-heads.net/avatar/${encodeURIComponent(p.name)}/32" onerror="this.style.visibility='hidden'"><div><b>${esc(p.name)}</b><small style="color:${p.nation?col[p.nation]||"#ccc":"#8a94a0"}">${esc(p.nation||"방랑자")}</small></div></div>`).join("")}</div>`:`<div class="empty">지금은 아무도 없어요</div>`;
+  $("plSub").textContent=`지금 ${ps.length}명 · 최대 ${d.max}명`;
+  $("players").innerHTML=ps.length?`<div class="plist">${ps.map(p=>`<div class="pl"><img alt="" src="https://mc-heads.net/avatar/${encodeURIComponent(p.name)}/30" onerror="this.style.visibility='hidden'"><div><b>${esc(p.name)}</b><small style="color:${p.nation?col[p.nation]||"#ccc":"rgba(242,237,226,.38)"}">${esc(p.nation||"방랑자")}</small></div></div>`).join("")}</div>`:`<div class="empty">지금은 아무도 없어요</div>`;
   drawMarks(col);
   if(first||$("mapimg").dataset.v!==d.map){ if(d.map){$("mapimg").dataset.v=d.map;$("mapimg").src="/api/map.png?v="+encodeURIComponent(d.map)} }
 }
@@ -195,7 +281,7 @@ async function infoTick(){
 let view={x:0,y:0,k:1}, fitted=false;
 function apply(){$("world").style.transform=`translate(${view.x}px,${view.y}px) scale(${view.k})`;document.querySelectorAll(".core").forEach(m=>m.style.transform=`translate(-50%,-50%) scale(${1/view.k})`)}
 function fitMap(force){
-  const img=$("mapimg"), pane=$("mapBox"); if(!img.naturalWidth||$("mapPane").hidden) return; if(fitted&&!force) return;
+  const img=$("mapimg"), pane=$("mapBox"); if(!img.naturalWidth||cur!=="map") return; if(fitted&&!force) return;
   const k=Math.min(pane.clientWidth/img.naturalWidth,pane.clientHeight/img.naturalHeight);
   view={k,x:(pane.clientWidth-img.naturalWidth*k)/2,y:(pane.clientHeight-img.naturalHeight*k)/2}; fitted=true; apply();
 }
@@ -208,22 +294,22 @@ $("mapBox").addEventListener("pointermove",e=>{if(!drag)return;view.x=drag.vx+e.
 $("mapBox").addEventListener("pointerup",()=>{drag=null;$("mapBox").classList.remove("drag")});
 const mid=()=>{const p=$("mapBox");return[p.clientWidth/2,p.clientHeight/2]};
 $("zin").onclick=()=>zoomAt(1.5,...mid()); $("zout").onclick=()=>zoomAt(1/1.5,...mid()); $("zfit").onclick=()=>fitMap(true);
-window.addEventListener("resize",()=>fitMap(true));
+addEventListener("resize",()=>fitMap(true));
 function drawMarks(col){
-  if(!info||!info.bounds) return; const img=$("mapimg"); if(!img.naturalWidth) return;
+  if(!info||!info.bounds) return; const img=$("mapimg");
   col=col||{}; (info.nations||[]).forEach(n=>col[n.name]=n.color);
+  drawSides(col); if(!img.naturalWidth) return;
   const b=info.bounds, W=img.naturalWidth, H=img.naturalHeight;
-  $("marks").innerHTML=(info.cores||[]).map((c,i)=>{const x=(c.x-b.minX)/b.width*W, y=(c.z-b.minZ)/b.height*H, cl=c.owner?(col[c.owner]||"#ccc"):"#8a94a0";
+  $("marks").innerHTML=(info.cores||[]).map((c,i)=>{const x=(c.x-b.minX)/b.width*W, y=(c.z-b.minZ)/b.height*H, cl=c.owner?(col[c.owner]||"#ccc"):"#8a8a8a";
     return `<div class="core" data-i="${i}" style="left:${x}px;top:${y}px"><i style="background:${cl}"></i><span>${esc(c.name)}</span></div>`}).join("");
   document.querySelectorAll(".core").forEach(m=>{
-    m.onpointerenter=e=>{const c=info.cores[+m.dataset.i];$("tip").style.display="block";$("tip").innerHTML=`<b>${esc(c.name)}</b><br>주인: ${esc(c.owner||"없음")}<br>체력: ${c.hp} / ${c.maxHp}<br>좌표: ${c.x}, ${c.z}`};
+    m.onpointerenter=()=>{const c=info.cores[+m.dataset.i];$("tip").style.display="block";$("tip").innerHTML=`<b>${esc(c.name)}</b><br>주인: ${esc(c.owner||"없음")}<br>체력: ${c.hp} / ${c.maxHp}<br>좌표: ${c.x}, ${c.z}`};
     m.onpointermove=e=>{const r=$("mapBox").getBoundingClientRect();$("tip").style.left=(e.clientX-r.left+14)+"px";$("tip").style.top=(e.clientY-r.top+14)+"px"};
     m.onpointerleave=()=>$("tip").style.display="none";
   });
-  drawSides(col);
   apply();
 }
-// ---------------- 양옆: 국가 현황 · 코어 목록 · 전쟁 소식
+// ---------------- 국가 현황 · 코어 목록 · 전쟁 소식
 function ago(t){const m=Math.floor((Date.now()-t)/60000);return m<1?"방금":m<60?m+"분 전":m<1440?Math.floor(m/60)+"시간 전":Math.floor(m/1440)+"일 전"}
 function focusCore(i){const c=info.cores[i],b=info.bounds,img=$("mapimg");if(!c||!img.naturalWidth)return;const p=$("mapBox"),k=Math.max(view.k,1.2);
   const x=(c.x-b.minX)/b.width*img.naturalWidth,y=(c.z-b.minZ)/b.height*img.naturalHeight;view={k,x:p.clientWidth/2-x*k,y:p.clientHeight/2-y*k};apply();
@@ -233,20 +319,21 @@ function drawSides(col){
   const nat=(info.nations||[]).map(n=>({n:n.name,c:n.color,cores:cores.filter(x=>x.owner===n.name).length,on:ps.filter(p=>p.nation===n.name).length}));
   nat.sort((a,b)=>b.cores-a.cores||b.on-a.on);
   const free=cores.filter(x=>!x.owner).length;
-  $("nat").innerHTML=(nat.length?nat.map((n,i)=>`<div class="nat"><div class="t"><b style="background:${n.c}"></b>${esc(n.n)}<span class="rank">${i+1}위</span></div><div class="r"><span>코어 ${n.cores}</span><span>접속 ${n.on}</span></div></div>`).join(""):`<div class="note">아직 국가가 없어요</div>`)
-    +`<div class="nat"><div class="t"><b style="background:#8a94a0"></b>주인 없음</div><div class="r"><span>코어 ${free}</span></div></div>`;
-  $("coreList").innerHTML=cores.map((c,i)=>({c,i})).sort((a,b)=>(a.c.owner||"~").localeCompare(b.c.owner||"~")).map(({c,i})=>{const cl=c.owner?(col[c.owner]||"#ccc"):"#8a94a0",pct=c.maxHp?Math.round(c.hp*100/c.maxHp):0;
-    return `<div class="ci" onclick="focusCore(${i})"><div class="t"><b style="background:${cl}"></b>${esc(c.name)}<small>${esc(c.owner||"주인 없음")}</small></div><div class="hp"><i style="width:${pct}%;background:${pct<35?"#e0533b":pct<70?"#d9b25f":"#5fb36b"}"></i></div></div>`}).join("");
+  $("nat").innerHTML=(nat.length?nat.map((n,i)=>`<div class="nat"><div class="tt"><b style="background:${n.c}"></b>${esc(n.n)}<span class="rank">${i+1}위</span></div><div class="r"><span>코어 ${n.cores}</span><span>접속 ${n.on}</span></div></div>`).join(""):`<div class="empty">아직 국가가 없어요</div>`)
+    +`<div class="nat"><div class="tt"><b style="background:#8a8a8a"></b>주인 없음</div><div class="r"><span>코어 ${free}</span></div></div>`;
+  $("coreList").innerHTML=cores.map((c,i)=>({c,i})).sort((a,b)=>(a.c.owner||"~").localeCompare(b.c.owner||"~")).map(({c,i})=>{const cl=c.owner?(col[c.owner]||"#ccc"):"#8a8a8a",pct=c.maxHp?Math.round(c.hp*100/c.maxHp):0;
+    return `<div class="ci" onclick="focusCore(${i})"><div class="tt"><b style="background:${cl}"></b>${esc(c.name)}<small>${esc(c.owner||"주인 없음")}</small></div><div class="hp"><i style="width:${pct}%;background:${pct<35?"#e0533b":pct<70?"#e2b45a":"#7bd389"}"></i></div></div>`}).join("");
   const ev=info.events||[];
-  $("feed").innerHTML=ev.length?ev.slice(0,25).map(e=>`<div class="ev ${esc(e.kind)}"><div class="w">${ago(e.t)}</div><div class="x">${esc(e.text)}</div></div>`).join(""):`<div class="note">아직 소식이 없어요. 코어를 점령하거나 공격하면 여기에 떠요.</div>`;
+  const fe=n=>ev.length?ev.slice(0,n).map(e=>`<div class="ev ${esc(e.kind)}"><div class="w">${ago(e.t)}</div><div class="x">${esc(e.text)}</div></div>`).join(""):`<div class="empty">아직 소식이 없어요. 코어를 점령하거나 공격하면 여기에 떠요.</div>`;
+  $("feed").innerHTML=fe(25); $("feed2").innerHTML=fe(40);
 }
 // ---------------- 버튼
 $("play").onclick=async()=>{$("play").disabled=true;await post("/api/play");tick()};
 $("disc").onclick=()=>post("/api/open",{url:discordUrl});
-$("save").onclick=async()=>{await post("/api/config",{memoryMB:+$("mem").value,host:$("host").value,autoJoin:$("auto").value==="1"});filled=false;tick()};
+$("save").onclick=async()=>{await post("/api/config",{memoryMB:+$("mem").value,host:$("host").value,autoJoin:$("auto").value==="1"});filled=false;tick();$("saved").style.opacity=1;setTimeout(()=>$("saved").style.opacity=0,1600)};
 $("folder").onclick=()=>post("/api/openfolder");
-$("quit").onclick=async()=>{await post("/api/quit");document.body.innerHTML='<div style="padding:40px">런처를 껐어요. 이 창은 닫아도 돼요.</div>'};
-{const t=document.querySelector(`.tab[data-t="${location.hash.slice(1)}"]`); if(t) setTimeout(()=>t.click(),50);}
+$("quit").onclick=async()=>{await post("/api/quit");document.body.innerHTML='<div style="padding:44px;color:#f2ede2">런처를 껐어요. 이 창은 닫아도 돼요.</div>'};
+{const h=location.hash.slice(1); if(["map","players","news","settings"].includes(h)) setTimeout(()=>openOv(h),50);}
 tick(); setInterval(tick,1000); infoTick(); setInterval(infoTick,5000);
 </script>
 </body>

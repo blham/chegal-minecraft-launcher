@@ -224,12 +224,12 @@ type ModFile struct {
 	Size int64  `json:"size"`
 }
 type Manifest struct {
-	Minecraft     string    `json:"minecraft"`
-	FabricLoader  string    `json:"fabricLoader"`
-	ClientID      string    `json:"clientId"`
-	Server        string    `json:"server"`
-	Mods          []ModFile `json:"mods"`
-	Launcher      string    `json:"launcher"`
+	Minecraft     string            `json:"minecraft"`
+	FabricLoader  string            `json:"fabricLoader"`
+	ClientID      string            `json:"clientId"`
+	Server        string            `json:"server"`
+	Mods          []ModFile         `json:"mods"`
+	Launcher      string            `json:"launcher"`
 	LauncherFiles map[string]string `json:"launcherFiles"`
 }
 
@@ -278,8 +278,8 @@ func fetchManifest() (*Manifest, error) {
 type Rule struct {
 	Action string `json:"action"`
 	OS     *struct {
-		Name    string `json:"name"`
-		Arch    string `json:"arch"`
+		Name         string `json:"name"`
+		Arch         string `json:"arch"`
 		VersionRange *struct {
 			Min string `json:"min"`
 			Max string `json:"max"`
