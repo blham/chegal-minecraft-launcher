@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.1.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.1.1.jar",
-  "sha256": "fd2472fa2a686dea774a7e7a98a57093c94579a6e55a1762fec6011944e578b9",
-  "size": 109451391,
-  "notes": "카레라이스 (줄무늬 접시·대각선 밥·큰 건더기), 밥알 덩이로 덮은 쌀밥",
-  "time": 1792836444
+  "version": "2.1.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.1.2.jar",
+  "sha256": "01c9215b75e00c00abb642d369b76f1ffaa551e9de364f85f6c9cce007d6b5b9",
+  "size": 109454409,
+  "notes": "카레가 밥을 조금 덮음",
+  "time": 1792837353
 }
