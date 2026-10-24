@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"bytes"
 	"encoding/binary"
 	"encoding/json"
 	"errors"
@@ -10,7 +9,6 @@ import (
 	"io"
 	"net"
 	"net/http"
-	"net/url"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -53,11 +51,6 @@ func registerAPI(mux *http.ServeMux) {
 		pollMu.Lock()
 		lastPoll = time.Now()
 		pollMu.Unlock()
-		a := currentAccount()
-		var acc any
-		if a != nil {
-			acc = map[string]string{"name": a.Name, "uuid": a.UUID}
-		}
 		srvInfoMu.Lock()
 		si := srvInfo
 		srvInfoMu.Unlock()
@@ -72,25 +65,11 @@ func registerAPI(mux *http.ServeMux) {
 		st.Text, st.Error, st.LogTail = hideHost(st.Text), hideHost(st.Error), hideHost(st.LogTail)
 		c.Host = ""
 		writeJSON(w, map[string]any{
-			"account": acc, "status": st, "server": si, "authError": hideHost(authError),
+			"status": st, "server": si, "mcDir": mcDir(),
 			"config": c, "address": "", "version": LauncherVersion, "newerLauncher": newer,
-			"running": gameRunning(), "hasClientId": clientID() != "",
+			"running": gameRunning(),
 		})
 	})
-	mux.HandleFunc("/api/login", guard(func(w http.ResponseWriter, r *http.Request) {
-		u, err := beginLogin()
-		if err != nil {
-			writeJSON(w, map[string]string{"error": err.Error()})
-			return
-		}
-		authError = ""
-		openBrowser(u) // 1.2.7 주소창이 보이는 기본 브라우저에서 로그인 (런처 창 안에서는 진짜 마이크로소프트인지 확인할 수 없어서)
-		writeJSON(w, map[string]bool{"opened": true})
-	}))
-	mux.HandleFunc("/api/logout", guard(func(w http.ResponseWriter, r *http.Request) {
-		logout()
-		writeJSON(w, map[string]bool{"ok": true})
-	}))
 	mux.HandleFunc("/api/play", guard(func(w http.ResponseWriter, r *http.Request) {
 		go play()
 		writeJSON(w, map[string]bool{"ok": true})
@@ -212,44 +191,6 @@ func registerAPI(mux *http.ServeMux) {
 		}
 		openBrowser(filepath.Dir(p))
 		writeJSON(w, map[string]string{"path": p})
-	}))
-	// 1.2.8 내 후원 내역: 마인크래프트 계정 주인임을 모장 세션 서버로 증명(서버 접속과 같은 방식)한 뒤 서버에 물어봄.
-	// 접속 토큰은 모장에만 보내고 우리 서버에는 안 보냄.
-	mux.HandleFunc("/api/donate/me", guard(func(w http.ResponseWriter, r *http.Request) {
-		a := currentAccount()
-		if a == nil {
-			writeJSON(w, map[string]string{"error": "login"})
-			return
-		}
-		if err := ensureFreshToken(); err != nil {
-			writeJSON(w, map[string]string{"error": "로그인을 다시 확인해야 해요: " + err.Error()})
-			return
-		}
-		a = currentAccount()
-		var ch struct {
-			ServerID string `json:"serverId"`
-		}
-		if err := getJSON(filesBase()+"/launcher/donor-challenge", &ch); err != nil || !regexp.MustCompile(`^[0-9a-f]{32}$`).MatchString(ch.ServerID) {
-			writeJSON(w, map[string]string{"error": "서버에 연결하지 못했어요"})
-			return
-		}
-		body, _ := json.Marshal(map[string]string{"accessToken": a.McToken, "selectedProfile": a.UUID, "serverId": ch.ServerID})
-		resp, err := httpc.Post("https://sessionserver.mojang.com/session/minecraft/join", "application/json", bytes.NewReader(body))
-		if err != nil {
-			writeJSON(w, map[string]string{"error": "마인크래프트 계정 확인에 실패했어요"})
-			return
-		}
-		resp.Body.Close()
-		if resp.StatusCode != 204 && resp.StatusCode != 200 {
-			writeJSON(w, map[string]string{"error": fmt.Sprintf("마인크래프트 계정 확인에 실패했어요 (%d)", resp.StatusCode)})
-			return
-		}
-		var me map[string]any
-		if err := getJSON(filesBase()+"/launcher/donor-me?name="+url.QueryEscape(a.Name)+"&sid="+ch.ServerID, &me); err != nil {
-			writeJSON(w, map[string]string{"error": "서버가 내역을 주지 않았어요"})
-			return
-		}
-		writeJSON(w, me)
 	}))
 	mux.HandleFunc("/api/openmods", guard(func(w http.ResponseWriter, r *http.Request) {
 		d := filepath.Join(gameDir(), "mods")

@@ -37,9 +37,6 @@ button:disabled{cursor:default}
 #avatar{width:58px;height:58px;display:grid;place-items:center;image-rendering:pixelated}
 #avatar img{width:58px;height:58px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.6))}
 #avatar .q{width:50px;height:50px;border:2px dashed var(--dim);display:grid;place-items:center;color:var(--dim);font-size:22px}
-#loginBtn{border:1px solid var(--ink);padding:9px 18px;font-weight:700;letter-spacing:1px;transition:background .15s,color .15s}
-#loginBtn:hover:not(:disabled){background:var(--ink);color:#111}
-#loginBtn:disabled{opacity:.4}
 
 /* 오른쪽 세로 줄 */
 #rail{z-index:30;position:fixed;right:28px;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
@@ -223,8 +220,6 @@ option{background:#16181d}
 
 <div id="launch" class="t">
   <div id="stats"><div>접속<b><span id="cnt">-</span><span id="cntmax" style="font-size:13px;color:var(--mute);font-weight:400"></span></b></div><div>국가<b id="natCnt">-</b></div><div>코어<b id="coreCnt">-</b></div></div>
-  <div class="err warn" id="noapp" hidden>로그인 앱이 아직 설정되지 않았어요. 서버장이 config.yml 의 launcher.client-id 를 채우면 로그인할 수 있어요.</div>
-  <div class="err" id="autherr" hidden></div>
   <button id="play" disabled><span id="playTxt">게임 시작</span><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9z"/></svg></button>
   <div class="bar" id="bar"><i id="barv"></i></div>
   <div id="stat">&nbsp;</div>
@@ -267,14 +262,14 @@ option{background:#16181d}
         <h3 class="cap2" style="margin-top:0">후원하는 법</h3>
         <p class="dnote" id="dNote"></p>
         <ol class="steps"><li>토스·카카오페이 버튼을 누르거나 아래 계좌로 보내요.</li>
-        <li><b>보낼 때 메시지(받는 분 표시)에 내 닉네임을 적어 주세요.</b><div class="nick"><span id="dNick">로그인하면 보여요</span><button class="fbtn" id="dCopy" hidden>복사</button></div></li>
+        <li><b>보낼 때 메시지(받는 분 표시)에 내 마인크래프트 닉네임을 적어 주세요.</b></li>
         <li>서버장이 확인하면 게임에 칭호가 생겨요.</li></ol>
         <div class="pay"><button class="toss" id="dToss" hidden>토스로 후원 ↗</button><button class="kakao" id="dKakao" hidden>카카오페이로 후원 ↗</button><button class="kofi" id="dGo" hidden>Ko-fi ↗</button></div>
         <div class="bank" id="dBank" hidden><div><div class="exp" style="margin:0">계좌로 보내기</div><b id="dBankTxt"></b></div><button class="fbtn" id="dBankCopy">계좌번호 복사</button></div>
         <div class="exp" id="dGoNote"></div>
       </div>
       <h3 class="cap2">칭호 단계 (누적 금액)</h3><div id="dTiers"></div>
-      <h3 class="cap2">내 후원</h3><div id="dMe" class="dbox"><div class="empty">불러오는 중…</div></div>
+      <h3 class="cap2">내 후원</h3><div id="dMe" class="dbox"><div class="empty">게임 안에서 <b>/후원</b> 을 치면 내 누적 후원과 칭호, 다음 단계까지 남은 금액이 보여요.</div></div>
     </div>
     <div class="dcol"><h3 class="cap2" style="margin-top:0">최근 후원해 주신 분</h3><div id="dRecent"></div><h3 class="cap2">후원자 명예의 전당</h3><div id="dHall"></div></div>
   </div></div>
@@ -312,7 +307,6 @@ function openOv(n){
   ["launch","newsBtn","logo","acct"].forEach(id=>$(id).style.visibility=n?"hidden":"");
   if(n==="map") setTimeout(()=>{sizeMap();fitMap(false)},30);
   if(n==="mods") loadMods();
-  if(n==="donate") loadDonateMe();
   if(n==="news"){ try{localStorage.setItem("kwSeen",String(noticeKey()))}catch(e){} $("ncnt").hidden=true; badge(); }
 }
 document.querySelectorAll("[data-ov]").forEach(b=>b.onclick=()=>openOv(b.dataset.ov));
@@ -325,20 +319,15 @@ async function tick(){
   let s; try{s=lastState=await(await fetch("/api/state",{cache:"no-store"})).json()}catch(e){wasDown=true;$("stat").textContent=upd?"새 런처로 다시 켜는 중…":"런처가 꺼져 있어요. 다시 실행해 주세요.";$("play").disabled=true;return}
   if(wasDown){location.reload();return}   // 런처가 새 버전으로 다시 켜졌으면 새 화면으로
   upd=/새 런처/.test((s.status||{}).text||"");
-  $("addr").textContent=(s.server||{}).online?"서버 열림":"서버 꺼짐"; $("noapp").hidden=s.hasClientId;
+  $("addr").textContent=(s.server||{}).online?"서버 열림":"서버 꺼짐"; 
   const sv=s.server||{}; $("dot").className=sv.online?"on":"";
   if(!info){ $("cnt").textContent=sv.online?sv.players:"-"; $("cntmax").textContent=sv.online?" / "+sv.max:""; }
   $("motd").textContent=sv.online?(sv.motd||""):"서버가 꺼져 있어요";
-  const a=s.account;
-  $("acct").innerHTML=a?`<div><div class="n">${esc(a.name)}</div><div class="k">마이크로소프트 계정 · <button id="logout">로그아웃</button></div></div><div id="avatar"><img alt="" src="https://mc-heads.net/head/${esc(a.uuid)}/58" data-fb="q"></div>`
-   :`<div><div class="n">로그인이 필요해요</div><div class="k">마인크래프트 자바 에디션</div></div><button id="loginBtn" ${s.hasClientId?"":"disabled"}>로그인</button>`;
-  if(a)$("logout").onclick=async()=>{await post("/api/logout");tick()};
-  else $("loginBtn").onclick=async()=>{const r=await post("/api/login");if(r.opened){$("autherr").hidden=false;$("autherr").textContent="브라우저에서 마이크로소프트 로그인을 마치면 여기로 자동으로 돌아와요."}else if(r.error){$("autherr").hidden=false;$("autherr").textContent=r.error}};
-  $("autherr").hidden=!s.authError; if(s.authError)$("autherr").textContent=s.authError;
+  $("acct").innerHTML=`<div><div class="n">공식 런처로 실행</div><div class="k">로그인은 마인크래프트 공식 런처에서 해요</div></div>`;
   const st=s.status||{}, busy=st.phase==="prepare";
-  $("play").disabled=!a||busy||s.running; $("playTxt").textContent=s.running?"게임 실행 중":busy?"준비 중":!a?"로그인 후 시작":"게임 시작";
+  $("play").disabled=busy||s.running; $("playTxt").textContent=s.running?"공식 런처 여는 중":busy?"준비 중":"게임 시작";
   $("bar").classList.toggle("on",busy||st.total>0);
-  $("barv").style.width=(st.total>0?Math.min(100,Math.round(st.done*100/st.total)):(busy?8:(s.running?100:0)))+"%";
+  $("barv").style.width=(st.total>0?Math.min(100,Math.round(st.done*100/st.total)):(busy?8:(s.running||st.phase==="done"?100:0)))+"%";
   $("stat").textContent=(st.text||"")+(st.total>0&&busy?`  ${st.done} / ${st.total}`:"")||" ";
   $("err").hidden=!st.error; if(st.error)$("err").innerHTML=esc(st.error)+(st.logTail?`<pre>${esc(st.logTail)}</pre>`:"");
   if(!filled){filled=true;$("mem").value=String(s.config.memoryMB);$("auto").value=s.config.autoJoin?"1":"0"}
@@ -429,7 +418,6 @@ function drawSides(col){
 }
 // ---------------- 후원
 const wonF=v=>num(v).toLocaleString("ko-KR")+"원";
-let myName="";
 function titleSpan(t,c){return t?`<span class="tt" style="color:${sc(c)}">『${esc(t)}』</span>`:""}
 function drawDonate(dn){
   const ok=(u,re)=>re.test(u||"")?u:"";
@@ -446,19 +434,6 @@ function drawDonate(dn){
   const row=x=>`<div class="dn"><img alt="" src="https://mc-heads.net/avatar/${encodeURIComponent(x.name)}/22" data-fb="hide">${esc(x.name)}<small>${titleSpan(x.title,x.color)}</small></div>`;
   $("dRecent").innerHTML=(dn.recent||[]).map(row).join("")||`<div class="empty">아직 없어요. 첫 후원자가 되어 주세요!</div>`;
   $("dHall").innerHTML=(dn.hall||[]).map(row).join("")||`<div class="empty">아직 없어요</div>`;
-}
-async function loadDonateMe(){
-  if(!lastState) await tick();   // 화면을 바로 열었을 때 로그인 상태부터
-  const a=(lastState||{}).account;
-  if(a){myName=a.name;$("dNick").textContent=a.name;$("dCopy").hidden=false;$("dCopy").onclick=()=>{try{navigator.clipboard.writeText(a.name);$("dCopy").textContent="복사됨"}catch(e){}}}
-  else{$("dMe").innerHTML=`<div class="empty">로그인하면 내 누적 후원과 칭호가 보여요.</div>`;return}
-  $("dMe").innerHTML=`<div class="empty">마인크래프트 계정 확인 중…</div>`;
-  let r; try{r=await post("/api/donate/me")}catch(e){r={error:"런처 오류"}}
-  if(r.error){$("dMe").innerHTML=`<div class="empty">${esc(r.error==="login"?"로그인하면 보여요.":r.error)}</div>`;return}
-  const pct=r.nextMin?Math.min(100,Math.round(num(r.total)*100/num(r.nextMin))):100;
-  $("dMe").innerHTML=`<div class="meTotal">${wonF(r.total)}</div><div>${r.title?"지금 칭호 "+titleSpan(r.title,r.color):"아직 칭호가 없어요"}</div>`
-    +(r.nextMin?`<div class="prog"><i style="width:${pct}%"></i></div><div class="exp">다음 단계 『${esc(r.nextTitle)}』까지 ${wonF(num(r.nextMin)-num(r.total))}</div>`:`<div class="exp" style="margin-top:8px">가장 높은 단계예요. 정말 감사합니다!</div>`)
-    +((r.history||[]).length?`<div style="margin-top:12px">${r.history.map(h=>`<div class="dn">${new Date(num(h.t)).toLocaleDateString("ko-KR")}<small>${wonF(h.krw)} · ${esc(h.source)}</small></div>`).join("")}</div>`:"");
 }
 // ---------------- 모드
 let mods=null, openMod="";

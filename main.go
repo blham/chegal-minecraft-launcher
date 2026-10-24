@@ -1,4 +1,4 @@
-// KoreaWar 전용 런처: 마이크로소프트 로그인 -> 마인크래프트 26.3 + Fabric + 보조 모드를 받아(업데이트) -> 서버로 바로 접속해 켬.
+// KoreaWar 전용 런처: Fabric + 보조 모드를 받아(업데이트) 공식 마인크래프트 런처에 "Korea War" 프로필을 만들고 공식 런처를 엶 (1.3.0~).
 // 화면은 기본 웹 브라우저에 띄움 (http://localhost:25585). 표준 라이브러리만 씀 (윈도우·맥·리눅스 한 소스).
 package main
 
@@ -21,16 +21,13 @@ import (
 	"time"
 )
 
-// 빌드할 때 -ldflags "-X main.defaultHost=... -X main.defaultClientID=..." 로 바꿀 수 있음
+// 빌드할 때 -ldflags "-X main.defaultHost=..." 로 바꿀 수 있음
 var (
-	LauncherVersion  = "1.2.9"
+	LauncherVersion  = "1.3.0"
 	defaultHost      = "" // 빌드할 때 -ldflags "-X main.defaultHost=서버주소" 로 넣음 (소스에 IP 를 안 남기려고)
 	defaultGamePort  = "25565"
 	defaultFilesPort = "8163"
-	defaultClientID  = ""
 )
-
-var devOffline string
 
 // 창을 닫으면: 게임·준비 중·로그인 중이 아니면 끝냄 (게임 중이면 게임이 끝날 때)
 // 1.1.0 윈도우 Edge 는 앱 창을 띄운 뒤 처음 프로세스를 바로 끝내기도 함 → 프로세스가 끝났다고 바로 끄지 않고,
@@ -44,13 +41,13 @@ func windowClosed() {
 		logger.Printf("창 프로세스는 끝났지만 화면은 살아 있음 (그대로 둠)")
 		return
 	}
-	if !gameRunning() && !busy() && !loginPending() {
+	if !gameRunning() && !busy() {
 		logger.Printf("창을 닫아 끝냄")
 		os.Exit(0)
 	}
 }
 
-const uiPort = 25585 // Azure 앱 리디렉션 URI: http://localhost:25585/auth
+const uiPort = 25585
 
 //go:embed web
 var webFS embed.FS
@@ -60,7 +57,6 @@ type Config struct {
 	GamePort  int             `json:"gamePort"`
 	FilesPort int             `json:"filesPort"`
 	MemoryMB  int             `json:"memoryMB"`
-	ClientID  string          `json:"clientId,omitempty"` // 비우면 서버가 알려 준 것
 	AutoJoin  bool            `json:"autoJoin"`
 	Mods      map[string]bool `json:"mods,omitempty"`     // 편의성 모드 켬/끔 (모드 id)
 	Exported  string          `json:"exported,omitempty"` // 다른 런처용으로 마지막에 받아 간 보조 모드 버전
@@ -177,10 +173,7 @@ func main() {
 	if updated {
 		go afterUpdate()
 	}
-	loadAccount()
-	if devOffline != "" {
-		account = &Account{Name: devOffline, UUID: "00000000000040008000000000000001", McToken: "0", McExpires: 1 << 40, Xuid: "0", ClientID: "dev"}
-	}
+	go cleanupOldInstall()
 
 	ui := fmt.Sprintf("http://localhost:%d/", uiPort)
 	ln, err := net.Listen("tcp", fmt.Sprintf("127.0.0.1:%d", uiPort))
@@ -226,7 +219,6 @@ func main() {
 		}
 		static.ServeHTTP(w, r)
 	})
-	mux.HandleFunc("/auth", handleAuthCallback)
 	registerAPI(mux)
 	srv := &http.Server{Handler: hostGuard(mux), ReadHeaderTimeout: 10 * time.Second}
 	go func() { _ = srv.Serve(ln) }()
@@ -267,7 +259,7 @@ func main() {
 		pollMu.Lock()
 		idle := time.Since(lastPoll)
 		pollMu.Unlock()
-		if idle > 3*time.Minute && !gameRunning() && !busy() && !loginPending() {
+		if idle > 3*time.Minute && !gameRunning() && !busy() {
 			logger.Printf("창이 닫혀 끝냄")
 			return
 		}

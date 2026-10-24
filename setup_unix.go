@@ -25,7 +25,7 @@ func skipInstall(args []string) bool {
 			return true
 		}
 	}
-	return devOffline != "" && os.Getenv("KW_TEST_INSTALL") == ""
+	return devBuild && os.Getenv("KW_TEST_INSTALL") == ""
 }
 
 func copyExe(src, dst string) error {

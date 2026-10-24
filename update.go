@@ -42,7 +42,7 @@ func cleanOldExe() {
 var restartHook func() // 서버(포트) 닫기
 
 func checkUpdate() {
-	if devOffline != "" && os.Getenv("KW_TEST_UPDATE") == "" {
+	if devBuild && os.Getenv("KW_TEST_UPDATE") == "" {
 		return
 	}
 	doc, err := fetchSignedDoc() // 1.2.7 업데이트 여부·파일 모두 서명된 값으로만
