@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.1.8",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.1.8.jar",
-  "sha256": "9d81700d9f192f903075d833f5870e06e7e03154f2b57ab70b454b60b960214f",
-  "size": 77262577,
-  "notes": "플러그인 파일 압축 (110MB → 약 77MB)",
-  "time": 1792846928
+  "version": "2.1.9",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.1.9.jar",
+  "sha256": "3293b7166bb4354735f717c04c2874cd5dfa5b8860213909b3a6c197100090f3",
+  "size": 77737217,
+  "notes": "Launcher 1.4.0 (CGMS Launcher): direct sign-in returns once the app ID is approved",
+  "time": 1792848413
 }
