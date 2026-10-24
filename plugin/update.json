@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.0.7",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.0.7.jar",
-  "sha256": "e34e4664516f8e7a9ea604444d3527d34c4a8964490857c949a52d0cf0626fa9",
-  "size": 109325837,
-  "notes": "김밥 간격, 찌개·국·갈비찜·꿔바로우 한 덩이로, 먹을수록 평평하게, 오므라이스 가로·오른쪽부터 파먹기, 요리 효과를 재료에 맞게",
-  "time": 1792831810
+  "version": "2.0.8",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.0.8.jar",
+  "sha256": "6bf9af8997f80a91c6e0b635aa1e1f0dd07dabd3a2e64c956104e9c73213b80c",
+  "size": 109325726,
+  "notes": "오므라이스 케첩을 처음 지그재그 모양으로",
+  "time": 1792832546
 }
