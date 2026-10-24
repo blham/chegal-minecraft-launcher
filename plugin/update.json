@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.1.6",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.1.6.jar",
-  "sha256": "8059e473ce6e3a7178b1632113d41402977393eff804d54a572594d8cb755121",
-  "size": 109470542,
-  "notes": "서버 설정 자동 (korea5.bin·생성기·paper 설정·음성 채팅·위치 표시줄), Paper 자동 업데이트",
-  "time": 1792839817
+  "version": "2.1.7",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.1.7.jar",
+  "sha256": "50cb8b23d524866bec732969aaf42286fcbe30b8c4c396699a3ae74fd994ddfb",
+  "size": 109474882,
+  "notes": "서버 플러그인 자동 설치·업데이트 (음성 채팅·AntiPie·Chunky·DiscordSRV·PacketEvents)",
+  "time": 1792840484
 }
