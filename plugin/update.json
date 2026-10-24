@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.0.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.0.5.jar",
-  "sha256": "ff4a4c744ffc9299dd55ddde58f48eb395ebc9ec166ed0ec52455fc65b5900a5",
-  "size": 109320730,
-  "notes": "김밥 두 줄(사진처럼)·떡볶이 한 무더기, 금강산 폐촌을 마을 크기로, 전설은 하나 가지면 다른 전설 못 주움, /요리 주기 한국어 이름",
-  "time": 1792830552
+  "version": "2.0.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.0.6.jar",
+  "sha256": "16f6e85545717c4e66e1b73571276be5e28a251507aafca842722c4472c0fc83",
+  "size": 109319981,
+  "notes": "김밥 한 줄 네 조각",
+  "time": 1792830790
 }
