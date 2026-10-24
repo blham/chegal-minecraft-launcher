@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.0.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.0.9.jar",
-  "sha256": "450ab67970f8cf708a57d68cbcecdcafe13249674d87c4e0829e65b7d31fbda4",
-  "size": 109424381,
-  "notes": "요리 모양을 덜 각지게 (열여섯모·단 더 촘촘히)",
-  "time": 1792833009
+  "version": "2.1.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.1.0.jar",
+  "sha256": "ef893c247ce7d9ea3f07eeacbff8f80582bf5370811e9cc32a40d867ecc4273f",
+  "size": 109421076,
+  "notes": "카레라이스를 사진처럼 (밥 언덕·카레 웅덩이)",
+  "time": 1792835634
 }
