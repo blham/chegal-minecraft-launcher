@@ -1,0 +1,9 @@
+{
+  "type": "koreawar-plugin",
+  "version": "2.0.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.0.2.jar",
+  "sha256": "095de76f12ea4937f86375c5ec69416867161a490b71ab320a15a6186d7c8b56",
+  "size": 109299685,
+  "notes": "직접 한 서명이 없는 파일을 가리키면 새 서명으로 교체, 높이 정보 경고 숨김",
+  "time": 1792814157
+}
