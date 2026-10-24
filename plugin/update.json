@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.2.3",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.2.3.jar",
-  "sha256": "54d8f1e9f49aa9005799c5056d624d37509913d4b60f3fef5bb0c2d48ba3a38c",
-  "size": 77763506,
-  "notes": "Monthly server-cost goal with server-wide celebration, thank-you board; launcher 1.4.4",
-  "time": 1792851564
+  "version": "2.2.4",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.2.4.jar",
+  "sha256": "9ea01f5b799d9faa8b94b626b5d8f25eb8a4b24c1bccbc918351cce36fc2ea7d",
+  "size": 77762611,
+  "notes": "Donor titles back on by default; launcher 1.4.5",
+  "time": 1792852081
 }
