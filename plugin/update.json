@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.1.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.1.4.jar",
-  "sha256": "8f27a33e2d7ac8e6c2536e898bc1606a5b682ac9b7874e9d3682b8a86d7eb75a",
-  "size": 109484465,
-  "notes": "카레라이스 밥·카레가 접시를 뚫지 않게",
-  "time": 1792837841
+  "version": "2.1.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.1.5.jar",
+  "sha256": "cd9645d054ff5b2c7632f9dda2290b67c3dcd76a9a3f7a33a92b339fee0a1bfa",
+  "size": 109459112,
+  "notes": "카레가 그릇을 채우고 밥은 낮고 넓게",
+  "time": 1792838303
 }
