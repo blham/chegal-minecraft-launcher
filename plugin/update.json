@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.2.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.2.5.jar",
-  "sha256": "ffdae4a5bca7c042cb9fbfe5e4b005c92a00b8b56acd2d35fe51700dd7718de5",
-  "size": 77765477,
-  "notes": "Toss deposit notifications from an Android phone (MacroDroid) update donations automatically",
-  "time": 1792853186
+  "version": "2.2.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.2.6.jar",
+  "sha256": "621c462cc97a93d317e3fea09af6f025ef028b7c0828b5a22c40c69f3c5967a8",
+  "size": 77767332,
+  "notes": "Toss: donation account only; real names matched via DiscordSRV; others ignored",
+  "time": 1792854476
 }
