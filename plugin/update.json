@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.0.8",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.0.8.jar",
-  "sha256": "6bf9af8997f80a91c6e0b635aa1e1f0dd07dabd3a2e64c956104e9c73213b80c",
-  "size": 109325726,
-  "notes": "오므라이스 케첩을 처음 지그재그 모양으로",
-  "time": 1792832546
+  "version": "2.0.9",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.0.9.jar",
+  "sha256": "450ab67970f8cf708a57d68cbcecdcafe13249674d87c4e0829e65b7d31fbda4",
+  "size": 109424381,
+  "notes": "요리 모양을 덜 각지게 (열여섯모·단 더 촘촘히)",
+  "time": 1792833009
 }
