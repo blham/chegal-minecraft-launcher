@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.2.6",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.2.6.jar",
-  "sha256": "621c462cc97a93d317e3fea09af6f025ef028b7c0828b5a22c40c69f3c5967a8",
-  "size": 77767332,
-  "notes": "Toss: donation account only; real names matched via DiscordSRV; others ignored",
-  "time": 1792854476
+  "version": "2.2.7",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.2.7.jar",
+  "sha256": "16667432a88b91c68ff710ef2417e583b7e71bb88b2317178a26011b5244f71b",
+  "size": 77783732,
+  "notes": "In-game names: real names from the launcher shown to others (needs PacketEvents); launcher 1.4.6, mod 1.2.6",
+  "time": 1792855443
 }
