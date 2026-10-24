@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.0.3",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.0.3.jar",
-  "sha256": "18f8649bd325edf6e8fbae862ffdf7110f41219a6a899b60d8224fbe74824950",
-  "size": 109300144,
-  "notes": "편의성 모드 처음부터 전부 켬",
-  "time": 1792815293
+  "version": "2.0.4",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.0.4.jar",
+  "sha256": "f4480800f64cbd76f5c99c8e8439bbe34eb290d9621edc533df6370b7ab85cec",
+  "size": 109313850,
+  "notes": "셰이더 모드(Iris)에서 일부 요리가 보라·검정으로 깨지던 것, /조합법 에 요리 도구·공성 무기, 안내서 정리",
+  "time": 1792816220
 }
