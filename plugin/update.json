@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.2.8",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.2.8.jar",
-  "sha256": "0ba4e25aabd867b01abf13678b8ee328e2f4a58a8771e182d847139032e2378d",
-  "size": 77786993,
-  "notes": "Real-name notice wording; launcher 1.4.7",
-  "time": 1792855678
+  "version": "2.2.9",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.2.9.jar",
+  "sha256": "98f32836348f0dd7576469e0340f1842570ede5a4fc93167b282cd41ace1d803",
+  "size": 77789231,
+  "notes": "Real names tested with live clients: mod 1.2.7 sends the name reliably, Korean names in commands, names in server messages",
+  "time": 1792858068
 }
