@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.1.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.1.9.jar",
-  "sha256": "3293b7166bb4354735f717c04c2874cd5dfa5b8860213909b3a6c197100090f3",
-  "size": 77737217,
-  "notes": "Launcher 1.4.0 (CGMS Launcher): direct sign-in returns once the app ID is approved",
-  "time": 1792848413
+  "version": "2.2.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.2.0.jar",
+  "sha256": "d8aaa1b5090004f16e4494e694fbaa868dba82c4988660e67dae8ab88af22587",
+  "size": 77756402,
+  "notes": "Launcher 1.4.1: donation page is back with a big button on the main screen",
+  "time": 1792849522
 }
