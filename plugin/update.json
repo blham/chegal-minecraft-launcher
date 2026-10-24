@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.1.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.1.5.jar",
-  "sha256": "cd9645d054ff5b2c7632f9dda2290b67c3dcd76a9a3f7a33a92b339fee0a1bfa",
-  "size": 109459112,
-  "notes": "카레가 그릇을 채우고 밥은 낮고 넓게",
-  "time": 1792838303
+  "version": "2.1.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.1.6.jar",
+  "sha256": "8059e473ce6e3a7178b1632113d41402977393eff804d54a572594d8cb755121",
+  "size": 109470542,
+  "notes": "서버 설정 자동 (korea5.bin·생성기·paper 설정·음성 채팅·위치 표시줄), Paper 자동 업데이트",
+  "time": 1792839817
 }
