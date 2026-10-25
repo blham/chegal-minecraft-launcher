@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.4.7",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.4.7.jar",
-  "sha256": "19c85f6c9eb8553fcf1c371bba8857c90e386e87ca07cfb397e49032fa4fb152",
-  "size": 77954384,
-  "notes": "런처: 게임이 튕기면 크래시 리포트에 오류 위치가 남게 (원인 찾기용)",
-  "time": 1792916409
+  "version": "2.4.8",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.4.8.jar",
+  "sha256": "72913d0136d40493cdb0acd41251225bb63655c350a31e28c45a95b3b9557587",
+  "size": 77942192,
+  "notes": "김밥 줄을 왼쪽↔오른쪽으로 · 입장 확인: 리소스팩을 다 받은 뒤부터 시간을 셈 (처음 들어올 때 한 번에) · 명령어에 실명 사용 (/tp 김도연) · 런처: 뒤에 남은 런처를 끄고 새로 켬",
+  "time": 1792917686
 }
