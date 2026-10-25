@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.4.3",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.4.3.jar",
-  "sha256": "b67e0097ff69f3434afb7b039d1f0658cf8d610a25cec6cdf7bcf46e177d618e",
-  "size": 77947670,
-  "notes": "후원 칭호가 칭호 칸을 차지하지 않고, 채팅·탭 목록 이름 앞의 작은 ♥(단계 색)로 보임",
-  "time": 1792903349
+  "version": "2.4.4",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.4.4.jar",
+  "sha256": "2882b7a893b08f09e3cac7987c408612a4e0aaae0ab17f8f8243b1d0c35ea812",
+  "size": 77953606,
+  "notes": "입장 확인: 화이트리스트에 없는 사람은 런처(보조 모드) 신호가 오면 자동 등록, 없으면 안내와 함께 내보냄 · 원래 놀던 친구는 자동으로 화이트리스트",
+  "time": 1792904147
 }
