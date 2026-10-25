@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.3.6",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.3.6.jar",
-  "sha256": "a58d60435b23f5d84a413405af5f825cab48484bef02603c4f28e22d1ab76129",
-  "size": 77940280,
-  "notes": "토스로 보낸 사람이 아직 서버에 없는 이름이어도 감사 목록·이번 달 목표에 올리고, 그 실명으로 들어오면 그 계정에 붙임 · 감사판·런처 감사 목록에 실명 · 런처 창이 둘 뜨면 예전 창이 스스로 닫힘",
-  "time": 1792897901
+  "version": "2.3.7",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.3.7.jar",
+  "sha256": "f5a233fbb9eaf73b3de58296bbeb489a828954277fbe1800abeafef5a785b54f",
+  "size": 77941014,
+  "notes": "후원 칭호 단계: 후원 기사 2만원·후원 영웅 5만원 · 고마운 분들을 누적 후원이 많은 순으로",
+  "time": 1792899089
 }
