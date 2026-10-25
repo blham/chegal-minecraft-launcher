@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.4.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.4.9.jar",
-  "sha256": "89bd420cddf845dae85a7372fad73b4975390200c5336e6243fba4d90c466122",
-  "size": 77947679,
-  "notes": "계절이 현실 하루(자정)마다 바뀜 · 38선 철책을 군사분계선 위 한 줄로, 끊김 없이 이어지게 (비탈·동굴 위에서도)",
-  "time": 1792918483
+  "version": "2.5.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.5.0.jar",
+  "sha256": "6a4bfead5fdaa92e3d14fe90e0267778dfce4f12dfef4e81bfae0e4de1e1fa90",
+  "size": 77948282,
+  "notes": "새 작물(토마토·배추·양파·쌀)이 바닐라 작물처럼: 심을 때·뼛가루 줄 때 손을 휘두름, 경작지가 흙이 되거나 밟히면 작물이 떨어짐, 작물이 있는 경작지는 마르지 않음",
+  "time": 1792918823
 }
