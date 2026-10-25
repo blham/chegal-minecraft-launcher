@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.3.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.3.4.jar",
-  "sha256": "174d2cc53285cdfa4c4656ac0f540f50d08724d99a88831a4367b0199d6173ec",
-  "size": 77919597,
-  "notes": "서버를 켤 때 HTTPS(Caddy)도 같이 켜짐 · 새 서버를 만들면 서버장 설정(도메인·디스코드·후원 계좌·토스 열쇠·DiscordSRV 토큰)을 알아서 채움 · /후원관리 계좌 · 런처 후원 화면 토스 송금 QR · /후원관리 추가 에 실명 사용 가능",
-  "time": 1792895414
+  "version": "2.3.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.3.5.jar",
+  "sha256": "0628629f7207bae90e60dc6991de8cb99dc412e4ef94e383b3e80b3746113cb4",
+  "size": 77935187,
+  "notes": "토스 알림을 받을 때마다 서버 콘솔에 결과를 보여 줌 (폰 설정 확인용) · 런처 창을 닫으면 런처도 바로 꺼짐 · 런처 아이콘을 다시 누르면 바로 업데이트 확인",
+  "time": 1792896612
 }
