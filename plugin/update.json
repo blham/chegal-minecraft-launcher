@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.3.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.3.1.jar",
-  "sha256": "d731774680bac398faa789e47639b2542deac45929c36c781b65d2fb47e1a3e8",
-  "size": 77811001,
-  "notes": "Discord linking from the launcher; DiscordSRV name lookup fix; launcher 1.4.8, mod 1.2.8",
-  "time": 1792888058
+  "version": "2.3.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.3.2.jar",
+  "sha256": "860480b47fb8af4c7d0298d0023d4ff6cb73e193893095a64ebe6033c2c90019",
+  "size": 77820755,
+  "notes": "Security fixes: Discord link confirmation, profile only sent to our server, Hangul-only names, rename cooldown",
+  "time": 1792889142
 }
