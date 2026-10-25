@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.5.3",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.5.3.jar",
-  "sha256": "cd6986577575eb034d3587e8a18c75489b768f25fb48a364db51388156010477",
-  "size": 72395635,
-  "notes": "첨성대 별점 쿨타임 1시간, 카람빗 실패 쿨타임 = 처형 쿨타임",
-  "time": 1792923201
+  "version": "2.5.4",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.5.4.jar",
+  "sha256": "ae1fb0a1155935cd32f4bd3a465da92a3eaac5d503f450352a98a28c9ea400a8",
+  "size": 72426378,
+  "notes": "런처 1.5.8: 런처가 꺼진 뒤 빈 하얀 창이 남거나 다시 생기던 것 고침",
+  "time": 1792931027
 }
