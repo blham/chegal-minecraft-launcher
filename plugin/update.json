@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.4.6",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.4.6.jar",
-  "sha256": "52e0b6970a493ac42eb564844c91b1bb167434a8cd877e5809df385ce092f8d2",
-  "size": 77953887,
-  "notes": "입장 확인: 서버 화이트리스트 강제(white-list=true)가 켜져 있으면 자동으로 끔 (런처로 와도 막히던 것)",
-  "time": 1792915156
+  "version": "2.4.7",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.4.7.jar",
+  "sha256": "19c85f6c9eb8553fcf1c371bba8857c90e386e87ca07cfb397e49032fa4fb152",
+  "size": 77954384,
+  "notes": "런처: 게임이 튕기면 크래시 리포트에 오류 위치가 남게 (원인 찾기용)",
+  "time": 1792916409
 }
