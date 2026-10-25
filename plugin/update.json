@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.3.7",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.3.7.jar",
-  "sha256": "f5a233fbb9eaf73b3de58296bbeb489a828954277fbe1800abeafef5a785b54f",
-  "size": 77941014,
-  "notes": "후원 칭호 단계: 후원 기사 2만원·후원 영웅 5만원 · 고마운 분들을 누적 후원이 많은 순으로",
-  "time": 1792899089
+  "version": "2.3.8",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.3.8.jar",
+  "sha256": "1f770b87ea5c14e288e3b7d5884f5da6af9048d2e7232a3a8f605ee49e0e2139",
+  "size": 77941405,
+  "notes": "한 달 서버비 목표 기본 10만원 · /후원관리 목표 금액",
+  "time": 1792900190
 }
