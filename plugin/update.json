@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.4.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.4.1.jar",
-  "sha256": "8bb3d1128a6035e6ed1e77cb9ca06060acfa4bd69d8a6fa3fc6d5d5f6574f5c4",
-  "size": 77947045,
-  "notes": "런처 후원 화면을 한 화면에 (왼쪽 후원하는 법·QR, 오른쪽 목표·칭호·고마운 분들)",
-  "time": 1792901871
+  "version": "2.4.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.4.2.jar",
+  "sha256": "c682036bde9355f6281ef9454bd10d8da01d3427e1d517d10f7aa236279634ca",
+  "size": 77947123,
+  "notes": "런처 후원 화면: 왼쪽 후원하는 법·QR·서버비 목표, 오른쪽 칭호 단계·고마운 분들 · 고마운 분들(런처·감사판)에 게임에서 달고 있는 칭호도 같이",
+  "time": 1792902216
 }
