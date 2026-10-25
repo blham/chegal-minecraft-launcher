@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.3.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.3.5.jar",
-  "sha256": "0628629f7207bae90e60dc6991de8cb99dc412e4ef94e383b3e80b3746113cb4",
-  "size": 77935187,
-  "notes": "토스 알림을 받을 때마다 서버 콘솔에 결과를 보여 줌 (폰 설정 확인용) · 런처 창을 닫으면 런처도 바로 꺼짐 · 런처 아이콘을 다시 누르면 바로 업데이트 확인",
-  "time": 1792896612
+  "version": "2.3.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.3.6.jar",
+  "sha256": "a58d60435b23f5d84a413405af5f825cab48484bef02603c4f28e22d1ab76129",
+  "size": 77940280,
+  "notes": "토스로 보낸 사람이 아직 서버에 없는 이름이어도 감사 목록·이번 달 목표에 올리고, 그 실명으로 들어오면 그 계정에 붙임 · 감사판·런처 감사 목록에 실명 · 런처 창이 둘 뜨면 예전 창이 스스로 닫힘",
+  "time": 1792897901
 }
