@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.4.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.4.4.jar",
-  "sha256": "2882b7a893b08f09e3cac7987c408612a4e0aaae0ab17f8f8243b1d0c35ea812",
-  "size": 77953606,
-  "notes": "입장 확인: 화이트리스트에 없는 사람은 런처(보조 모드) 신호가 오면 자동 등록, 없으면 안내와 함께 내보냄 · 원래 놀던 친구는 자동으로 화이트리스트",
-  "time": 1792904147
+  "version": "2.4.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.4.5.jar",
+  "sha256": "b147c25e4b9fbbf4ca47380ea33c604a4a8feae4c2d8c6f2858f84e552836c2b",
+  "size": 77953694,
+  "notes": "입장 확인 기다리는 시간 10초",
+  "time": 1792905044
 }
