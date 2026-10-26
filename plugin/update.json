@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.5.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.5.5.jar",
-  "sha256": "6880de3d9f2955fda3758b9f1535fc95ecb550429d0afe31554e9132c9db25e5",
-  "size": 72426588,
-  "notes": "모장 승인: 런처에서 바로 마이크로소프트 로그인 후 게임 실행",
-  "time": 1793055552
+  "version": "2.5.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.5.6.jar",
+  "sha256": "8dcfcb688e25aaff697f544adb9b392829bfb038d9d086b4e1d040f11e38cac0",
+  "size": 72428288,
+  "notes": "런처 1.5.9: 마이크로소프트 로그인을 런처 창 안에서",
+  "time": 1793056792
 }
