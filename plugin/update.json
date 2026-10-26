@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.5.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.5.4.jar",
-  "sha256": "ae1fb0a1155935cd32f4bd3a465da92a3eaac5d503f450352a98a28c9ea400a8",
-  "size": 72426378,
-  "notes": "런처 1.5.8: 런처가 꺼진 뒤 빈 하얀 창이 남거나 다시 생기던 것 고침",
-  "time": 1792931027
+  "version": "2.5.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.5.5.jar",
+  "sha256": "6880de3d9f2955fda3758b9f1535fc95ecb550429d0afe31554e9132c9db25e5",
+  "size": 72426588,
+  "notes": "모장 승인: 런처에서 바로 마이크로소프트 로그인 후 게임 실행",
+  "time": 1793055552
 }
