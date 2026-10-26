@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.5.6",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.5.6.jar",
-  "sha256": "8dcfcb688e25aaff697f544adb9b392829bfb038d9d086b4e1d040f11e38cac0",
-  "size": 72428288,
-  "notes": "런처 1.5.9: 마이크로소프트 로그인을 런처 창 안에서",
-  "time": 1793056792
+  "version": "2.5.7",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.5.7.jar",
+  "sha256": "af8d945f3e857c1ea167d64d522c09d40e0671a01ead9a4ec66f266b1eef1ad3",
+  "size": 72430040,
+  "notes": "런처 1.6.0: 런처를 다시 켤 때 창이 꺼지고 런처가 같이 꺼지던 것 고침",
+  "time": 1793057286
 }
