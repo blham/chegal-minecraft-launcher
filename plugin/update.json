@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.5.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.5.9.jar",
-  "sha256": "0d6f5b6fed147f8e6e34944418bac8afe35a17b953fc1ac0f6e5e37e4ad2f03d",
-  "size": 72904617,
-  "notes": "런처 1.6.2: 서버가 꺼져도 마지막 정보 표시, 여는 시간·다음 열림 표시",
-  "time": 1793103265
+  "version": "2.6.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.0.jar",
+  "sha256": "cb0cd48d65f153925cec0ec0d1d4e8453106e291e1eb485a1f20465bdd7c6f06",
+  "size": 72904815,
+  "notes": "여는 시간: 평일 09:00~24:00, 주말 09:00~다음 날 03:00",
+  "time": 1793103853
 }
