@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.6.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.0.jar",
-  "sha256": "cb0cd48d65f153925cec0ec0d1d4e8453106e291e1eb485a1f20465bdd7c6f06",
-  "size": 72904815,
-  "notes": "여는 시간: 평일 09:00~24:00, 주말 09:00~다음 날 03:00",
-  "time": 1793103853
+  "version": "2.6.1",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.1.jar",
+  "sha256": "d66bf79c1a0ab858af48cd7557db3ef2245b1f5a204d1d0d4bec0868ad134c40",
+  "size": 74365057,
+  "notes": "런처 1.6.3: 화면 배율에서 흐릿하게 보이던 문제 수정, 배경 그림 선명하게",
+  "time": 1793104587
 }
