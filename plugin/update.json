@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.6.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.1.jar",
-  "sha256": "d66bf79c1a0ab858af48cd7557db3ef2245b1f5a204d1d0d4bec0868ad134c40",
-  "size": 74365057,
-  "notes": "런처 1.6.3: 화면 배율에서 흐릿하게 보이던 문제 수정, 배경 그림 선명하게",
-  "time": 1793104587
+  "version": "2.6.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.2.jar",
+  "sha256": "660f47daec84413e74bf7676c7ee33ae27e78db65ba18601cb9cd3e493467d0c",
+  "size": 74365125,
+  "notes": "항구 보트: 앞 키를 뗄 때 속도가 줄지 않던 문제 수정",
+  "time": 1793105332
 }
