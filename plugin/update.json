@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.5.7",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.5.7.jar",
-  "sha256": "af8d945f3e857c1ea167d64d522c09d40e0671a01ead9a4ec66f266b1eef1ad3",
-  "size": 72430040,
-  "notes": "런처 1.6.0: 런처를 다시 켤 때 창이 꺼지고 런처가 같이 꺼지던 것 고침",
-  "time": 1793057286
+  "version": "2.5.8",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.5.8.jar",
+  "sha256": "c2cfc8a6b74218a6fcd2fc2dcc707ae00b501f5b7e74463dd084bb64be83b6d8",
+  "size": 72893293,
+  "notes": "런처 1.6.1: 엣지 창 없이 런처 자체 창, 서버가 늦게 켜져도 런처에서 직접 실행",
+  "time": 1793102636
 }
