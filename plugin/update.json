@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.6.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.5.jar",
-  "sha256": "869201bf6f8a038ff980ce5e3cc71cd0557e17a2e61d5173bdef23f3fe745483",
-  "size": 74365398,
-  "notes": "물가 둑 틈 메우기, 사탕수수 줄임",
-  "time": 1793179167
+  "version": "2.6.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.6.jar",
+  "sha256": "6ee44482d7ac51886624c00a3e48be316b652ceb56817ac15fcbd4f928eb02ed",
+  "size": 74419545,
+  "notes": "보안 점검: 실명 후원은 디스코드 별명으로 확인, HTTP 서버 과부하 막기, https 사용, 런처 1.6.4",
+  "time": 1793186055
 }
