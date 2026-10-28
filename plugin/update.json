@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.6.3",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.3.jar",
-  "sha256": "5d4cf20a510d7112fc963cc0847d2ec8189bb006404936f45e5b23d5b22c8b95",
-  "size": 74365230,
-  "notes": "디스코드 연결 429 오류 수정",
-  "time": 1793105544
+  "version": "2.6.4",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.4.jar",
+  "sha256": "897aacc96a4da4250766f0bc0e7d355ce8302aff963c3353883d574808c179ba",
+  "size": 74365662,
+  "notes": "항구 보트: 가속도 방식, W 떼면 미끄러지듯 멈춤",
+  "time": 1793178320
 }
