@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.6.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.4.jar",
-  "sha256": "897aacc96a4da4250766f0bc0e7d355ce8302aff963c3353883d574808c179ba",
-  "size": 74365662,
-  "notes": "항구 보트: 가속도 방식, W 떼면 미끄러지듯 멈춤",
-  "time": 1793178320
+  "version": "2.6.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.5.jar",
+  "sha256": "869201bf6f8a038ff980ce5e3cc71cd0557e17a2e61d5173bdef23f3fe745483",
+  "size": 74365398,
+  "notes": "물가 둑 틈 메우기, 사탕수수 줄임",
+  "time": 1793179167
 }
