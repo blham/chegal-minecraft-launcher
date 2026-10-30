@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.7.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.5.jar",
-  "sha256": "898837ee65680f1039cea50cff2af89bfe16ee2fec8f54f3d90edadab5f3fe3f",
-  "size": 74465132,
-  "notes": "세력 정책 극단적으로 (장점보다 단점이 큼)",
-  "time": 1793359064
+  "version": "2.7.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.6.jar",
+  "sha256": "4fccd86be59d1df81bebad197883dbaad90007c784c5946dd62405671ad5d1f2",
+  "size": 74477371,
+  "notes": "시즌 3막 (부족 시대·왕국 시대·결전)",
+  "time": 1793360549
 }
