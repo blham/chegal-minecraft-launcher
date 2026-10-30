@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.6.6",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.6.jar",
-  "sha256": "6ee44482d7ac51886624c00a3e48be316b652ceb56817ac15fcbd4f928eb02ed",
-  "size": 74419545,
-  "notes": "보안 점검: 실명 후원은 디스코드 별명으로 확인, HTTP 서버 과부하 막기, https 사용, 런처 1.6.4",
-  "time": 1793186055
+  "version": "2.6.7",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.7.jar",
+  "sha256": "7be884930ba8a959b8fc989717edd13eaaa898344528c27bfd8a591fb8a436c8",
+  "size": 74426005,
+  "notes": "국가 → 세력, 세력 단계(호족·왕국·제국)",
+  "time": 1793337068
 }
