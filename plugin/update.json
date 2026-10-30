@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.7.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.4.jar",
-  "sha256": "fa753815a031f237e405e0281591b5c3da9948907fd2b6689a3854ac42df5d42",
-  "size": 74464570,
-  "notes": "세력 연대기(/연대기, 런처), 세력 정책(징병·축성·교역·농업)",
-  "time": 1793342651
+  "version": "2.7.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.5.jar",
+  "sha256": "898837ee65680f1039cea50cff2af89bfe16ee2fec8f54f3d90edadab5f3fe3f",
+  "size": 74465132,
+  "notes": "세력 정책 극단적으로 (장점보다 단점이 큼)",
+  "time": 1793359064
 }
