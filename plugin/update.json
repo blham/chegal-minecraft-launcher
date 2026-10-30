@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.7.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.1.jar",
-  "sha256": "43ab8a5f75b65784788ba2bed7309ac5ef3427da4182ed7cee7427994c2aaff5",
-  "size": 74438658,
-  "notes": "여러 동맹, 동맹 수만큼 수입 감소, 세력 통합(백성 투표)",
-  "time": 1793338477
+  "version": "2.7.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.2.jar",
+  "sha256": "466348753f08c2cf9ecfb2d0884ec544232d5daf28e458dc592032cae22b7837",
+  "size": 74439531,
+  "notes": "통합: 누가 남을지 제안 때 정함, 안 정하면 힘(코어·금고) 기준",
+  "time": 1793339035
 }
