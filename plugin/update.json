@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.7.3",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.3.jar",
-  "sha256": "8c726ba9f406d815a9e1752a101aa4459db98f67d69e73c2ab5cea55a1cf4f47",
-  "size": 74448539,
-  "notes": "당일 결산 (채팅·디스코드·나가기 화면)",
-  "time": 1793339560
+  "version": "2.7.4",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.4.jar",
+  "sha256": "fa753815a031f237e405e0281591b5c3da9948907fd2b6689a3854ac42df5d42",
+  "size": 74464570,
+  "notes": "세력 연대기(/연대기, 런처), 세력 정책(징병·축성·교역·농업)",
+  "time": 1793342651
 }
