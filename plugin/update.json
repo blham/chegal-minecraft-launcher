@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.6.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.9.jar",
-  "sha256": "03e864b905c193193cffc9578a73d48d9e1d0c2cb3b30fe4328b807e7d09ba69",
-  "size": 74427212,
-  "notes": "세력 인원 제한 끔",
-  "time": 1793337546
+  "version": "2.7.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.0.jar",
+  "sha256": "502bc6274aba6b0d7404d6a5bafb447b32f659d29a3e2bda2fbce5f80560d060",
+  "size": 74427653,
+  "notes": "세력 수 제한 4 -> 16",
+  "time": 1793337744
 }
