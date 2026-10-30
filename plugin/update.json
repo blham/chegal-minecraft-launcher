@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.6.8",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.8.jar",
-  "sha256": "a70cd912e0ad2408970688ebca8cfa034f95c03695240b27643b7e29138ea5ed",
-  "size": 74426498,
-  "notes": "맨 아래 세력 단계: 호족(성주) → 부족(족장)",
-  "time": 1793337339
+  "version": "2.6.9",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.6.9.jar",
+  "sha256": "03e864b905c193193cffc9578a73d48d9e1d0c2cb3b30fe4328b807e7d09ba69",
+  "size": 74427212,
+  "notes": "세력 인원 제한 끔",
+  "time": 1793337546
 }
