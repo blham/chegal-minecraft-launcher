@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.7.2",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.2.jar",
-  "sha256": "466348753f08c2cf9ecfb2d0884ec544232d5daf28e458dc592032cae22b7837",
-  "size": 74439531,
-  "notes": "통합: 누가 남을지 제안 때 정함, 안 정하면 힘(코어·금고) 기준",
-  "time": 1793339035
+  "version": "2.7.3",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.3.jar",
+  "sha256": "8c726ba9f406d815a9e1752a101aa4459db98f67d69e73c2ab5cea55a1cf4f47",
+  "size": 74448539,
+  "notes": "당일 결산 (채팅·디스코드·나가기 화면)",
+  "time": 1793339560
 }
