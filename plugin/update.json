@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.9.6",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.9.6.jar",
-  "sha256": "a9c899a729e8a8fb7ff0b7e69a4278d92b5171669e63fcc3c70a4832e4829ad7",
-  "size": 74615409,
-  "notes": "해의 극장 꾸미기: 기와지붕·단청·청사초롱·큰북·오방색 깃발·뒤 계단과 홍살문",
-  "time": 1793618810
+  "version": "2.9.7",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.9.7.jar",
+  "sha256": "a5ac7414e35fc699bdfa164316b09dcbd8483b53ee6dd773fe0742301d3892f3",
+  "size": 74615408,
+  "notes": "홍살문을 극장 뒤 계단 맨 아래로",
+  "time": 1793619083
 }
