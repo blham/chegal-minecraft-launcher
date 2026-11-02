@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.0.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.0.4.jar",
-  "sha256": "879e970c235a5a22321c2c4d356f2e0f0f2b538e56ddbece88415cd11421ee29",
-  "size": 77681553,
-  "notes": "저장 최적화(뒤에서 저장), 코어 표시 갱신 줄임, 엔딩 커튼콜 중 코어 이름·보스바·테두리 끔",
-  "time": 1793630209
+  "version": "3.0.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.0.5.jar",
+  "sha256": "5139d755be6b9536b34bacb03ec567d2c409619dc6179384b811930f86f34f63",
+  "size": 77682883,
+  "notes": "커튼콜 때 주인공이 무대에 서면 관객 화면을 주인공에게 고정",
+  "time": 1793631094
 }
