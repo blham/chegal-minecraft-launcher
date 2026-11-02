@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.8.7",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.8.7.jar",
-  "sha256": "b50c8c8bb57c481f370a185a755b280b3ff2854a696c8e77455677e579fc04f4",
-  "size": 74550458,
-  "notes": "지린 비석 보상: 맥궁 대신 고구려 대방패 (크고, 달리다 들면 밀쳐 기절)",
-  "time": 1793611477
+  "version": "2.8.8",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.8.8.jar",
+  "sha256": "f44d1c2e79691a31b17bdc8b634e46aef611b21c933fffe421df3712dcc3d021",
+  "size": 74558235,
+  "notes": "고구려 대방패: 막는 동안 가로 5칸 반투명 방벽",
+  "time": 1793611903
 }
