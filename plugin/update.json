@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.9.8",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.9.8.jar",
-  "sha256": "041df869814fb3433f7e05b06cb472ff4bc98ccdafc0fb4ea462c71fee5748ef",
-  "size": 74615401,
-  "notes": "홍살문을 무대로 올라가는 계단 앞으로",
-  "time": 1793621799
+  "version": "2.9.9",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.9.9.jar",
+  "sha256": "793abd80510ae1a1a8da4501ba5afa538bac49c119d8c8511b1bac94d14cc994",
+  "size": 74615412,
+  "notes": "극장 무대 계단 첫 칸 고침, 홍살문 뒤 계단 아래로 되돌림",
+  "time": 1793622053
 }
