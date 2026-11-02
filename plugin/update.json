@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.8.3",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.8.3.jar",
-  "sha256": "9c7dcea05bf5a95bb2e1a65f5d246874e757285390708598a3f22e546674dcb3",
-  "size": 74504725,
-  "notes": "지옥 원정: 전쟁 30분 전·끝나고 30분에 열림, 같은 날은 같은 지옥",
-  "time": 1793608051
+  "version": "2.8.4",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.8.4.jar",
+  "sha256": "aa3c043883fa48fd524a1331b91436801bafe2b6187364bf01f1e80d9210f537",
+  "size": 74506014,
+  "notes": "전쟁 시간 21~22시(마지막 날 21~23시), 지린 코어 빼서 10곳, 아소는 끝까지",
+  "time": 1793608463
 }
