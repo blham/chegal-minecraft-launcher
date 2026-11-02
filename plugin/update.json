@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.7.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.9.jar",
-  "sha256": "aa84a5d0cc24c555397832d696738cd9e4f582105f9578753e0583c2e5387bb4",
-  "size": 74493657,
-  "notes": "부족 시대는 첫날만, 2일차부터 왕국 시대",
-  "time": 1793600137
+  "version": "2.8.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.8.0.jar",
+  "sha256": "d19e21b557ecfc928eba06d811e7c2bac369765a8cb1deb9ff4cfb158b4013d4",
+  "size": 74494818,
+  "notes": "상인 하루에 한 나라만 돌아가며 영업, 상점 이동 없앰",
+  "time": 1793600515
 }
