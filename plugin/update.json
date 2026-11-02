@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.0.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.0.5.jar",
-  "sha256": "5139d755be6b9536b34bacb03ec567d2c409619dc6179384b811930f86f34f63",
-  "size": 77682883,
-  "notes": "커튼콜 때 주인공이 무대에 서면 관객 화면을 주인공에게 고정",
-  "time": 1793631094
+  "version": "3.0.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.0.6.jar",
+  "sha256": "b01556d73734accef079aee8230c157091d8fb5823627194997da33cf7fd90b8",
+  "size": 77686176,
+  "notes": "커튼콜 스포트라이트(천장 빛기둥 + 바닥 빛)",
+  "time": 1793632579
 }
