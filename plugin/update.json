@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.7.6",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.6.jar",
-  "sha256": "4fccd86be59d1df81bebad197883dbaad90007c784c5946dd62405671ad5d1f2",
-  "size": 74477371,
-  "notes": "시즌 3막 (부족 시대·왕국 시대·결전)",
-  "time": 1793360549
+  "version": "2.7.7",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.7.jar",
+  "sha256": "c90c17e98876287671c0aec986b8fcc2751c45f636510aa7d25e82975e930e20",
+  "size": 74480170,
+  "notes": "죽으면 머리가 떨어짐",
+  "time": 1793594766
 }
