@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.7.8",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.8.jar",
-  "sha256": "4755250f41d2124ee74519a34d36c157a7073e7082934c573167bc88044cf40d",
-  "size": 74493778,
-  "notes": "지옥 원정 (매일 1시간, 열 때마다 새 지옥), 상인 네더 물건 없앰",
-  "time": 1793599315
+  "version": "2.7.9",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.9.jar",
+  "sha256": "aa84a5d0cc24c555397832d696738cd9e4f582105f9578753e0583c2e5387bb4",
+  "size": 74493657,
+  "notes": "부족 시대는 첫날만, 2일차부터 왕국 시대",
+  "time": 1793600137
 }
