@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.0.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.0.1.jar",
-  "sha256": "da5af3ab1d7fe962d6c57b627bdb23f7435c897ba15bd7749b066e07040ef6ac",
-  "size": 74809942,
-  "notes": "처음 들어온 사람에게 벽화 트레일러 (해가 진 땅), /이야기",
-  "time": 1793626145
+  "version": "3.0.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.0.2.jar",
+  "sha256": "be925fd3a4352e5de7a6b4e5ed5f29e6ce2b8f96a2b04ab1a56397b1181b3f30",
+  "size": 77676202,
+  "notes": "트레일러 벽화를 동굴벽화 느낌으로 새로 그림, 화면 꽉 채우고 빠르게 넘어감",
+  "time": 1793627128
 }
