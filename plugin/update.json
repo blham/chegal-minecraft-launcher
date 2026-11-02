@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.8.2",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.8.2.jar",
-  "sha256": "e532cc1de352fbb5e217a4dbb17e1990d3b929405d4ef1a1b0f1b33e0f31a68d",
-  "size": 74501205,
-  "notes": "지옥 안에서 나간 채로 무너지면 언제 나갔든 물건 잃음",
-  "time": 1793603761
+  "version": "2.8.3",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.8.3.jar",
+  "sha256": "9c7dcea05bf5a95bb2e1a65f5d246874e757285390708598a3f22e546674dcb3",
+  "size": 74504725,
+  "notes": "지옥 원정: 전쟁 30분 전·끝나고 30분에 열림, 같은 날은 같은 지옥",
+  "time": 1793608051
 }
