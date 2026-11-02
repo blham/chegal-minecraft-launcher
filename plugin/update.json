@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.9.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.9.0.jar",
-  "sha256": "56eaa098be8abcff363942557cbd2e357988992bd7280b3cb452eab4ed7cf31b",
-  "size": 74563680,
-  "notes": "대방패 방패벽 시인성: 진한 테두리, 2.2칸 앞, 테두리 금빛 가루",
-  "time": 1793612804
+  "version": "2.9.1",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.9.1.jar",
+  "sha256": "39da373821cf8f92a61a9a3866ac0ef5c9c977d818ef6855d91f83bc585723de",
+  "size": 74563672,
+  "notes": "대방패 방패벽을 방패 바로 앞에",
+  "time": 1793613168
 }
