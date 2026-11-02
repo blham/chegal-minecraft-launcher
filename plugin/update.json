@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.8.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.8.1.jar",
-  "sha256": "2d40800f0421c2c559dff9dc485f8070608959f51fc8036f5b7842ff6a490945",
-  "size": 74501275,
-  "notes": "지옥 30초 붕괴, 도착한 지옥문으로만 나감",
-  "time": 1793603579
+  "version": "2.8.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.8.2.jar",
+  "sha256": "e532cc1de352fbb5e217a4dbb17e1990d3b929405d4ef1a1b0f1b33e0f31a68d",
+  "size": 74501205,
+  "notes": "지옥 안에서 나간 채로 무너지면 언제 나갔든 물건 잃음",
+  "time": 1793603761
 }
