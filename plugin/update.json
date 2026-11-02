@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.8.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.8.9.jar",
-  "sha256": "86eebac448075404aefeb02bd883c6e61c5cdd589d4f43f6f6bde98467fcb267",
-  "size": 74563861,
-  "notes": "대방패 방벽을 금빛 방패벽으로, 부서지면 15초 동안 일반 방패",
-  "time": 1793612401
+  "version": "2.9.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.9.0.jar",
+  "sha256": "56eaa098be8abcff363942557cbd2e357988992bd7280b3cb452eab4ed7cf31b",
+  "size": 74563680,
+  "notes": "대방패 방패벽 시인성: 진한 테두리, 2.2칸 앞, 테두리 금빛 가루",
+  "time": 1793612804
 }
