@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.7.7",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.7.jar",
-  "sha256": "c90c17e98876287671c0aec986b8fcc2751c45f636510aa7d25e82975e930e20",
-  "size": 74480170,
-  "notes": "죽으면 머리가 떨어짐",
-  "time": 1793594766
+  "version": "2.7.8",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.7.8.jar",
+  "sha256": "4755250f41d2124ee74519a34d36c157a7073e7082934c573167bc88044cf40d",
+  "size": 74493778,
+  "notes": "지옥 원정 (매일 1시간, 열 때마다 새 지옥), 상인 네더 물건 없앰",
+  "time": 1793599315
 }
