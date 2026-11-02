@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.8.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.8.5.jar",
-  "sha256": "804b9120d0e4f61945ee3769f2e96dd8fb90d7e503e4ef796dc82fed945af8a9",
-  "size": 74519672,
-  "notes": "폐허가 된 성은 덩굴·이끼 낀 폐허 모습, 아소부터 폐허, 변방 성 수입·점수 더, 마지막까지 지킨 세력에 보물",
-  "time": 1793609487
+  "version": "2.8.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.8.6.jar",
+  "sha256": "5b64225955e42b1193a134c3b0eddfba5139803db18874f15c6baf8fbc639131",
+  "size": 74524890,
+  "notes": "이스터에그: 잊혀진 성 지린의 비석 (3막 암시, 탁본, 고구려 맥궁)",
+  "time": 1793610625
 }
