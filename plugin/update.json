@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "2.8.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.8.0.jar",
-  "sha256": "d19e21b557ecfc928eba06d811e7c2bac369765a8cb1deb9ff4cfb158b4013d4",
-  "size": 74494818,
-  "notes": "상인 하루에 한 나라만 돌아가며 영업, 상점 이동 없앰",
-  "time": 1793600515
+  "version": "2.8.1",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-2.8.1.jar",
+  "sha256": "2d40800f0421c2c559dff9dc485f8070608959f51fc8036f5b7842ff6a490945",
+  "size": 74501275,
+  "notes": "지옥 30초 붕괴, 도착한 지옥문으로만 나감",
+  "time": 1793603579
 }
