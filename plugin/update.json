@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.0.6",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.0.6.jar",
-  "sha256": "b01556d73734accef079aee8230c157091d8fb5823627194997da33cf7fd90b8",
-  "size": 77686176,
-  "notes": "커튼콜 스포트라이트(천장 빛기둥 + 바닥 빛)",
-  "time": 1793632579
+  "version": "3.0.7",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.0.7.jar",
+  "sha256": "43bd904cbbb86b09995c682e4a81765cdb703420b9b67b534f8d48f904ca08a5",
+  "size": 77683882,
+  "notes": "커튼콜: 빛기둥 대신 주변을 밤으로, 주인공 자리만 밝게",
+  "time": 1793633377
 }
