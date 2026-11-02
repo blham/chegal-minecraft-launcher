@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.0.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.0.0.jar",
-  "sha256": "8dcf22706defaaf666a7451f541594fa63fa4bc4784ecb148550419d956a7932",
-  "size": 74652124,
-  "notes": "처음 하는 사람 안내·/오늘, 이야기 이스터에그, 극장은 엔딩 뒤 치움",
-  "time": 1793625068
+  "version": "3.0.1",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.0.1.jar",
+  "sha256": "da5af3ab1d7fe962d6c57b627bdb23f7435c897ba15bd7749b066e07040ef6ac",
+  "size": 74809942,
+  "notes": "처음 들어온 사람에게 벽화 트레일러 (해가 진 땅), /이야기",
+  "time": 1793626145
 }
