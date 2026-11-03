@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.1.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.1.0.jar",
-  "sha256": "6d94a0003277e3e769b1c824fc03b0d8bbf660dd85512515ecdd493bc872fa8c",
-  "size": 82884397,
-  "notes": "런처 1.7.0 한지·단청 디자인, 런처 정보 늘림",
-  "time": 1793686330
+  "version": "3.1.1",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.1.1.jar",
+  "sha256": "db4d266681b032f72c2d62f0485b3e9ff3a2eacdd7fb090bf925a3152d1a5a85",
+  "size": 82902412,
+  "notes": "런처 1.7.1 세력 판도를 조선 8도로",
+  "time": 1793687252
 }
