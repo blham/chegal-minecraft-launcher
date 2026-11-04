@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.3.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.3.9.jar",
-  "sha256": "4f2a609a577e7692edb3027c041e4cdec9818e9fb0f70038ef0605e4a2d779ca",
-  "size": 87177296,
-  "notes": "날마다 바뀌는 산수화와 시조",
-  "time": 1793800831
+  "version": "3.4.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.4.0.jar",
+  "sha256": "d0174761f69ae1e8b54bb6aa98881eec871e2425cd5278d349a1ac4a4b927d7a",
+  "size": 87246674,
+  "notes": "산수화·시조 14폭 (시즌 N일차)",
+  "time": 1793801318
 }
