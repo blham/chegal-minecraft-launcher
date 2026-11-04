@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.2.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.2.4.jar",
-  "sha256": "fdcb65551c6937333b48ea148949aff35a0c28299af62d98aefeb43e799de609",
-  "size": 85855145,
-  "notes": "메뉴 버튼 빨간 점 장식 뺌",
-  "time": 1793789832
+  "version": "3.2.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.2.5.jar",
+  "sha256": "0d915d6f3fb6d1e97cb34cb2e6252e327f0ea31692c568f88e60edf21d856f40",
+  "size": 85857412,
+  "notes": "가이드 폭죽 아이콘 끝을 뾰족하게",
+  "time": 1793790544
 }
