@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.1.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.1.4.jar",
-  "sha256": "f1e30602ab382f024779646218803341ba731930ce773c814c54fe681d75c6ba",
-  "size": 83565934,
-  "notes": "입체 작물 6가지(배추·고추·무·토마토·양파·벼) + 새 작물 고추·무 + 입체 수확물·씨앗 + 닫기 10초 연출 「인정」 + 마지막 10초 사람끼리 피해 막기",
-  "time": 1793775084
+  "version": "3.1.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.1.5.jar",
+  "sha256": "a5a9ea9063e46f21f0ac12f4c79959cbfab01cc5b1bed1ffa9f09a56b1a1b347",
+  "size": 83558555,
+  "notes": "씨앗 4가지를 바닐라처럼 납작한 그림으로",
+  "time": 1793776599
 }
