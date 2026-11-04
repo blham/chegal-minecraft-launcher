@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.3.8",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.3.8.jar",
-  "sha256": "4a93e924261c5a02b79d812b415c994d578180fa8932e8c207703d5cb5fac8fc",
-  "size": 87130364,
-  "notes": "산수화에 마우스를 올리면 시조",
-  "time": 1793799765
+  "version": "3.3.9",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.3.9.jar",
+  "sha256": "4f2a609a577e7692edb3027c041e4cdec9818e9fb0f70038ef0605e4a2d779ca",
+  "size": 87177296,
+  "notes": "날마다 바뀌는 산수화와 시조",
+  "time": 1793800831
 }
