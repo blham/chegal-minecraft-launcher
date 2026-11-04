@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.3.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.3.5.jar",
-  "sha256": "59b7ab95f1f2c107e2b3c478f77a6903947b497415a0cf607eb66bcd85bd7fbb",
-  "size": 87121527,
-  "notes": "메인 메뉴 그림 더 풍성하게",
-  "time": 1793798500
+  "version": "3.3.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.3.6.jar",
+  "sha256": "75430e83df83b330612228ee0394793380cb5db5184e16dfbef6741aba5e70ab",
+  "size": 87132111,
+  "notes": "메인 메뉴 보관함 숨기고 산수화",
+  "time": 1793799092
 }
