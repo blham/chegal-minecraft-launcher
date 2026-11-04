@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.3.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.3.4.jar",
-  "sha256": "19ee2a2399c2c0e9f08bbe00dbda1ed8f9a1464052b505687808e15be9428ac3",
-  "size": 87064417,
-  "notes": "바닐라 창 꾸미기",
-  "time": 1793797813
+  "version": "3.3.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.3.5.jar",
+  "sha256": "59b7ab95f1f2c107e2b3c478f77a6903947b497415a0cf607eb66bcd85bd7fbb",
+  "size": 87121527,
+  "notes": "메인 메뉴 그림 더 풍성하게",
+  "time": 1793798500
 }
