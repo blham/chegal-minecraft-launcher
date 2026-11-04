@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.3.2",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.3.2.jar",
-  "sha256": "de1dd0fe4b0d8ccf331674259205d9936f3a38144d477a0e834de2280080c026",
-  "size": 86706084,
-  "notes": "아이템 그림 단청 색 + 먹선",
-  "time": 1793797123
+  "version": "3.3.3",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.3.3.jar",
+  "sha256": "72863977a91a18ec69fade8ea7f4f3068c6f90683dc55e1152e22977a3d851e8",
+  "size": 87031305,
+  "notes": "인벤토리 등 바닐라 창 한지 색",
+  "time": 1793797416
 }
