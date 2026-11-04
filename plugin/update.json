@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.1.8",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.1.8.jar",
-  "sha256": "08763bd6c90122d0556f1605a54bd5d82efe7f2fc1d512bf21d60e6c49aff00e",
-  "size": 85077573,
-  "notes": "인게임 UI 한지 두루마리: 메뉴·설명창·보스 막대·채팅 머리표",
-  "time": 1793783044
+  "version": "3.1.9",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.1.9.jar",
+  "sha256": "48378e3ac75daf8ca2e82395eff305de0d8fc9803ff692da3ee154e2c83138e1",
+  "size": 85080115,
+  "notes": "메뉴 닫기 버튼을 도장으로",
+  "time": 1793786163
 }
