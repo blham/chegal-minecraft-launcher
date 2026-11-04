@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.1.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.1.5.jar",
-  "sha256": "a5a9ea9063e46f21f0ac12f4c79959cbfab01cc5b1bed1ffa9f09a56b1a1b347",
-  "size": 83558555,
-  "notes": "씨앗 4가지를 바닐라처럼 납작한 그림으로",
-  "time": 1793776599
+  "version": "3.1.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.1.6.jar",
+  "sha256": "1269830257c20860646efab210044a5fe86263abb4914a8a2b517fc71b8d5ee5",
+  "size": 83652018,
+  "notes": "런처 1.7.4: 설치 창(이용약관 동의 + 설치 진행률), 런처 첫 화면 약관 동의",
+  "time": 1793777470
 }
