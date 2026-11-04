@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.3.7",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.3.7.jar",
-  "sha256": "d49ee655dbf45dce40214a595fa7563c5431ee049f6e984ff4a4a0bdf1228666",
-  "size": 87129341,
-  "notes": "E 인벤토리 더 꾸미기",
-  "time": 1793799447
+  "version": "3.3.8",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.3.8.jar",
+  "sha256": "4a93e924261c5a02b79d812b415c994d578180fa8932e8c207703d5cb5fac8fc",
+  "size": 87130364,
+  "notes": "산수화에 마우스를 올리면 시조",
+  "time": 1793799765
 }
