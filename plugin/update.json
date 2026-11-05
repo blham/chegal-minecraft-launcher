@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.7.3",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.7.3.jar",
-  "sha256": "f5453864feee799a269d89e4cb26a3205bacb97e6f15c9b7a9dca70d7e0cf9db",
-  "size": 101503262,
-  "notes": "시즌 점수: 코어 탈취 5 · 코어 지키기 하루 7 · 왕관 5",
-  "time": 1793882253
+  "version": "3.7.4",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.7.4.jar",
+  "sha256": "4b8e4b04845df21e7330086e8a78178d5b6650e169ad3c140a9cb301be3a3188",
+  "size": 101506223,
+  "notes": "시즌 점수: 지키기 6 · 탈취 8 · 왕관 5 + 역전·수비 성공·적 처치·교역왕",
+  "time": 1793884348
 }
