@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.5.3",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.3.jar",
-  "sha256": "db381a171a24d5f7e3c85ffdbe5266f7bde22a4c11f504a8ac9f2c1a883ecb08",
-  "size": 88192716,
-  "notes": "버그 고침: 방랑자 베이스 영혼 모닥불을 밟으면 불타던 것, 평화로움일 때 코어 조각상 깜빡임, 세력 창고 단추 줄 빈 칸",
-  "time": 1793843050
+  "version": "3.5.4",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.4.jar",
+  "sha256": "04eae39bebd586a823a97fd7435f35fd3d4132b41e09aa7366917787efbb8cde",
+  "size": 88234323,
+  "notes": "런처 「안내」: 게임 시스템·규칙(가이드 책 20장)과 성마다 신상·특산품을 런처에서 볼 수 있음 (찾기 포함)",
+  "time": 1793844276
 }
