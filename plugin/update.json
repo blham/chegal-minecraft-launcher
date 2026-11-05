@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.5.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.4.jar",
-  "sha256": "04eae39bebd586a823a97fd7435f35fd3d4132b41e09aa7366917787efbb8cde",
-  "size": 88234323,
-  "notes": "런처 「안내」: 게임 시스템·규칙(가이드 책 20장)과 성마다 신상·특산품을 런처에서 볼 수 있음 (찾기 포함)",
-  "time": 1793844276
+  "version": "3.5.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.5.jar",
+  "sha256": "40bdbe117448833f8227cb13646c7c45f4c7720a6fb50cca6d39ecc8040de4c3",
+  "size": 88248211,
+  "notes": "런처 안내 목차에 번호 대신 게임 속 아이템 아이콘",
+  "time": 1793847619
 }
