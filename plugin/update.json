@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.6.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.6.5.jar",
-  "sha256": "dbc6f324b9919e848666e1620cc9177695a292081d4f812af2aa3871750f8097",
-  "size": 92519587,
-  "notes": "짙은 세력 색(남색·검붉은색·보라·검정·진회색)을 글자에서는 밝게",
-  "time": 1793870811
+  "version": "3.6.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.6.6.jar",
+  "sha256": "cef0ac4b05af34f985922693cd53b759fa4ce292464ff0f3ea4fdf9b17079305",
+  "size": 92520026,
+  "notes": "세력 색에서 짙은 색(남색·보라·진홍·진회색·검정) 뺌 · 예전 세력은 밝은 색으로 옮김",
+  "time": 1793871216
 }
