@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.5.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.0.jar",
-  "sha256": "c4aee67c0508efd689a718b439fbb60c4981391eb35dc481b8831284593fb852",
-  "size": 87676204,
-  "notes": "ESC 게임 메뉴 솔가지를 소나무 줄기에서 뻗어 나오게, 떨어진 잎 덩이 없앰",
-  "time": 1793838747
+  "version": "3.5.1",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.1.jar",
+  "sha256": "14dc31735c0a0b34ff0ddad7aa13ada822fdc9714c4bcc7a7760940f18c5d1f2",
+  "size": 87686165,
+  "notes": "ESC 게임 메뉴 버튼 꾸미기: 나뭇결·금 장석 버튼, 버튼마다 선비·장군·도깨비·호랑이·해태·장승·복주머니·박쥐·까치 (보조 모드 1.3.4)",
+  "time": 1793839478
 }
