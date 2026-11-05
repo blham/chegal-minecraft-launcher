@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.5.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.1.jar",
-  "sha256": "14dc31735c0a0b34ff0ddad7aa13ada822fdc9714c4bcc7a7760940f18c5d1f2",
-  "size": 87686165,
-  "notes": "ESC 게임 메뉴 버튼 꾸미기: 나뭇결·금 장석 버튼, 버튼마다 선비·장군·도깨비·호랑이·해태·장승·복주머니·박쥐·까치 (보조 모드 1.3.4)",
-  "time": 1793839478
+  "version": "3.5.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.2.jar",
+  "sha256": "7bba5e376997ad8c1e779a7924b04f8dad37e6dba95a844be2a074ab69d035e0",
+  "size": 87868384,
+  "notes": "성(코어) 신상 조각상: 하얀 큰 블록 대신 지역마다 다른 3D 조각상 (호랑이·보부상·금 도깨비·대동문·해태·탄광·누렁소·거북선·돌하르방·화산)",
+  "time": 1793841147
 }
