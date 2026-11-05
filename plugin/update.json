@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.6.3",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.6.3.jar",
-  "sha256": "5928057fb521891616140e3636958aa41baab4f08aafba5efbe2650af646631d",
-  "size": 92443058,
-  "notes": "카람빗(전설)은 조합으로 못 만들게",
-  "time": 1793869153
+  "version": "3.6.4",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.6.4.jar",
+  "sha256": "3b2f04dd11904a6820c5698a774cc6dd510d6df4513e3996fe5cd59d491b49ec",
+  "size": 92518925,
+  "notes": "제작법 책·발전 과제 창 한지 · 알림 띠 옻칠/한지 · 입장/퇴장 도장 · 석등 반딧불이 · 새 깃발 세력 색 가루",
+  "time": 1793870233
 }
