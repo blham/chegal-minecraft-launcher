@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.6.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.6.4.jar",
-  "sha256": "3b2f04dd11904a6820c5698a774cc6dd510d6df4513e3996fe5cd59d491b49ec",
-  "size": 92518925,
-  "notes": "제작법 책·발전 과제 창 한지 · 알림 띠 옻칠/한지 · 입장/퇴장 도장 · 석등 반딧불이 · 새 깃발 세력 색 가루",
-  "time": 1793870233
+  "version": "3.6.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.6.5.jar",
+  "sha256": "dbc6f324b9919e848666e1620cc9177695a292081d4f812af2aa3871750f8097",
+  "size": 92519587,
+  "notes": "짙은 세력 색(남색·검붉은색·보라·검정·진회색)을 글자에서는 밝게",
+  "time": 1793870811
 }
