@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.5.6",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.6.jar",
-  "sha256": "9d8e47057fe3c18b5248ead5447e1acf3947d1d8d10e2480c72658da76b2be13",
-  "size": 91929362,
-  "notes": "신상 금 가기·폐허 신상·맞을 때 조각, 개인 창고·금고 뒤로, 가이드 책 선장본, 타이틀 화면(보조 모드 1.3.5), 런처 지도·안내에 신상 그림",
-  "time": 1793852721
+  "version": "3.5.7",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.7.jar",
+  "sha256": "eada6c77368dd91395e6cdec4e9a3451b1b6721552ac8d43e95ea041caf44a45",
+  "size": 91930386,
+  "notes": "세력 금고 3줄 고정 (금고 확장 없앰, 산 세력에는 금 돌려줌, 넘친 물건은 빈칸·세력 창고로)",
+  "time": 1793853893
 }
