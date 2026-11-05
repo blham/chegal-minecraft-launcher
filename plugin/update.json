@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.7.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.7.4.jar",
-  "sha256": "4b8e4b04845df21e7330086e8a78178d5b6650e169ad3c140a9cb301be3a3188",
-  "size": 101506223,
-  "notes": "시즌 점수: 지키기 6 · 탈취 8 · 왕관 5 + 역전·수비 성공·적 처치·교역왕",
-  "time": 1793884348
+  "version": "3.7.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.7.5.jar",
+  "sha256": "05c3a65f47971f92c05e68de7116a9fc5cf75cda84d3577d40a58abefff1e05a",
+  "size": 101653526,
+  "notes": "굵은 글씨 번짐 없앰 · 모든 큰 제목 현판 · 조사 받침 자동 · 메뉴 단추 영월체 · 처음 온 사람 입장 확인 뒤 트레일러·꾸러미 · 수장 팀 복구",
+  "time": 1793887625
 }
