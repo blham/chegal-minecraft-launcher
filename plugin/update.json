@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.4.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.4.9.jar",
-  "sha256": "043acd418a8b56aadd520c6554058b25c00d7c38769eba16b50726c3829d76fb",
-  "size": 87675484,
-  "notes": "ESC 게임 메뉴 그림을 버튼 뒤까지: 틀 안 한지 수묵화, 기둥 넘어 들어오는 솔가지, 낙양각, 학·매화 (보조 모드 1.3.3)",
-  "time": 1793838220
+  "version": "3.5.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.0.jar",
+  "sha256": "c4aee67c0508efd689a718b439fbb60c4981391eb35dc481b8831284593fb852",
+  "size": 87676204,
+  "notes": "ESC 게임 메뉴 솔가지를 소나무 줄기에서 뻗어 나오게, 떨어진 잎 덩이 없앰",
+  "time": 1793838747
 }
