@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.6.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.6.9.jar",
-  "sha256": "97203a7fd7934b067e61d13883284dc61783ac84a1ebdf0542e73e8054089bcd",
-  "size": 101650030,
-  "notes": "큰 제목·아래 글에 글자에 붙은 그림자 (그림자를 품은 영월체) · 메뉴 현판 그림자 되살림",
-  "time": 1793876053
+  "version": "3.7.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.7.0.jar",
+  "sha256": "3b86909bd01c44d2098c73031d92c6d0f2d964cafae3550d4438799de40b6953",
+  "size": 101489017,
+  "notes": "숫자·영어도 영월체 · 큰 제목 글씨 더 또렷하게 · 지도에 우리 세력원(수장은 왕관) · 보조 모드 1.3.9",
+  "time": 1793877506
 }
