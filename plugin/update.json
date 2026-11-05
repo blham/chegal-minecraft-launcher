@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.5.8",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.8.jar",
-  "sha256": "23a785c9b7dacceb9fe95dacabd66ce867a8b5c794900bcf91b6e075bfd69bfe",
-  "size": 92441704,
-  "notes": "국악 효과음(북·징·꽹과리·대금) · 신상 둘레 석등과 세력 기치 · 큰 제목 현판 · 탭 목록 머리·꼬리 · 서버 목록 아이콘·문구 · 한국어 타이틀 글귀",
-  "time": 1793857641
+  "version": "3.5.9",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.9.jar",
+  "sha256": "0fe078e54e9baf0619ab2b7ce111867a4b22e60a554348f1ff812a3cd4e4d2b6",
+  "size": 92441833,
+  "notes": "현판 큰 제목 아래 작은 글도 붓글씨체로",
+  "time": 1793858677
 }
