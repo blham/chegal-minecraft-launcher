@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.6.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.6.1.jar",
-  "sha256": "c18e7e7dc60aed264a7c2d790621647aad4bbf5800b42385458770fc95e4d9aa",
-  "size": 92442286,
-  "notes": "현판 글씨 위아래 여백 맞춤 · 아래 작은 글은 갈무리 픽셀 글꼴",
-  "time": 1793859962
+  "version": "3.6.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.6.2.jar",
+  "sha256": "2e1a339a2f9d77dcdda83c695bdad8c7e2b0aa9956b54fd69406d487b09ecc7e",
+  "size": 92443372,
+  "notes": "현판 큰 글씨도 메뉴 현판·아래 글과 같은 갈무리 글꼴로 통일",
+  "time": 1793860771
 }
