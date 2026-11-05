@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.7.6",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.7.6.jar",
-  "sha256": "b8d9e8d3b5b26a1a8b4da4a1355d1077af96bcfd170a73893a8575e774bdcef9",
-  "size": 101675825,
-  "notes": "돈 쓸 곳: 전쟁 물자(성벽 보수·수비병 고용·치유 물약, 수장은 세력 금고 지폐로), 기치 물감, 코어 텔레포트 30원, 인챈트 책 하루 한 권 경매",
-  "time": 1793889673
+  "version": "3.7.7",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.7.7.jar",
+  "sha256": "2320e4655fab4242a796bc06defe2e0f78369195264190f84623ffdaf58e82aa",
+  "size": 101679508,
+  "notes": "글자 다듬기: 상자 창 제목이 위 띠에 붙지 않게, 아이템 이름 굵게 겹침 없앰, 상인 문구 정리",
+  "time": 1793891212
 }
