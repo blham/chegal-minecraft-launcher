@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.5.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.5.jar",
-  "sha256": "40bdbe117448833f8227cb13646c7c45f4c7720a6fb50cca6d39ecc8040de4c3",
-  "size": 88248211,
-  "notes": "런처 안내 목차에 번호 대신 게임 속 아이템 아이콘",
-  "time": 1793847619
+  "version": "3.5.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.6.jar",
+  "sha256": "9d8e47057fe3c18b5248ead5447e1acf3947d1d8d10e2480c72658da76b2be13",
+  "size": 91929362,
+  "notes": "신상 금 가기·폐허 신상·맞을 때 조각, 개인 창고·금고 뒤로, 가이드 책 선장본, 타이틀 화면(보조 모드 1.3.5), 런처 지도·안내에 신상 그림",
+  "time": 1793852721
 }
