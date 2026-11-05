@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.5.7",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.7.jar",
-  "sha256": "eada6c77368dd91395e6cdec4e9a3451b1b6721552ac8d43e95ea041caf44a45",
-  "size": 91930386,
-  "notes": "세력 금고 3줄 고정 (금고 확장 없앰, 산 세력에는 금 돌려줌, 넘친 물건은 빈칸·세력 창고로)",
-  "time": 1793853893
+  "version": "3.5.8",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.8.jar",
+  "sha256": "23a785c9b7dacceb9fe95dacabd66ce867a8b5c794900bcf91b6e075bfd69bfe",
+  "size": 92441704,
+  "notes": "국악 효과음(북·징·꽹과리·대금) · 신상 둘레 석등과 세력 기치 · 큰 제목 현판 · 탭 목록 머리·꼬리 · 서버 목록 아이콘·문구 · 한국어 타이틀 글귀",
+  "time": 1793857641
 }
