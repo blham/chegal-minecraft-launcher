@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.7.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.7.1.jar",
-  "sha256": "9da1e815dc0993d43275f1f249d4b301d872698684e55b5a31dcb0fa2dd722c2",
-  "size": 101502424,
-  "notes": "수장이 쓰러지면 왕관이 떨어짐 (적이 바치면 시즌 점수) · 수장 쓰러짐 다이아 8개·빛남 5초",
-  "time": 1793879598
+  "version": "3.7.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.7.2.jar",
+  "sha256": "3494037c8c40fee95df992a63f1cda9eb928abe3f80c1b62937c9630a9be3563",
+  "size": 101503096,
+  "notes": "왕관 점수 50 → 5 · 신상 이름표에서 특산품 뺌 (가이드 책 코어 장 끝에 성마다 특산품)",
+  "time": 1793881375
 }
