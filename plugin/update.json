@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.5.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.5.9.jar",
-  "sha256": "0fe078e54e9baf0619ab2b7ce111867a4b22e60a554348f1ff812a3cd4e4d2b6",
-  "size": 92441833,
-  "notes": "현판 큰 제목 아래 작은 글도 붓글씨체로",
-  "time": 1793858677
+  "version": "3.6.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.6.0.jar",
+  "sha256": "33f2b6d3049f2c7072f5c7dea8bd1ae2a7576fcb45ff7bdc95e23bddf1f6e42f",
+  "size": 92443342,
+  "notes": "현판 글씨를 금테 안에 맞추고 그림자 정리",
+  "time": 1793859167
 }
