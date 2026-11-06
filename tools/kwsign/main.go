@@ -1,5 +1,5 @@
 // kwsign: Korea War 서명 도구 (서버장 컴퓨터에서만 씀)
-// 서버의 plugins/KoreaWar 폴더 안 mod/*.jar, mod/optional/*.jar, launcher/* 의 sha256 목록을 만들어
+// 서버의 plugins/AsiaWar 폴더 안 mod/*.jar, mod/optional/*.jar, launcher/* 의 sha256 목록을 만들어
 // 비밀 열쇠(kw-sign-key.txt)로 서명 → launcher/kw-signed.json + launcher/kw-signed.sig.
 // 런처는 이 서명이 맞는 파일만 설치함 (중간에서 바꿔치기하거나 서버가 해킹당해도 안 깔림).
 //
@@ -37,9 +37,12 @@ type Signed struct {
 	Server          string            `json:"server"`
 	BlockedMods     []string          `json:"blockedMods"`
 	Files           map[string]string `json:"files"`
+	HTTPS           string            `json:"https,omitempty"`        // 런처 1.6.4~: 이 주소(https)로 서버 파일을 받음
+	Minecraft       string            `json:"minecraft,omitempty"`    // 런처 1.6.4~: 마크 버전도 서명 안에
+	FabricLoader    string            `json:"fabricLoader,omitempty"` // 런처 1.6.4~: Fabric 버전도 서명 안에
 }
 
-var launcherFile = regexp.MustCompile(`^(KoreaWarLauncher-[A-Za-z0-9.-]+|KoreaWarSetup(-arm64)?\.exe)$`)
+var launcherFile = regexp.MustCompile(`^((Asia|Korea)WarLauncher-[A-Za-z0-9.-]+|(Asia|Korea)WarSetup(-arm64)?\.exe)$`) // 1.8.1 이름 변경 (예전 이름은 옛 런처의 업데이트용)
 
 var defaultBlocked = []string{"xaerominimap", "xaerominimapfair", "xaeroworldmap", "xaerolib", "journeymap", "voxelmap", "ftbchunks", "minimap", "mapfrontiers", "worldmap"}
 
@@ -151,6 +154,21 @@ func main() {
 		fmt.Printf("새 열쇠를 만들었어요: %s\n확인용 열쇠(런처에 넣는 것): %s\n", keyPath(), base64.StdEncoding.EncodeToString(pub))
 		return
 	}
+	if len(args) == 2 && args[0] == "sign-file" { // 업데이트 정보(update.json) 같은 파일 하나에 서명 → <파일 이름에서 .json 뺀>.sig
+		kb, err := os.ReadFile(keyPath())
+		if err != nil {
+			fail("서명 열쇠가 없어요")
+		}
+		seed, _ := base64.StdEncoding.DecodeString(strings.TrimSpace(string(kb)))
+		b, err := os.ReadFile(args[1])
+		if err != nil || len(seed) != ed25519.SeedSize {
+			fail("파일이나 열쇠를 읽지 못했어요")
+		}
+		out := strings.TrimSuffix(args[1], ".json") + ".sig"
+		_ = os.WriteFile(out, []byte(base64.StdEncoding.EncodeToString(ed25519.Sign(ed25519.NewKeyFromSeed(seed), b))), 0o644)
+		fmt.Println("서명:", out)
+		return
+	}
 	kb, err := os.ReadFile(keyPath())
 	if err != nil {
 		fail("서명 열쇠가 없어요: %s\nkwsign.exe 와 같은 폴더에 kw-sign-key.txt 가 있어야 해요.", keyPath())
@@ -165,17 +183,17 @@ func main() {
 	if len(args) > 0 {
 		dir = args[0]
 	} else {
-		fmt.Println("서버의 plugins\\KoreaWar 폴더 경로를 넣고 엔터 (폴더를 이 창에 끌어다 놓아도 돼요):")
+		fmt.Println("서버의 plugins\\AsiaWar 폴더 경로를 넣고 엔터 (폴더를 이 창에 끌어다 놓아도 돼요):")
 		line, _ := bufio.NewReader(os.Stdin).ReadString('\n')
 		dir = strings.Trim(strings.TrimSpace(line), `"`)
 	}
 	dir = strings.Trim(dir, `"`)
 	if st, err := os.Stat(filepath.Join(dir, "mod")); err != nil || !st.IsDir() {
-		fail("%s 안에 mod 폴더가 없어요. 서버의 plugins\\KoreaWar 폴더를 골라 주세요.", dir)
+		fail("%s 안에 mod 폴더가 없어요. 서버의 plugins\\AsiaWar 폴더를 골라 주세요.", dir)
 	}
 	cb, err := os.ReadFile(filepath.Join(dir, "config.yml"))
 	if err != nil {
-		fail("%s 안에 config.yml 이 없어요. 서버의 plugins\\KoreaWar 폴더를 골라 주세요.", dir)
+		fail("%s 안에 config.yml 이 없어요. 서버의 plugins\\AsiaWar 폴더를 골라 주세요.", dir)
 	}
 	lines := strings.Split(string(cb), "\n")
 	lv, _, _ := yamlGet(lines, "launcher", "version")
@@ -190,6 +208,27 @@ func main() {
 	} else if _, ids, ok := yamlGet(lines, "minimap-block", "mod-ids"); ok {
 		blocked = ids
 	}
+	httpsURL := ""
+	for _, l := range lines {
+		if t := strings.TrimRight(l, "\r"); strings.HasPrefix(t, "https-url:") {
+			httpsURL = strings.Trim(strings.TrimSpace(strings.TrimPrefix(t, "https-url:")), "\"'")
+			if j := strings.Index(httpsURL, " #"); j >= 0 {
+				httpsURL = strings.TrimSpace(httpsURL[:j])
+			}
+		}
+	}
+	if httpsURL == "" {
+		httpsURL = os.Getenv("KW_HTTPS")
+	}
+	httpsURL = strings.TrimRight(httpsURL, "/")
+	if !regexp.MustCompile(`^https://[A-Za-z0-9.-]+(:[0-9]{1,5})?$`).MatchString(httpsURL) {
+		httpsURL = ""
+	}
+	mcv, _, _ := yamlGet(lines, "launcher", "minecraft-version")
+	if mcv == "" {
+		mcv, _, _ = yamlGet(lines, "mod-install", "minecraft-version")
+	}
+	flv, _, _ := yamlGet(lines, "launcher", "fabric-loader")
 	now := time.Now()
 	serial := now.Unix()
 	if ob, err := os.ReadFile(filepath.Join(dir, "launcher", "kw-signed.json")); err == nil { // 시계가 뒤로 가도 번호는 항상 커지게
@@ -198,7 +237,7 @@ func main() {
 			serial = old.Serial + 1
 		}
 	}
-	s := Signed{V: 2, Serial: serial, Expires: now.AddDate(0, 0, 120).Unix(), Time: now.Format(time.RFC3339), LauncherVersion: lv, ClientID: cid, Server: srv, BlockedMods: blocked, Files: map[string]string{}}
+	s := Signed{V: 2, Serial: serial, Expires: now.AddDate(0, 0, 120).Unix(), Time: now.Format(time.RFC3339), LauncherVersion: lv, ClientID: cid, Server: srv, BlockedMods: blocked, Files: map[string]string{}, HTTPS: httpsURL, Minecraft: strings.Trim(mcv, "\"'"), FabricLoader: strings.Trim(flv, "\"'")}
 	add := func(sub string, onlyJar bool) {
 		es, _ := os.ReadDir(filepath.Join(dir, filepath.FromSlash(sub)))
 		for _, e := range es {
@@ -234,7 +273,7 @@ func main() {
 		names = append(names, k)
 	}
 	sort.Strings(names)
-	fmt.Printf("런처 버전 %s, 로그인 앱 ID %q, 접속 주소 %q, 막는 모드 %d개\n", lv, cid, srv, len(blocked))
+	fmt.Printf("런처 버전 %s, 로그인 앱 ID %q, 접속 주소 %q, 막는 모드 %d개, https %q, 마크 %s / Fabric %s\n", lv, cid, srv, len(blocked), s.HTTPS, s.Minecraft, s.FabricLoader)
 	fmt.Printf("서명했어요 (%d개 파일):\n", len(names))
 	for _, n := range names {
 		fmt.Println("  " + n)
