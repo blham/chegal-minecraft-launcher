@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.8.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.8.9.jar",
-  "sha256": "8806420677b032b140d0e5fa12520f622df40316f35c3aedb63d478fb8e2d8df",
-  "size": 176035174,
-  "notes": "지역 현판 · 나침반 띠 · 전쟁 상황판 · 함락 연출 · 이정표 · 우리 세력/기록 탭 · 처음 보는 것 설명 · 배경음 (보조 모드 1.4.4)",
-  "time": 1793982261
+  "version": "3.9.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.9.0.jar",
+  "sha256": "acd309890e55e3839dc11dfd11210646e656edb5893350d3058991eb2acb8369",
+  "size": 176036783,
+  "notes": "상인 이름 번짐 고침 · 사라진 상점 건물 자동으로 다시 짓기",
+  "time": 1793983005
 }
