@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.9.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.9.5.jar",
-  "sha256": "620b399b12a31bbfbfd68b249fd05a6f0353b738a4ca8aeb676583c39f292958",
-  "size": 175763494,
-  "notes": "용암 기둥 막기 · 수호상 높이 맞춤 · 방랑자 마지막 한 방이면 주인 없는 성 · 메뉴 칸 흰 네모 없앰 (보조 모드 1.4.7)",
-  "time": 1793987558
+  "version": "3.9.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.9.6.jar",
+  "sha256": "08079d5ff60544fb9cb8094743e6d76a8b1a964d24cf75e24f5b3b3b6e223344",
+  "size": 175763809,
+  "notes": "등산로 계단 베이스 금지 · 길 위에 놓인 블록 부수기",
+  "time": 1793987906
 }
