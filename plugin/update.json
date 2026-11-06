@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.7.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.7.9.jar",
-  "sha256": "0e2c6b8981bfcd259a4bcfa403cf9a5d5797ad1ec7975321d44e8e6ae5d593ca",
-  "size": 101686760,
-  "notes": "글리치 막기: 강한 안티 엑스레이(피스톤·퇴비통 엑스레이), 블록 안 시야 가림, 블록 글리치·진주 글리치, 시드 광석 찾기 막기",
-  "time": 1793930647
+  "version": "3.8.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.8.0.jar",
+  "sha256": "75fa8b888e0559f9e2d9c27a93309d2ae8dd05b2398bc5b8330a393a181802a0",
+  "size": 101688903,
+  "notes": "꼼수 더 막기: 벽 너머 아이템 합쳐지기, 복사 버그 설정 강제로 끔, 전쟁 물자 조합 재료로 못 씀",
+  "time": 1793932545
 }
