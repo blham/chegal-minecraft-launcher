@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.8.3",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.8.3.jar",
-  "sha256": "44853dc21b16f960adb521c9d6c81c282735141937647c884319a1e03f657b15",
-  "size": 137782175,
-  "notes": "셰이더 기본 꺼 둠, 편의성 모드 11개 추가 (성능·채팅·HUD·발소리, Distant Horizons 는 기본 꺼 둠)",
-  "time": 1793964252
+  "version": "3.8.4",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.8.4.jar",
+  "sha256": "88796a65419c85f48185b343156c1b31416f0417152dfdbbdea72bd0df079544",
+  "size": 137791331,
+  "notes": "런처 1.8.0: 서버가 꺼져 있어도 깃허브에서 새 런처를 받음",
+  "time": 1793965743
 }
