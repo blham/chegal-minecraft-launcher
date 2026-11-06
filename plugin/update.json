@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.8.2",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.8.2.jar",
-  "sha256": "8977286c5e38d115be25c4658df4ffb877c725a77c107a68f78749ac46dc94fb",
-  "size": 101735223,
-  "notes": "셰이더팩 자동 설치: 런처가 Complementary Reimagined 를 Modrinth 에서 받아 Iris 에 켜 둠",
-  "time": 1793963349
+  "version": "3.8.3",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.8.3.jar",
+  "sha256": "44853dc21b16f960adb521c9d6c81c282735141937647c884319a1e03f657b15",
+  "size": 137782175,
+  "notes": "셰이더 기본 꺼 둠, 편의성 모드 11개 추가 (성능·채팅·HUD·발소리, Distant Horizons 는 기본 꺼 둠)",
+  "time": 1793964252
 }
