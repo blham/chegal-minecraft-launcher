@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.8.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.8.1.jar",
-  "sha256": "89c991cae342ee1875f113baee3342346391743773f4c975b49521b3a7f34844",
-  "size": 101694318,
-  "notes": "복사·침투 버그 막기: 지폐 일련번호 장부(복사 지폐 회수), 번들·크래프터 막기, 진주 스테이시스 막기, 청크당 엔티티 한도",
-  "time": 1793934699
+  "version": "3.8.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.8.2.jar",
+  "sha256": "8977286c5e38d115be25c4658df4ffb877c725a77c107a68f78749ac46dc94fb",
+  "size": 101735223,
+  "notes": "셰이더팩 자동 설치: 런처가 Complementary Reimagined 를 Modrinth 에서 받아 Iris 에 켜 둠",
+  "time": 1793963349
 }
