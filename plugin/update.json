@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.8.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.8.5.jar",
-  "sha256": "827d9f20c13b82cf815069f93ef69c579ff28cdfe1090280f403cc6695a60bf6",
-  "size": 137836449,
-  "notes": "게임 속 지도 화면(M) · 길 안내 · 성 텔레포트는 신상 옆 바닥으로",
-  "time": 1793974255
+  "version": "3.8.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.8.6.jar",
+  "sha256": "5766a3eb1fcf17ff6e352f852d8fa0f739ac9c38d67c0d155b80cdf35bdc122f",
+  "size": 137836685,
+  "notes": "「신상」→「수호상」 · 지도에서 상점 이동 막음 · 두 번 눌러 이동 뺌",
+  "time": 1793974804
 }
