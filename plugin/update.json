@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.7.7",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.7.7.jar",
-  "sha256": "2320e4655fab4242a796bc06defe2e0f78369195264190f84623ffdaf58e82aa",
-  "size": 101679508,
-  "notes": "글자 다듬기: 상자 창 제목이 위 띠에 붙지 않게, 아이템 이름 굵게 겹침 없앰, 상인 문구 정리",
-  "time": 1793891212
+  "version": "3.7.8",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.7.8.jar",
+  "sha256": "f9328e8e1d3793489af8c87259c8c1075c424d0dd6f72fb5aba4fd4d953dd706",
+  "size": 101679510,
+  "notes": "광석 배수 조정: 다이아 약 1.3배·금 1.5배·에메랄드 바닐라 (새 청크부터)",
+  "time": 1793929971
 }
