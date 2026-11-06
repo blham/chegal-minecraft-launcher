@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.9.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.9.1.jar",
-  "sha256": "167db0a30a040e2b382668e1e32031b233115d01a3c560feb41423d6dcb25176",
-  "size": 176054539,
-  "notes": "호패 이름에 욕설·나쁜 말 막기 (런처 1.8.2)",
-  "time": 1793983823
+  "version": "3.9.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.9.2.jar",
+  "sha256": "b62736cfea278c2ad1829946414a8909a4db1bcf558558378f532f5c416b8633",
+  "size": 175894390,
+  "notes": "런처 1.8.3: 새 아이콘(亞 인장), 마인크래프트 없이도 런처로 바로 실행",
+  "time": 1793984493
 }
