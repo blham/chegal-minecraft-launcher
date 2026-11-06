@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.8.7",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.8.7.jar",
-  "sha256": "321405a07ce426b381b9f89163879311239763cae9ade663e0e57202bcc675fd",
-  "size": 175329893,
-  "notes": "이름을 「아시아 워」로 (플러그인·런처·보조 모드) · 3.8.6 수호상 안내서 바꾸기 고침",
-  "time": 1793976578
+  "version": "3.8.8",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.8.8.jar",
+  "sha256": "d1cdd690fbf881169781da7b877ad1dd9156608bbe339f88f9b0c05d1b97012b",
+  "size": 175615598,
+  "notes": "지도: 고지도·8도·지명·행사(보스·보급품·광맥)·전설 장소·성문·세력 핑(우클릭/G)",
+  "time": 1793978513
 }
