@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.9.2",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.9.2.jar",
-  "sha256": "b62736cfea278c2ad1829946414a8909a4db1bcf558558378f532f5c416b8633",
-  "size": 175894390,
-  "notes": "런처 1.8.3: 새 아이콘(亞 인장), 마인크래프트 없이도 런처로 바로 실행",
-  "time": 1793984493
+  "version": "3.9.3",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.9.3.jar",
+  "sha256": "533f3029cac84599114cd76846cb6e512ad6d9dc0a9620b6ae440544b5b20be7",
+  "size": 175900548,
+  "notes": "런처 1.8.4: 아시아 워 옆 로그인 창 · 고급 툴팁 그림자 빼기 (보조 모드 1.4.5)",
+  "time": 1793985631
 }
