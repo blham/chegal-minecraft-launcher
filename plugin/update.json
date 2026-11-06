@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.9.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.9.0.jar",
-  "sha256": "acd309890e55e3839dc11dfd11210646e656edb5893350d3058991eb2acb8369",
-  "size": 176036783,
-  "notes": "상인 이름 번짐 고침 · 사라진 상점 건물 자동으로 다시 짓기",
-  "time": 1793983005
+  "version": "3.9.1",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.9.1.jar",
+  "sha256": "167db0a30a040e2b382668e1e32031b233115d01a3c560feb41423d6dcb25176",
+  "size": 176054539,
+  "notes": "호패 이름에 욕설·나쁜 말 막기 (런처 1.8.2)",
+  "time": 1793983823
 }
