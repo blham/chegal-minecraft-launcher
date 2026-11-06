@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.8.8",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.8.8.jar",
-  "sha256": "d1cdd690fbf881169781da7b877ad1dd9156608bbe339f88f9b0c05d1b97012b",
-  "size": 175615598,
-  "notes": "지도: 고지도·8도·지명·행사(보스·보급품·광맥)·전설 장소·성문·세력 핑(우클릭/G)",
-  "time": 1793978513
+  "version": "3.8.9",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.8.9.jar",
+  "sha256": "8806420677b032b140d0e5fa12520f622df40316f35c3aedb63d478fb8e2d8df",
+  "size": 176035174,
+  "notes": "지역 현판 · 나침반 띠 · 전쟁 상황판 · 함락 연출 · 이정표 · 우리 세력/기록 탭 · 처음 보는 것 설명 · 배경음 (보조 모드 1.4.4)",
+  "time": 1793982261
 }
