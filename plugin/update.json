@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.9.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.9.4.jar",
-  "sha256": "823e57757e440b26c323a8c0a48026799ab6afbf846eb87d3fc0fcecb5ce1d99",
-  "size": 175758385,
-  "notes": "백두산 백호 · 성 안 블록 막기 · 배경음·발소리 줄임 (런처 1.8.5 · 보조 모드 1.4.6)",
-  "time": 1793986350
+  "version": "3.9.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.9.5.jar",
+  "sha256": "620b399b12a31bbfbfd68b249fd05a6f0353b738a4ca8aeb676583c39f292958",
+  "size": 175763494,
+  "notes": "용암 기둥 막기 · 수호상 높이 맞춤 · 방랑자 마지막 한 방이면 주인 없는 성 · 메뉴 칸 흰 네모 없앰 (보조 모드 1.4.7)",
+  "time": 1793987558
 }
