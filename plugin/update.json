@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.9.6",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.9.6.jar",
-  "sha256": "08079d5ff60544fb9cb8094743e6d76a8b1a964d24cf75e24f5b3b3b6e223344",
-  "size": 175763809,
-  "notes": "등산로 계단 베이스 금지 · 길 위에 놓인 블록 부수기",
-  "time": 1793987906
+  "version": "3.9.7",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.9.7.jar",
+  "sha256": "7082a6ba9c70002c2f25a9a177b31c4bf8bf6100fc2f675af1c34497d945a09b",
+  "size": 175764253,
+  "notes": "지옥에서 나올 때 지상 지옥문이 부서졌거나 막혀 있어도 안전한 자리로",
+  "time": 1793988260
 }
