@@ -1,3 +1,4 @@
 plugin/*.jar filter=lfs diff=lfs merge=lfs -text
 plugin/*.bin filter=lfs diff=lfs merge=lfs -text
 launcher/KoreaWar* filter=lfs diff=lfs merge=lfs -text
+launcher/AsiaWar* filter=lfs diff=lfs merge=lfs -text
