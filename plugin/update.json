@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.8.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.8.0.jar",
-  "sha256": "75fa8b888e0559f9e2d9c27a93309d2ae8dd05b2398bc5b8330a393a181802a0",
-  "size": 101688903,
-  "notes": "꼼수 더 막기: 벽 너머 아이템 합쳐지기, 복사 버그 설정 강제로 끔, 전쟁 물자 조합 재료로 못 씀",
-  "time": 1793932545
+  "version": "3.8.1",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/KoreaWar-3.8.1.jar",
+  "sha256": "89c991cae342ee1875f113baee3342346391743773f4c975b49521b3a7f34844",
+  "size": 101694318,
+  "notes": "복사·침투 버그 막기: 지폐 일련번호 장부(복사 지폐 회수), 번들·크래프터 막기, 진주 스테이시스 막기, 청크당 엔티티 한도",
+  "time": 1793934699
 }
