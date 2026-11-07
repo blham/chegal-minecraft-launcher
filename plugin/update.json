@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.1.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.1.4.jar",
-  "sha256": "746cc6eb9f2079aa07fdb5e713a060560cb5877bd32f4adce093f091ebd54ade",
-  "size": 166560521,
-  "notes": "백두산 얼음 호수 한 칸 위로 (성 바닥·길과 같은 높이)",
-  "time": 1794046858
+  "version": "4.1.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.1.5.jar",
+  "sha256": "3698bf507a9f473027b5a91f8dd87801e121dfbd265248939d079e846760cbe1",
+  "size": 166560626,
+  "notes": "백두산 올린 얼음이 녹던 것 (단단한 얼음으로)",
+  "time": 1794047130
 }
