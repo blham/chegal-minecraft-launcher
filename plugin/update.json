@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.1.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.1.0.jar",
-  "sha256": "21da4718e3e9631b1aeb3210f8404d6eeffd1f929da2019a98df70513b754639",
-  "size": 175870672,
-  "notes": "새 서버에 DiscordSRV 설정 자동으로",
-  "time": 1794043229
+  "version": "4.1.1",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.1.1.jar",
+  "sha256": "6088a9ece33b1aca618562e1f15713c9d4ab1c2bc4cae4a0aafe4a5311433fd3",
+  "size": 166515295,
+  "notes": "퀘스트 창 늘 켜 둠, 백두산 얼음 호수, 가루눈, 리트매티카·발소리 모드 뺌, 배경 음악은 음악 소리로",
+  "time": 1794045115
 }
