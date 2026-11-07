@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "3.9.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-3.9.9.jar",
-  "sha256": "4be2cb4a8863f7d5dff2194d56d76864c3e9a82208e678c745f97cc933c8a1c9",
-  "size": 175764835,
-  "notes": "지옥 사라짐 안내 · 「후원 신」 칭호 · 지옥에서 나올 때 안전한 자리로",
-  "time": 1793988784
+  "version": "4.0.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.0.0.jar",
+  "sha256": "931ed079b471923d6023f2e897bfd89621d265446e1bd00ae9cf8391e7d05c38",
+  "size": 175769177,
+  "notes": "실전 전 구멍 막기: 진주·겉날개·탈것으로 성벽 넘기, 성 밖에서 수호상 쏘기, 성 둘레 물건·몹 두기, 발사기 용암, 못 부수는 레일·횃불",
+  "time": 1794012253
 }
