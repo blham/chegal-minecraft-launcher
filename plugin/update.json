@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.0.5",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.0.5.jar",
-  "sha256": "e570ef3a8ff9628bee08c962d5c45c358285354e522e80e818b30eff8ae9bb47",
-  "size": 175772652,
-  "notes": "굵은 글씨 겹침 수정 (보조 모드 1.4.8)",
-  "time": 1794021548
+  "version": "4.0.6",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.0.6.jar",
+  "sha256": "de13b70fdb6acd40df95832b3d6fb694a51e5781f7bea2099c111b12f7bfa1c4",
+  "size": 175855389,
+  "notes": "서버장이 지은 성 + 안쪽으로 열리는 나무 성문 (새 월드부터)",
+  "time": 1794039399
 }
