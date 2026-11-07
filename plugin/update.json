@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.0.3",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.0.3.jar",
-  "sha256": "d3975ebe3f0b20b2ea14f57723226b358b1ea6621f4ba8cac04850461ecfebfb",
-  "size": 175773428,
-  "notes": "큰 성 새로 설계 (새 월드만): 높은 성벽·성가퀴·탑·걸어 오르는 계단·아치 성문·해자·다리",
-  "time": 1794019128
+  "version": "4.0.4",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.0.4.jar",
+  "sha256": "b8f7b81bf02b3a0ebfac18a945697e827b9a8e5de560212537884e3d8ab2dd94",
+  "size": 175772025,
+  "notes": "런처 1.8.6: 로그인 창 위치 · 탈취 시간 크게",
+  "time": 1794020985
 }
