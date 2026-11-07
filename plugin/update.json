@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.0.7",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.0.7.jar",
-  "sha256": "d056b6f81c4b9e608b9a4678c3ea0d8055f3b029649618704b392bf1827959f3",
-  "size": 175853692,
-  "notes": "성문 전체가 열리는 나무 문 (문 안쪽 4칸 방, 레버 자리 옮김)",
-  "time": 1794040451
+  "version": "4.0.8",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.0.8.jar",
+  "sha256": "cd7d482a2f4c673648d1c96438cb10bb0d38330d33261c7b4db2f08e6a67be82",
+  "size": 175869329,
+  "notes": "디스코드 서버 id 자동 찾기 + 런처 1.8.7 홈 디스코드 버튼",
+  "time": 1794041661
 }
