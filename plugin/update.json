@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.0.8",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.0.8.jar",
-  "sha256": "cd7d482a2f4c673648d1c96438cb10bb0d38330d33261c7b4db2f08e6a67be82",
-  "size": 175869329,
-  "notes": "디스코드 서버 id 자동 찾기 + 런처 1.8.7 홈 디스코드 버튼",
-  "time": 1794041661
+  "version": "4.0.9",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.0.9.jar",
+  "sha256": "c36598281f173b10995dcc0220e77be145ab07cf80f02184827a224e62f6f9dc",
+  "size": 175869492,
+  "notes": "새 서버 기본값 (https 주소·디스코드 앱 id), 예전 서버 이름 바꿈",
+  "time": 1794042406
 }
