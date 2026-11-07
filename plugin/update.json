@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.0.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.0.1.jar",
-  "sha256": "d85ed03fda524d6e67cd2c251b6a8cb0ac89f4d18e8293460db3b522302e50fb",
-  "size": 175772100,
-  "notes": "큰 성 1.5배 (새 월드만): 마당·성벽 높이·탑·해자·성문",
-  "time": 1794016306
+  "version": "4.0.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.0.2.jar",
+  "sha256": "2f49bfd25602a32e00112eaf78a83712ead1709a0729f40fe7c1322d9ea036f9",
+  "size": 175772638,
+  "notes": "큰 성 경사로 계단을 1칸씩으로",
+  "time": 1794017090
 }
