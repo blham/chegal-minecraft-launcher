@@ -1,8 +1,8 @@
 {
   "v": 2,
-  "serial": 1794058521,
-  "expires": 1804426521,
-  "time": "2026-11-07T22:35:21+09:00",
+  "serial": 1794058989,
+  "expires": 1804426989,
+  "time": "2026-11-07T22:43:09+09:00",
   "launcherVersion": "1.8.9",
   "clientId": "81e9aea6-4da4-48c4-afbf-308ed404b275",
   "server": "",
@@ -16,14 +16,7 @@
     "ftbchunks",
     "minimap",
     "mapfrontiers",
-    "worldmap",
-    "gammautils",
-    "gamma-utils",
-    "fullbright",
-    "fullbrightness",
-    "fullbrightnesstoggle",
-    "brightnesscontrol",
-    "lumen"
+    "worldmap"
   ],
   "files": {
     "launcher/AsiaWarLauncher-linux-arm64": "eb72dba04c2f25f221d52305d8072e8410f27bd999c9ae6cabf983d597574571",

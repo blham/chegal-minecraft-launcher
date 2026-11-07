@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.1.8",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.1.8.jar",
-  "sha256": "d34089dc52155debea7a5644f038fc89be06851e6aa432239de0b2e292cb3591",
-  "size": 166577539,
-  "notes": "보안 점검(입장 대기 중 행동 막기·실명 신호 제한·online-mode 경고), 감마 모드 막기 고침, 런처 1.8.9 지우기 고침",
-  "time": 1794058540
+  "version": "4.1.9",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.1.9.jar",
+  "sha256": "628c38ac3a6b9b79b0e1615aae68b3a4be7cc5e75fa2520605ae978cc1a75dc0",
+  "size": 166576987,
+  "notes": "감마 모드 막기 해제",
+  "time": 1794059007
 }
