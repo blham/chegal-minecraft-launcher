@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.0.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.0.9.jar",
-  "sha256": "c36598281f173b10995dcc0220e77be145ab07cf80f02184827a224e62f6f9dc",
-  "size": 175869492,
-  "notes": "새 서버 기본값 (https 주소·디스코드 앱 id), 예전 서버 이름 바꿈",
-  "time": 1794042406
+  "version": "4.1.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.1.0.jar",
+  "sha256": "21da4718e3e9631b1aeb3210f8404d6eeffd1f929da2019a98df70513b754639",
+  "size": 175870672,
+  "notes": "새 서버에 DiscordSRV 설정 자동으로",
+  "time": 1794043229
 }
