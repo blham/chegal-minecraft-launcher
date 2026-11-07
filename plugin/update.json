@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.1.7",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.1.7.jar",
-  "sha256": "d7ba6f0eefa0436d55f03817f196d67f2a6787f59b76e896d8f1c5602b7c3770",
-  "size": 166571568,
-  "notes": "퀘스트 창 오른쪽, 탈취 보스바 끔(모드), 성 안 등불, 성 안 몹 스폰 막기, 성문 블록 설치 막기, 감마 모드 막기",
-  "time": 1794054989
+  "version": "4.1.8",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.1.8.jar",
+  "sha256": "d34089dc52155debea7a5644f038fc89be06851e6aa432239de0b2e292cb3591",
+  "size": 166577539,
+  "notes": "보안 점검(입장 대기 중 행동 막기·실명 신호 제한·online-mode 경고), 감마 모드 막기 고침, 런처 1.8.9 지우기 고침",
+  "time": 1794058540
 }

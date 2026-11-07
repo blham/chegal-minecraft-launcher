@@ -1,2 +1,9 @@
 dist/
 *.part
+
+# 서명 비밀 열쇠는 절대 올리지 않음
+*sign-key*
+*.key
+*.pem
+*.pfx
+server-owner.yml
