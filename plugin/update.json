@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.0.4",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.0.4.jar",
-  "sha256": "b8f7b81bf02b3a0ebfac18a945697e827b9a8e5de560212537884e3d8ab2dd94",
-  "size": 175772025,
-  "notes": "런처 1.8.6: 로그인 창 위치 · 탈취 시간 크게",
-  "time": 1794020985
+  "version": "4.0.5",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.0.5.jar",
+  "sha256": "e570ef3a8ff9628bee08c962d5c45c358285354e522e80e818b30eff8ae9bb47",
+  "size": 175772652,
+  "notes": "굵은 글씨 겹침 수정 (보조 모드 1.4.8)",
+  "time": 1794021548
 }
