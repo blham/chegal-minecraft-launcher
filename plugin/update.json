@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.2.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.2.0.jar",
-  "sha256": "872c6eee16626f7949b152bb179a9c99762a97d9adf944395a116ca09c149621",
-  "size": 167156301,
-  "notes": "런처 필수(다른 런처·직접 넣은 모드 막음), 두 줄 이름표, 칭호 색, 세력 6명 제한·함께 건국, 1일차 휴전, 점수 10배·성 잃음 정산·1등 견제, 3막 마지막 3일 3배, 수비 완화, 수호상 96칸",
-  "time": 1794314039
+  "version": "4.2.1",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.2.1.jar",
+  "sha256": "4cb6e7473c734c272369448074e88c6c203ebfc1eccc37a952338612d7b122ea",
+  "size": 167243037,
+  "notes": "새 월드부터: 바깥 성벽(200칸·문 16곳), 안쪽 성 1.5배, 철도 2개 노선과 열차, 부산·제주·아소 항구와 무역선. 지도 타일 캐시 멈춤 고침",
+  "time": 1794329183
 }
