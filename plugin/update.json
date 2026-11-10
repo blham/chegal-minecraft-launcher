@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.1.9",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.1.9.jar",
-  "sha256": "628c38ac3a6b9b79b0e1615aae68b3a4be7cc5e75fa2520605ae978cc1a75dc0",
-  "size": 166576987,
-  "notes": "감마 모드 막기 해제",
-  "time": 1794059007
+  "version": "4.2.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.2.0.jar",
+  "sha256": "872c6eee16626f7949b152bb179a9c99762a97d9adf944395a116ca09c149621",
+  "size": 167156301,
+  "notes": "런처 필수(다른 런처·직접 넣은 모드 막음), 두 줄 이름표, 칭호 색, 세력 6명 제한·함께 건국, 1일차 휴전, 점수 10배·성 잃음 정산·1등 견제, 3막 마지막 3일 3배, 수비 완화, 수호상 96칸",
+  "time": 1794314039
 }
