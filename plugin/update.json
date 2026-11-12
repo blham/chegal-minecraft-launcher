@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.4.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.4.0.jar",
-  "sha256": "5236a34b56d20a9857178c2b6b7e80b254302d61e301c6d9770546d58a0b7330",
-  "size": 173233494,
-  "notes": "카지노(행운의 바퀴·슬롯·룰렛·플링코·블랙잭·오리 경주) · 술 빚기(소주·막걸리·맥주·사케·고량주·위스키) · 손으로 직접 만드는 요리(스테이크·라멘·초밥, 보조 모드 1.8.0 필요) · 달걀·밥·볶기·튀김·찜·석쇠·반죽·통재료 손질 기반",
-  "time": 1794476047
+  "version": "4.5.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.5.0.jar",
+  "sha256": "f6ccef97d02b833d4157d6fc5c480dacf7cb026e2f8f5b4cbf754768a2fe8c3e",
+  "size": 174525031,
+  "notes": "카지노 직원(딜러·크루피어·바텐더·진행자)과 모션, 테이블 위 카드·칩, 새 카지노 화면, 카지노 꾸미기·울릉도 이전, 새 열차·둥근 바퀴·요금·노선당 1대, 역 정돈, 성 2배, 길안내 높이, 배 흔들림 줄임 (보조 모드 1.9.0)",
+  "time": 1794483982
 }
