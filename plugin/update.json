@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.2.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.2.1.jar",
-  "sha256": "4cb6e7473c734c272369448074e88c6c203ebfc1eccc37a952338612d7b122ea",
-  "size": 167243037,
-  "notes": "새 월드부터: 바깥 성벽(200칸·문 16곳), 안쪽 성 1.5배, 철도 2개 노선과 열차, 부산·제주·아소 항구와 무역선. 지도 타일 캐시 멈춤 고침",
-  "time": 1794329183
+  "version": "4.4.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.4.0.jar",
+  "sha256": "5236a34b56d20a9857178c2b6b7e80b254302d61e301c6d9770546d58a0b7330",
+  "size": 173233494,
+  "notes": "카지노(행운의 바퀴·슬롯·룰렛·플링코·블랙잭·오리 경주) · 술 빚기(소주·막걸리·맥주·사케·고량주·위스키) · 손으로 직접 만드는 요리(스테이크·라멘·초밥, 보조 모드 1.8.0 필요) · 달걀·밥·볶기·튀김·찜·석쇠·반죽·통재료 손질 기반",
+  "time": 1794476047
 }
