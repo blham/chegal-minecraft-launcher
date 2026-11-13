@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.5.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.5.0.jar",
-  "sha256": "f6ccef97d02b833d4157d6fc5c480dacf7cb026e2f8f5b4cbf754768a2fe8c3e",
-  "size": 174525031,
-  "notes": "카지노 직원(딜러·크루피어·바텐더·진행자)과 모션, 테이블 위 카드·칩, 새 카지노 화면, 카지노 꾸미기·울릉도 이전, 새 열차·둥근 바퀴·요금·노선당 1대, 역 정돈, 성 2배, 길안내 높이, 배 흔들림 줄임 (보조 모드 1.9.0)",
-  "time": 1794483982
+  "version": "4.6.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.6.0.jar",
+  "sha256": "f608eaa183a42414752b7cd55167a82d49cd5f2e5fdcf715a2310db8b0fc383b",
+  "size": 175146533,
+  "notes": "새 선로·쇠 트러스 다리·증기 기관차, 새 월드 본선 노선(역 6곳·열차 2대), 객차 안 걷기·옆문 타고 내리기, 배 사다리·갑판 걷기 렉백 고침, 전조등, 열차가 닿는 블록 부수기, 역무원·열차표(종단표 1,200원·구간표 400원), 보급 열차, 달리는 열차에서 뛰어내리면 피해, 새 손요리 회, 전설 아이템 5종 입체 모형, 바깥 성벽 문 보수, 대각선 역 다시 짓기 (보조 모드 1.9.1 필수)",
+  "time": 1794546465
 }
