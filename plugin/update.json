@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.7.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.7.0.jar",
-  "sha256": "140661cfe144f99e939c4c4aac86aa54b93d5812760744a8f6510a11a9843cc0",
-  "size": 175187731,
-  "notes": "선로 자갈 도상(비탈에서도 계단 없이), 무역선 탐조등·현등, 배표와 항구 매표원(종단 1,200원·구간 400원, 몰래 타면 다음 항구에서 내려 줌), 보급 열차 쟁탈(상자 봉인 8초·뜯으면 알림, 온전히 닿으면 호위 보상 800원), 새 손요리 육회, 접시 받침대 (보조 모드 1.9.2 필수)",
-  "time": 1794554636
+  "version": "4.7.1",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.7.1.jar",
+  "sha256": "ddba61b3e1533337dae1d5b4bbb2afeb8cea249712884da4a4dfa277061af130",
+  "size": 175191420,
+  "notes": "요리: 실사 요리 끔(도구 미니게임으로) · 우클릭 조작 · 판정 글 작게 / 철도: 갈림길 선로 · 역 유리 · 승강장 가장자리 · 깊은 깎기 터널 지붕 · 선로 위 몹 · 보급 상자 옆 의자 · 객차 바닥 · 역 구내 하차 / 폭포 물 흐름",
+  "time": 1794561744
 }
