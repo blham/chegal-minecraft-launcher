@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.7.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.7.1.jar",
-  "sha256": "ddba61b3e1533337dae1d5b4bbb2afeb8cea249712884da4a4dfa277061af130",
-  "size": 175191420,
-  "notes": "요리: 실사 요리 끔(도구 미니게임으로) · 우클릭 조작 · 판정 글 작게 / 철도: 갈림길 선로 · 역 유리 · 승강장 가장자리 · 깊은 깎기 터널 지붕 · 선로 위 몹 · 보급 상자 옆 의자 · 객차 바닥 · 역 구내 하차 / 폭포 물 흐름",
-  "time": 1794561744
+  "version": "4.8.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.8.0.jar",
+  "sha256": "a6abdab0b9689fccbe096aff9e4a883395547cebf43f6aadd84e08373809bafb",
+  "size": 168662060,
+  "notes": "요리·그릇·작물·술병·카지노 복셀풍, 열차 새 단장, 채팅 Tab 전환, 음성 채팅방 채팅 (보조 모드 1.9.3 필요)",
+  "time": 1794610848
 }
