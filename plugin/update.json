@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.8.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.8.0.jar",
-  "sha256": "a6abdab0b9689fccbe096aff9e4a883395547cebf43f6aadd84e08373809bafb",
-  "size": 168662060,
-  "notes": "요리·그릇·작물·술병·카지노 복셀풍, 열차 새 단장, 채팅 Tab 전환, 음성 채팅방 채팅 (보조 모드 1.9.3 필요)",
-  "time": 1794610848
+  "version": "4.8.1",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.8.1.jar",
+  "sha256": "f255b25d0a2412e0ab34f4ae329f41de0ba826fc73adf361fa98fe6de4a0d794",
+  "size": 168760703,
+  "notes": "울릉도 카지노 궁 · 바카라 · 쓰리카드 포커 · 식보 · 텍사스 홀덤 · 게임기 위 조작 · 칩과 환전소 · 보급 열차 삭제 (보조 모드 1.9.4 필요)",
+  "time": 1794633335
 }
