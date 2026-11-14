@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.8.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.8.1.jar",
-  "sha256": "f255b25d0a2412e0ab34f4ae329f41de0ba826fc73adf361fa98fe6de4a0d794",
-  "size": 168760703,
-  "notes": "울릉도 카지노 궁 · 바카라 · 쓰리카드 포커 · 식보 · 텍사스 홀덤 · 게임기 위 조작 · 칩과 환전소 · 보급 열차 삭제 (보조 모드 1.9.4 필요)",
-  "time": 1794633335
+  "version": "4.8.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.8.2.jar",
+  "sha256": "de5ba56d4bebae77f40c893f37863edd0c7e8c39a2408b96a921114669ee4638",
+  "size": 169282963,
+  "notes": "새 성 모양 (이미 지은 성은 /성다시짓기) · 카지노 조작판 · 상 차리기와 차 · 술 등급 · 상인 낱개 구매 · 성 유지비와 급행권 · /tpa 삭제",
+  "time": 1794671774
 }
