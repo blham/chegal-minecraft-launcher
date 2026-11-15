@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.8.2",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.8.2.jar",
-  "sha256": "de5ba56d4bebae77f40c893f37863edd0c7e8c39a2408b96a921114669ee4638",
-  "size": 169282963,
-  "notes": "새 성 모양 (이미 지은 성은 /성다시짓기) · 카지노 조작판 · 상 차리기와 차 · 술 등급 · 상인 낱개 구매 · 성 유지비와 급행권 · /tpa 삭제",
-  "time": 1794671774
+  "version": "4.9.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.9.0.jar",
+  "sha256": "db899b99d530e316a0e5d0c5348a3e902cd0157179ac0242653bf45911b3a5d6",
+  "size": 168891562,
+  "notes": "「코어」를 「성」·「수호상」으로 (config 문구는 켤 때 저절로 바뀜) · 런처 1.9.6: 새 아이콘, 지도 화면 고침, 설정에 기록 복사·저장",
+  "time": 1794707806
 }
