@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.9.0",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.9.0.jar",
-  "sha256": "db899b99d530e316a0e5d0c5348a3e902cd0157179ac0242653bf45911b3a5d6",
-  "size": 168891562,
-  "notes": "「코어」를 「성」·「수호상」으로 (config 문구는 켤 때 저절로 바뀜) · 런처 1.9.6: 새 아이콘, 지도 화면 고침, 설정에 기록 복사·저장",
-  "time": 1794707806
+  "version": "4.9.1",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.9.1.jar",
+  "sha256": "a2b4d9795b2249b7c91cac29dc5e35f93a75e7ea60f8666629c8544ef4238ea3",
+  "size": 168892294,
+  "notes": "런처 1.9.7: 서버가 꺼져 있을 때 「공식 런처로 실행」 으로 바뀌던 것 고침 (플러그인 내용은 4.9.0 과 같음: 「코어」 → 「성」·「수호상」)",
+  "time": 1794717405
 }
