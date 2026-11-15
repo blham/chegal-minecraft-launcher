@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.9.1",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.9.1.jar",
-  "sha256": "a2b4d9795b2249b7c91cac29dc5e35f93a75e7ea60f8666629c8544ef4238ea3",
-  "size": 168892294,
-  "notes": "런처 1.9.7: 서버가 꺼져 있을 때 「공식 런처로 실행」 으로 바뀌던 것 고침 (플러그인 내용은 4.9.0 과 같음: 「코어」 → 「성」·「수호상」)",
-  "time": 1794717405
+  "version": "4.9.2",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.9.2.jar",
+  "sha256": "5307388e6daef88c4b49616a9517733c97a8287c03d9fb76b04e5de2badf6286",
+  "size": 168944810,
+  "notes": "열차 · 배 · 카지노 게임기를 지나가지 못하게 (보조 모드 1.9.5) · 성 안과 카지노 궁을 밝게 · 카지노 안 싸움 금지 · 런처 1.9.8: 서버가 꺼져 있어도 로그인 창이 바로 뜸",
+  "time": 1794722900
 }
