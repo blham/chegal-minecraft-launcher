@@ -1,9 +1,9 @@
 {
   "type": "koreawar-plugin",
-  "version": "4.9.2",
-  "url": "https://github.com/blham/chegal-minecraft-launcher/raw/main/plugin/AsiaWar-4.9.2.jar",
-  "sha256": "5307388e6daef88c4b49616a9517733c97a8287c03d9fb76b04e5de2badf6286",
-  "size": 168944810,
-  "notes": "열차 · 배 · 카지노 게임기를 지나가지 못하게 (보조 모드 1.9.5) · 성 안과 카지노 궁을 밝게 · 카지노 안 싸움 금지 · 런처 1.9.8: 서버가 꺼져 있어도 로그인 창이 바로 뜸",
-  "time": 1794722900
+  "version": "5.1.0",
+  "url": "https://github.com/blham/chegal-minecraft-launcher/releases/download/v5.1.0/AsiaWar-5.1.0.jar",
+  "sha256": "c7b2580d5a11432e11cf507e85d30880c94a733277a35cd9117bb803f5edb8a7",
+  "size": 169054436,
+  "notes": "맵 1.25배 (10000x25000, 새 월드 · 예전 월드는 백업) · 카지노 지하 게임(당구 · 볼링 · 다트 · 미니 골프 · 카트 경주) · 국가 단순화 · 열차·배 1.5배 · 실명 명령어 · 포화 특산품 광주로 · 보조 모드 1.9.7 · 런처 1.9.9",
+  "time": 1795110409
 }
